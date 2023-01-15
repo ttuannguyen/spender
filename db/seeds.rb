@@ -7,5 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-# u1 = User.create(username: "john", password: "asdfghjk")
+u1 = User.create(username: "john", password: "asdfghjk")
 
+
+puts "✅ Done seeding!"
