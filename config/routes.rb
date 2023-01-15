@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   resources :expenses
   resources :categories
   resources :notes
+
+  # routes to handle sessions login and logout
+  post "/login", to: "sessions#login"
+  delete "logout", to: "sessions#logout"
+
   
   
   # Routing logic: fallback requests for React Router.
