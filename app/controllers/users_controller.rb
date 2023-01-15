@@ -2,7 +2,12 @@ class UsersController < ApplicationController
     
     # GET "/users/:id"
     def show 
-        render json: current_user
+        user = User.find_by(id: params[:id])
+        if user 
+            render json: user, status: :ok
+        else 
+            render json: "User not found", status: :unauthorized
+        end
     end
 
     # POST "/users"
