@@ -14,11 +14,12 @@ const App = () => {
     <div className="App">
       <Router >
         <h1>Capstone Project</h1>
+        <Navbar />
         <Routes>
+          <Route exact path="/categories" element={ <Categories /> } />
           <Route exact path="/home" element={ <Home /> } />
         </Routes>
       </Router>
-      <Home />
     </div>
   );
 }
