@@ -6,3 +6,5 @@ const requestingReducer = (state=initialState, action) => {
             return state;
     }
 }
+
+export default requestingReducer;
