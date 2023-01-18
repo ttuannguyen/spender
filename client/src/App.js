@@ -6,6 +6,7 @@ import Categories from './components/Categories';
 import ExpenseForm from './components/ExpenseForm';
 import Navbar from './components/Navbar';
 import Login from './components/Login';
+import Counter from './features/Counter';
 
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
       <Router >
         <h1>Capstone Project</h1>
         <Navbar />
+        <Counter />
         <Routes>
           <Route exact path="/categories" element={ <Categories categories={categories} /> } />
           <Route exact path="/home" element={ <Home /> } />
