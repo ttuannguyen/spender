@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 
 
+// import store, wrap App inside Provide and pass store in as prop
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
