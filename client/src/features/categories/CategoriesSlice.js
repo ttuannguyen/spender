@@ -15,14 +15,6 @@ export const fetchCategoriesAsync = createAsyncThunk(
     }
 )
 
-
-// export const fetchCategoriesAsync = createAsyncThunk(
-//     'categories/fetchCategories', () => {
-//         return fetch('')
-//     }
-
-// )
-
 export const categoriesSlice = createSlice({
     name: 'categories',
     initialState,

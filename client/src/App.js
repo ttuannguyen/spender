@@ -2,11 +2,10 @@ import './App.css';
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './components/Home';
-import ExpenseForm from './components/ExpenseForm';
 import Navbar from './components/Navbar';
-import Login from './components/Login';
 import Counter from './features/Counter';
 import Categories from './features/categories/Categories';
+import Expenses from './features/expenses/Expenses';
 
 
 const App = () => {
@@ -31,6 +30,7 @@ const App = () => {
         <Counter />
         <Routes>
           <Route exact path="/categories" element={ <Categories /> } />
+          <Route exact path="/expenses" element={ <Expenses /> } />
           <Route exact path="/home" element={ <Home /> } />
         </Routes>
       </Router>

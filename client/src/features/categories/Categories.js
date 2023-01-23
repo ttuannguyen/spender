@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCategoriesAsync } from './CategoriesSlice';
 import Category from './Category';
 
 const Categories = () => {
   
-
-  // TODO: To get the data from categories
   const categories = useSelector(state => state.categories.data)
   const dispatch = useDispatch()
 

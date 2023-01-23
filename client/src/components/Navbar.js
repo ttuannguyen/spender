@@ -10,6 +10,9 @@ const Navbar = () => {
       <NavLink className='navlink' to='/categories'>
         <button className='nav-btn'>Categories</button>
       </NavLink>
+      <NavLink className='navlink' to='/expenses'>
+        <button className='nav-btn'>Expenses</button>
+      </NavLink>
     </div>
   )
 }

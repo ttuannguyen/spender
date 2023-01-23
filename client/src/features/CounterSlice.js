@@ -50,7 +50,7 @@ export const counterSlice = createSlice({
 
 })
 
-console.log(counterSlice.actions.incrementByAmount(10)) // here awe can see the action creator and the payload is 10
+// console.log(counterSlice.actions.incrementByAmount(10)) // here awe can see the action creator and the payload is 10
 
 // Question: do we care about return values or do we care about updating state
 
