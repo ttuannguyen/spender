@@ -11,12 +11,12 @@ export const loginAsync = createAsyncThunk('auth/fetchLogin', () => {
 export const loginSlice = createSlice({
     name: 'login',
     initialState: {
-        loginState: false,
+        loggedIn: false,
         status: 'idle'
     },
     reducers: {
-        setLoggedInState: state => {state.loginState = true},
-        setLoggedOutState: state => {state.loginState = false}
+        setLoggedInState: state => {state.loggedIn = true},
+        setLoggedOutState: state => {state.loggedIn = false}
     },
  
     extraReducers: (builder) => {

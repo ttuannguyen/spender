@@ -15,7 +15,6 @@ const App = () => {
     <div className="App">
       <Router >
         <h1>Capstone Project</h1>
-        <h3>Welcome, User X </h3>
         <Navbar />
         <Counter />
         <Routes>

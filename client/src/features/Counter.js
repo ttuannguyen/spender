@@ -11,6 +11,7 @@ const Counter = () => {
     // We are accessing the global variables from state from CounterSlice
     const count = useSelector(state => state.counter.value)
     const status = useSelector(state => state.counter.status)
+    const loggedIn = useSelector(state => state.login.loggedIn)
 
     // thunk - Step 2: declare new state for image
     const image = useSelector(state => state.counter.image)
@@ -27,19 +28,24 @@ const Counter = () => {
     
     // We dispatch the actions we defined in the reducers in CounterSlice
      // thunk - Step 3: dispatch the image
-    return (
-        <div className={status === 'idle' ? 'green' : 'red'}> {/* when imported correctly we'll see green */}
-            <h2>Counter Redux</h2>
-            <p>Current Count: {count}</p>
-            <img src={image || window.location.origin + '/logo192.png'} alt='a dog or react logo'/>
-            <br />
-            <button onClick={() => dispatch(reset())}>Reset</button>
-            <button onClick={() => dispatch(increment())}>Increment</button>
-            <button onClick={() => dispatch(decrement())}>Decrement</button>
-            <button onClick={() => dispatch(incrementByAmount(5))}>Increment By 5</button>
-            <button onClick={() => dispatch(fetchRandomDogImageAsync())}>Fetch Doggo</button>
-        </div>
-    )
+
+    if (loggedIn) {
+        return (
+            <div className={status === 'idle' ? 'green' : 'red'}> {/* when imported correctly we'll see green */}
+                <h2>Counter Redux</h2>
+                <p>Current Count: {count}</p>
+                <img src={image || window.location.origin + '/logo192.png'} alt='a dog or react logo'/>
+                <br />
+                <button onClick={() => dispatch(reset())}>Reset</button>
+                <button onClick={() => dispatch(increment())}>Increment</button>
+                <button onClick={() => dispatch(decrement())}>Decrement</button>
+                <button onClick={() => dispatch(incrementByAmount(5))}>Increment By 5</button>
+                <button onClick={() => dispatch(fetchRandomDogImageAsync())}>Fetch Doggo</button>
+            </div>
+        )
+    } else {
+        return (<p></p>) 
+    }
 }
 
 export default Counter;

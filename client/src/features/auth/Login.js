@@ -11,11 +11,10 @@ const Login = () => {
   const [error, setError] = useState('');
   // const { login } = useContext(UserContext);
 
-  const login = useSelector(state => state.login.loginState)
-  console.log(login)
-  
-  const dispatch = useDispatch()
+  const loggedIn = useSelector(state => state.login.loggedIn)
+  console.log(loggedIn)
 
+  const dispatch = useDispatch()
   const navigate = useNavigate();
 
 
