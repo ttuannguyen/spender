@@ -1,8 +1,12 @@
 import React from 'react'
 
-const Expense = () => {
+const Expense = ({expense}) => {
   return (
-    <div>Expense</div>
+    <div>
+      <p>{expense.merchant}</p>
+      <p>{expense.date}</p>
+      <p>{expense.amount}</p>
+    </div>
   )
 }
 

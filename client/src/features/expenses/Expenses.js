@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import Expense from './Expense';
 import { fetchExpensesAsync } from './ExpensesSlice';
 
 const Expenses = () => {
@@ -11,11 +12,11 @@ const Expenses = () => {
     dispatch(fetchExpensesAsync());
   }, [dispatch]);
 
-  const expensesList = expenses.map(expense => console.log(expense))
+  const expensesList = expenses.map(expense => <Expense expense={expense} />)
 
   return (
     <div>
-
+      {expensesList}
     </div>
   )
 }

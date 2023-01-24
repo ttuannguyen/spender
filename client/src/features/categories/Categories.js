@@ -13,8 +13,6 @@ const Categories = () => {
   }, [dispatch]);
 
   const categoriesList = categories.map(category => <Category category={category} />)
-  // const categoriesList = categories.map(category => <p>{category.name}</p>)
-
 
   return (
     <div>

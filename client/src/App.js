@@ -6,31 +6,22 @@ import Navbar from './components/Navbar';
 import Counter from './features/Counter';
 import Categories from './features/categories/Categories';
 import Expenses from './features/expenses/Expenses';
+import Login from './features/auth/Login';
 
 
 const App = () => {
-
-  // const [categories, setCategories] = useState([]);
-
-  // useEffect(() => {
-  //   fetch('/categories')
-  //   .then(res => res.json()) 
-  //   .then(data => {
-  //     setCategories(data)
-  //   })
-  // }, [])
-
-  
 
   return (
     <div className="App">
       <Router >
         <h1>Capstone Project</h1>
+        <h3>Welcome, User X </h3>
         <Navbar />
         <Counter />
         <Routes>
           <Route exact path="/categories" element={ <Categories /> } />
           <Route exact path="/expenses" element={ <Expenses /> } />
+          <Route exact path='/login' element={<Login />} />
           <Route exact path="/home" element={ <Home /> } />
         </Routes>
       </Router>
