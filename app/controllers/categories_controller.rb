@@ -15,4 +15,16 @@ class CategoriesController < ApplicationController
         end
     end
 
+    # POST "/categories"
+    def create 
+        category = Category.create(category_params)
+        render json: category, status: :created
+    end
+
+    private
+    def category_params
+        params.permit(:name)
+    end
+
+
 end

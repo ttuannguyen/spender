@@ -11,7 +11,7 @@ const Counter = () => {
     // We are accessing the global variables from state from CounterSlice
     const count = useSelector(state => state.counter.value)
     const status = useSelector(state => state.counter.status)
-    const loggedIn = useSelector(state => state.login.loggedIn)
+    const loggedIn = useSelector(state => state.auth.loggedIn)
 
     // thunk - Step 2: declare new state for image
     const image = useSelector(state => state.counter.image)

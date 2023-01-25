@@ -7,6 +7,7 @@ import Counter from './features/Counter';
 import Categories from './features/categories/Categories';
 import Expenses from './features/expenses/Expenses';
 import Login from './features/auth/Login';
+import Signup from './features/auth/Signup';
 
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
           <Route exact path="/categories" element={ <Categories /> } />
           <Route exact path="/expenses" element={ <Expenses /> } />
           <Route exact path='/login' element={<Login />} />
+          <Route exact path='/signup' element={<Signup />} />
           <Route exact path="/home" element={ <Home /> } />
         </Routes>
       </Router>

@@ -6,6 +6,7 @@ import { fetchExpensesAsync } from './ExpensesSlice';
 const Expenses = () => {
 
   const expenses = useSelector(state => state.expenses.data)
+  const loggedIn = useSelector(state => state.auth.loggedIn)
   const dispatch= useDispatch()
 
   useEffect(() => {
@@ -14,11 +15,17 @@ const Expenses = () => {
 
   const expensesList = expenses.map(expense => <Expense expense={expense} />)
 
-  return (
-    <div>
-      {expensesList}
-    </div>
-  )
+  if (loggedIn) {
+    return (
+      <div>
+        {expensesList}
+      </div>
+    )
+  } else {
+    return (<h4>Please login or create an Account</h4>)
+  }
+
+  
 }
 
 export default Expenses

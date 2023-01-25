@@ -2,10 +2,12 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCategoriesAsync } from './CategoriesSlice';
 import Category from './Category';
+import CategoryAddForm from './CategoryAddForm';
 
 const Categories = () => {
   
   const categories = useSelector(state => state.categories.data)
+  const loggedIn = useSelector(state => state.auth.loggedIn)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -14,11 +16,16 @@ const Categories = () => {
 
   const categoriesList = categories.map(category => <Category category={category} />)
 
-  return (
-    <div>
-      {categoriesList}
-    </div>
-  )
+  if (loggedIn) {
+    return (
+      <div>
+        {categoriesList}
+        <CategoryAddForm />
+      </div>
+    )
+  } else {
+    return (<h4>Please login or create an Account</h4>) 
+  }
 }
 
 export default Categories

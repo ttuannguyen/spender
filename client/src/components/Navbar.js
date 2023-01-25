@@ -2,11 +2,11 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import { setLoggedOutState } from '../features/auth/LoginSlice';
+import { setLoggedOutState } from '../features/auth/AuthSlice';
 
 const Navbar = () => {
 
-  const loggedIn = useSelector(state => state.login.loggedIn)
+  const loggedIn = useSelector(state => state.auth.loggedIn)
   console.log(loggedIn)
 
   const dispatch = useDispatch();

@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchCategories } from "./CategoriesApi";
 
-
 const initialState = {
     data: [],
     status: 'idle'
@@ -19,7 +18,10 @@ export const categoriesSlice = createSlice({
     name: 'categories',
     initialState,
     reducers: {
-
+        addCategory(state, action) {
+            state.data.push(action.payload)
+            //action.payload refers to the new cat that is being pushed into the state arr
+        }
     },
 
     extraReducers: (builder) => {
@@ -37,4 +39,6 @@ export const categoriesSlice = createSlice({
     }
 })
 
+
 export default categoriesSlice.reducer
+export const {addCategory} = categoriesSlice.actions

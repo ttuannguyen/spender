@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 const Home = () => {
 
-  const loggedIn = useSelector(state => state.login.loggedIn)
+  const loggedIn = useSelector(state => state.auth.loggedIn)
 
   if (loggedIn) {
     return (

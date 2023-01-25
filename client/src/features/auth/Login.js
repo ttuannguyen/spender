@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { setLoggedInState } from './LoginSlice';
+import { setLoggedInState } from './AuthSlice';
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 
@@ -9,14 +9,12 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  // const { login } = useContext(UserContext);
 
-  const loggedIn = useSelector(state => state.login.loggedIn)
-  console.log(loggedIn)
+  // const loggedIn = useSelector(state => state.auth.loggedIn)
+  // console.log(loggedIn)
 
   const dispatch = useDispatch()
   const navigate = useNavigate();
-
 
 
   const handleSubmit = (e) => {
@@ -54,7 +52,7 @@ const Login = () => {
         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} /><br/>
         <label>Password</label>
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} /><br/>
-        <button type="submit">Login!</button>
+        <button type="submit">Login</button>
       </form>
     {/* <p>{error}</p> */}
     </div>
