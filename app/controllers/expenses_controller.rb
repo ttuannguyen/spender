@@ -15,19 +15,24 @@ class ExpensesController < ApplicationController
         end
     end
 
-
     # POST "/expenses"
     def create 
         expense = Expense.create(expense_params)
         render json: expense, status: :created
     end
-
     
     # PATCH "/expenses/:id"
     def update
         expense = Expense.find_by(id: params[:id])
         expense.update(expense_params)
         render json: expense, status: :accepted
+    end
+
+    # DELETE
+    def destroy
+        expense = Expense.find_by(id: params[:id])
+        expense.destroy
+        head :no_content
     end
 
     private
