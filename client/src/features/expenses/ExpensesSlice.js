@@ -19,7 +19,12 @@ export const expensesSlice = createSlice({
     initialState, 
     reducers: {
         addExpense(state, action) {
+            // using createSlice lets us mutate state!
             state.data.push(action.payload)
+        },
+        editExpense(state, action) {
+            const newArr = state.data.map(e => e.id === action.payload.id ? action.payload : e)
+            state.data = newArr
         }
     },
     
@@ -39,6 +44,5 @@ export const expensesSlice = createSlice({
 })
 
 
-
 export default expensesSlice.reducer
-export const {addExpense} = expensesSlice.actions
+export const {addExpense, editExpense} = expensesSlice.actions

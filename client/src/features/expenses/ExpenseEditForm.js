@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
+import { editExpense } from './ExpensesSlice';
 
 
 const ExpenseEditForm = () => {
@@ -11,7 +12,8 @@ const ExpenseEditForm = () => {
     const [date, setDate] = useState('');
     const [amount, setAmount] = useState('');
     const navigate = useNavigate('');
-    const loggedIn = useSelector(state => state.auth.loggedIn)
+    const loggedIn = useSelector(state => state.auth.loggedIn);
+    const dispatch = useDispatch();
     
     // const [visitFound, setVisitFound] = useState({});
     // if (!visitFound.id && user.id) {
@@ -42,7 +44,8 @@ const ExpenseEditForm = () => {
         })
         .then(res => res.json())
         .then(data => {
-            //
+            dispatch(editExpense(data))
+            navigate('/expenses')
         })
     }
 
