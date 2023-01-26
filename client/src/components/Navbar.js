@@ -35,6 +35,9 @@ const Navbar = () => {
         <NavLink className='navlink' to='/expenses'>
           <button className='nav-btn'>Expenses</button>
         </NavLink>
+        <NavLink className='navlink' to='/expenses/new'>
+          <button className='nav-btn'>Add Expense</button>
+        </NavLink>
         <button className='nav-btn' onClick={logoutUser}>Logout</button>
       </div>
     )

@@ -18,7 +18,9 @@ export const expensesSlice = createSlice({
     name: 'expenses',
     initialState, 
     reducers: {
-
+        addExpense(state, action) {
+            state.data.push(action.payload)
+        }
     },
     
     extraReducers: (builder) => {
@@ -39,3 +41,4 @@ export const expensesSlice = createSlice({
 
 
 export default expensesSlice.reducer
+export const {addExpense} = expensesSlice.actions

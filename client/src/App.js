@@ -8,6 +8,8 @@ import Categories from './features/categories/Categories';
 import Expenses from './features/expenses/Expenses';
 import Login from './features/auth/Login';
 import Signup from './features/auth/Signup';
+import ExpenseAddForm from './features/expenses/ExpenseAddForm';
+import ExpenseEditForm from './features/expenses/ExpenseEditForm';
 
 
 const App = () => {
@@ -20,6 +22,8 @@ const App = () => {
         <Counter />
         <Routes>
           <Route exact path="/categories" element={ <Categories /> } />
+          <Route exact path='/expenses/new' element={ <ExpenseAddForm /> } />
+          <Route path='/expenses/:id/edit' element={<ExpenseEditForm />} />
           <Route exact path="/expenses" element={ <Expenses /> } />
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/signup' element={<Signup />} />

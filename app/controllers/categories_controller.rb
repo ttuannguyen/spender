@@ -26,5 +26,4 @@ class CategoriesController < ApplicationController
         params.permit(:name)
     end
 
-
 end
