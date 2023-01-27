@@ -17,7 +17,7 @@ class ExpensesController < ApplicationController
 
     # POST "/expenses"
     def create 
-        expense = Expense.create(expense_params)
+        expense = current_user.expenses.create(expense_params)
         render json: expense, status: :created
     end
     
@@ -36,10 +36,13 @@ class ExpensesController < ApplicationController
     end
 
     private
+
+    def current_user
+        User.find_by(id: session[:user_id])
+    end
+
     def expense_params
         params.permit(:merchant, :date, :amount, :user_id, :category_id)
     end
-
-
     
 end

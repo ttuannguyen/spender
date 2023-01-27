@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './components/Home';
 import Navbar from './components/Navbar';
-import Counter from './features/Counter';
+import Counter from './features/counter/Counter';
 import Categories from './features/categories/Categories';
 import Expenses from './features/expenses/Expenses';
 import Login from './features/auth/Login';
@@ -28,6 +28,7 @@ const App = () => {
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/signup' element={<Signup />} />
           <Route exact path="/home" element={ <Home /> } />
+          {/* <Route exact path="/my_spends" /> */}
         </Routes>
       </Router>
     </div>

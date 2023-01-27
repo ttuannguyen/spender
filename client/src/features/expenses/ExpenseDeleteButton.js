@@ -1,17 +1,20 @@
-import React from 'react'
+import React from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { deleteExpense } from './ExpensesSlice';
 
 const ExpenseDeleteButton = ({expense}) => {
     // const { user, toggle, setToggle } = useContext(UserContext);
 
+    const dispatch = useDispatch();
+
     const handleClick = () => {
-        // fetch(`/expense/${expense.id}`, {
-        //     method: "DELETE",
-        //     headers: {
-        //       "Content-Type": "application/json",
-        //     }
-        // })
-        // setToggle(!toggle)
-        // console.log(expense.id)
+        fetch(`/expenses/${expense.id}`, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            }
+        })
+        dispatch(deleteExpense(expense))
     }
     
     return (

@@ -7,7 +7,7 @@ import { setLoggedOutState } from '../features/auth/AuthSlice';
 const Navbar = () => {
 
   const loggedIn = useSelector(state => state.auth.loggedIn)
-  console.log(loggedIn)
+  // console.log(loggedIn)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -38,6 +38,9 @@ const Navbar = () => {
         <NavLink className='navlink' to='/expenses/new'>
           <button className='nav-btn'>Add Expense</button>
         </NavLink>
+        {/* <NavLink className='navlink' to='/my_spends'>
+          <button className='nav-btn'>My Spends</button>
+        </NavLink> */}
         <button className='nav-btn' onClick={logoutUser}>Logout</button>
       </div>
     )

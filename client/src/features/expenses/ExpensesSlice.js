@@ -25,6 +25,11 @@ export const expensesSlice = createSlice({
         editExpense(state, action) {
             const newArr = state.data.map(e => e.id === action.payload.id ? action.payload : e)
             state.data = newArr
+        },
+        deleteExpense(state, action) {
+            const newArr = state.data.filter(e => e.id !== action.payload.id)
+            console.log(newArr)
+            state.data = newArr
         }
     },
     
@@ -45,4 +50,4 @@ export const expensesSlice = createSlice({
 
 
 export default expensesSlice.reducer
-export const {addExpense, editExpense} = expensesSlice.actions
+export const {addExpense, editExpense, deleteExpense} = expensesSlice.actions

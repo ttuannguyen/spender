@@ -1,20 +1,33 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addExpense } from './ExpensesSlice';
+import { fetchCategoriesAsync } from '../categories/CategoriesSlice';
+
 
 const ExpenseAddForm = () => {
-
-    // const { addSecretSpot } = useContext(UserContext);
-    const [errorsList, setErrorsList] = useState([]);
+    
     const dispatch = useDispatch();
+    
+    // TO DO: conditional rendering based on loggedIn state
+    // TO DO: To see how we can not make this fetch
+    useEffect(() => {
+        dispatch(fetchCategoriesAsync());
+      }, [dispatch]);
+    
+    const [errorsList, setErrorsList] = useState([]);
+    const categories = useSelector(state => state.categories.data)
 
+    const categoriesOptions = categories.map(c => <option value={c.id}>{c.name}</option>)
+
+    // console.log(categories)
     const [formData, setFormData] = useState({
         merchant:'',
         date:'',   
         amount:'',
-        user_id:'',
-        category_id:''
+        category_id:'',
     });
+
+    // console.log(formData)
 
     const handleChange = (e) => {
         setFormData(formData => {
@@ -25,12 +38,13 @@ const ExpenseAddForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        // to reset form
         setFormData({
             merchant:'',
             date:'',   
             amount:'',
-            user_id:'',
-            category_id:''
+            category_id:'',
+            // user_id:''
         })
 
         fetch('/expenses',{
@@ -59,10 +73,12 @@ const ExpenseAddForm = () => {
                 <input type="text" name='date' value={formData.date} onChange={handleChange} /><br/>
                 <label>Amount</label>
                 <input type="text" name='amount' value={formData.amount} onChange={handleChange} /><br/>
-                <label>User Id</label>
-                <input type="text" name='user_id' value={formData.user_id} onChange={handleChange} /><br/>
-                <label>Category Id</label>
-                <input type="text" name='category_id' value={formData.category_id} onChange={handleChange} /><br/>
+                <label>Category:</label>
+                {/* TO DO: Reset dropdown after submit */}
+                <select name='category_id' onChange={handleChange}>
+                    <option> -- select an option -- </option>
+                    {categoriesOptions}
+                </select>
                 <button type="submit">Add!</button>
             </form>
             {errorsList}
