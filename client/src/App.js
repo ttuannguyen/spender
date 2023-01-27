@@ -10,6 +10,7 @@ import Login from './features/auth/Login';
 import Signup from './features/auth/Signup';
 import ExpenseAddForm from './features/expenses/ExpenseAddForm';
 import ExpenseEditForm from './features/expenses/ExpenseEditForm';
+import User from './features/user/User';
 
 
 const App = () => {
@@ -17,9 +18,9 @@ const App = () => {
   return (
     <div className="App">
       <Router >
-        <h1>Capstone Project</h1>
+        <h1>Spender</h1>
         <Navbar />
-        <Counter />
+        {/* <Counter /> */}
         <Routes>
           <Route exact path="/categories" element={ <Categories /> } />
           <Route exact path='/expenses/new' element={ <ExpenseAddForm /> } />
@@ -27,8 +28,8 @@ const App = () => {
           <Route exact path="/expenses" element={ <Expenses /> } />
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/signup' element={<Signup />} />
-          <Route exact path="/home" element={ <Home /> } />
-          {/* <Route exact path="/my_spends" /> */}
+          <Route exact path="/home" element={<Home /> } />
+          <Route exact path="/my_spends" element={<User />}/>
         </Routes>
       </Router>
     </div>

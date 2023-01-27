@@ -24,7 +24,7 @@ const ExpenseAddForm = () => {
         merchant:'',
         date:'',   
         amount:'',
-        category_id:'',
+        category_id:''
     });
 
     // console.log(formData)

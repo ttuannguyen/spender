@@ -38,9 +38,9 @@ const Navbar = () => {
         <NavLink className='navlink' to='/expenses/new'>
           <button className='nav-btn'>Add Expense</button>
         </NavLink>
-        {/* <NavLink className='navlink' to='/my_spends'>
+        <NavLink className='navlink' to='/my_spends'>
           <button className='nav-btn'>My Spends</button>
-        </NavLink> */}
+        </NavLink>
         <button className='nav-btn' onClick={logoutUser}>Logout</button>
       </div>
     )
