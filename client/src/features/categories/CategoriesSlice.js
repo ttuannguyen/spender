@@ -6,6 +6,8 @@ const initialState = {
     status: 'idle'
 }
 
+console.log(initialState.data)
+
 export const fetchCategoriesAsync = createAsyncThunk(
     'categories/fetchCategories',
     async () => {

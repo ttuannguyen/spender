@@ -19,7 +19,7 @@ const User = () => {
   // Current approach: Use the data from the '/categories' endpoint
 
   const filteredCategories = categories.filter(category => category.user_expenses.length !==0)
-  console.log(filteredCategories)
+  // console.log(filteredCategories)
 
 
   const categoriesList = filteredCategories.map(category => <CategoryLink category={category} />)
