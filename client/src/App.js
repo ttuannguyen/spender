@@ -22,7 +22,8 @@ const App = () => {
         <Navbar />
         {/* <Counter /> */}
         <Routes>
-          <Route exact path="/categories" element={ <Categories /> } />
+          <Route exact path='/categories/:id' />
+          <Route exact path='/categories' element={ <Categories /> } />
           <Route exact path='/expenses/new' element={ <ExpenseAddForm /> } />
           <Route path='/expenses/:id/edit' element={<ExpenseEditForm />} />
           <Route exact path="/expenses" element={ <Expenses /> } />

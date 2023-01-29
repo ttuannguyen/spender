@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create" 
   get "/me", to: "users#show"
 
+  # testing routes 
+  get "/my_categories", to: "categories#my_categories"
+
   
   
   # Routing logic: fallback requests for React Router.

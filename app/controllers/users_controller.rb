@@ -5,7 +5,8 @@ class UsersController < ApplicationController
         # user = User.find_by(id: params[:id])
         user = User.find_by(id: session[:user_id])
         if user 
-            render json: user, status: :ok
+            render json: user, status: :ok  
+            # if we want to nest 1 more level deep => include: ['categories', 'categories.expenses']
         else 
             render json: "User not found", status: :unauthorized
         end
