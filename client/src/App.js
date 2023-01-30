@@ -12,7 +12,7 @@ import ExpenseAddForm from './features/expenses/ExpenseAddForm';
 import ExpenseEditForm from './features/expenses/ExpenseEditForm';
 import User from './features/user/User';
 import CategoryDetails from './features/categories/CategoryDetails';
-
+import ExpenseDetails from './features/expenses/ExpenseDetails';
 
 const App = () => {
 
@@ -23,11 +23,11 @@ const App = () => {
         <Navbar />
         {/* <Counter /> */}
         <Routes>
-          <Route exact path='/categories/:id' element={<CategoryDetails />}/>
+          <Route path='/categories/:id' element={<CategoryDetails />}/>
           <Route exact path='/categories' element={ <Categories /> } />
           <Route exact path='/expenses/new' element={ <ExpenseAddForm /> } />
           <Route path='/expenses/:id/edit' element={<ExpenseEditForm />} />
-          <Route path='/expenses/:id' />
+          <Route path='/expenses/:id' element={<ExpenseDetails />}/>
           <Route exact path="/expenses" element={ <Expenses /> } />
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/signup' element={<Signup />} />

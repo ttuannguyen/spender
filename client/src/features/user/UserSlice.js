@@ -3,7 +3,12 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchUser } from './UserApi';
 
 const initialState = {
-    data: [],
+    data: {
+        id: null, 
+        username: '',
+        categories: [],
+        expenses: []
+    },
     status: 'idle'
 }
 
