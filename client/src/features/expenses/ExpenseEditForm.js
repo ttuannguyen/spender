@@ -59,7 +59,7 @@ const ExpenseEditForm = () => {
                     <input type="text" name='date' value={formData.date} onChange={handleChange} /><br/>
                     <label>Amount</label>
                     <input type="text" name='amount' value={formData.amount} onChange={handleChange} /><br/>
-                    <button type="submit">Submit</button>
+                    <button type="submit">Edit</button>
                 </form>
             </div>
         )

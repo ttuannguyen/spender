@@ -7,7 +7,7 @@ import userReducer from '../features/user/UserSlice';
 // added after installing redux-persist
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
-// import thunk from 'redux-thunk';
+import thunk from 'redux-thunk';
 
 const persistConfig = {
     key: 'root',
@@ -26,7 +26,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
     reducer: persistedReducer,
-    // middleware: [thunk] // might not need
+    middleware: [thunk] // might not need
 })
 
 

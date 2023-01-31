@@ -8,7 +8,7 @@ const ExpenseAddForm2 = ({category}) => {
     
     const dispatch = useDispatch();
     
-    // TO DO: Make the new expense appear right away
+    // TO DO: Make the new expense appear right away after submitting the form
 
     // useEffect(() => {
     //     dispatch(fetchCategoriesAsync());

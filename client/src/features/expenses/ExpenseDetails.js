@@ -5,20 +5,20 @@ import { fetchUserAsync } from '../user/UserSlice';
 import { useParams } from 'react-router-dom';
 import ExpenseEditForm from './ExpenseEditForm';
 import ExpenseDeleteButton from './ExpenseDeleteButton';
-// import { fetchUserAsync } from '../user/UserSlice';
 
 const ExpenseDetails = () => {
 
     const params = useParams();
-    const userData = useSelector(state => state.user.data);
-    const [expense, setExpense] = useState({});
     const dispatch = useDispatch()
 
-    // Issue: When refreshed, values in state are gone
-    // Quick fix: run the fetchUserAsync fetch request below
-    useEffect(() => {
-        dispatch(fetchUserAsync());
-      }, [dispatch])
+
+    // useEffect(() => {
+    //     // dispatch(fetchCategoriesAsync());
+    //     dispatch(fetchUserAsync());
+    //   }, [dispatch])
+
+    const userData = useSelector(state => state.user.data);
+    const [expense, setExpense] = useState({});
     
     
     if (!expense.id && userData.id) {

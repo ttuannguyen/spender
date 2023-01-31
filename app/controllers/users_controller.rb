@@ -12,6 +12,12 @@ class UsersController < ApplicationController
         end
     end
 
+    # new
+    def expenses_index
+        expenses = current_user.expenses
+        render json: expenses
+    end
+
     # POST "/users"
     def create 
         user = User.create!(user_params)

@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addExpense } from './ExpensesSlice';
-import { fetchCategoriesAsync } from '../categories/CategoriesSlice';
+import { addExpense } from '../user/UserSlice';
 
 
 const ExpenseAddForm = () => {
@@ -16,6 +15,8 @@ const ExpenseAddForm = () => {
     
     const [errorsList, setErrorsList] = useState([]);
     const categories = useSelector(state => state.categories.data)
+    const user = useSelector(state => state.user.data)
+    // console.log(user)
 
     const categoriesOptions = categories.map(c => <option value={c.id}>{c.name}</option>)
 
@@ -47,7 +48,7 @@ const ExpenseAddForm = () => {
             // user_id:''
         })
 
-        fetch('/expenses',{
+        fetch(`/users/${user.id}/expenses`,{
             method:'POST',
             headers:{'Content-Type': 'application/json'},
             body:JSON.stringify(formData)

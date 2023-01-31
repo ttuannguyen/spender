@@ -8,11 +8,11 @@ const Categories = () => {
   
   const categories = useSelector(state => state.categories.data)
   const loggedIn = useSelector(state => state.auth.loggedIn)
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(fetchCategoriesAsync());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchCategoriesAsync());
+  // }, [dispatch]);
 
   const categoriesList = categories.map(category => <Category key={category.id} category={category} />)
 

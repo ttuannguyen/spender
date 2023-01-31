@@ -13,8 +13,18 @@ import ExpenseEditForm from './features/expenses/ExpenseEditForm';
 import User from './features/user/User';
 import CategoryDetails from './features/categories/CategoryDetails';
 import ExpenseDetails from './features/expenses/ExpenseDetails';
+import { useDispatch } from 'react-redux';
+import { fetchCategoriesAsync } from './features/categories/CategoriesSlice';
+import { fetchUserAsync } from './features/user/UserSlice';
 
 const App = () => {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCategoriesAsync());
+    dispatch(fetchUserAsync());
+  }, []);
 
   return (
     <div className="App">

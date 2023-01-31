@@ -5,11 +5,17 @@ class CategoriesController < ApplicationController
         render json: Category.all
     end
 
-    # GET "/my_categories"
-    def my_categories
-        # byebug
-        # current_user.expenses.where('category_id = ?', user.id)
+    def expenses_index
+        category = Category.find_by(id: params[:id])
+        render json: category
     end
+
+    # GET "/my_categories"
+    # def my_categories
+    #     c = Category.all
+    #     e = current_user.expenses.where('category_id = ?', current_user.id)
+    #     render json: c
+    # end
 
     # GET "/categories/:id"
     def show

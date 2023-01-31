@@ -24,8 +24,12 @@ export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-
+        // idea: how about we just handle adding new expense here 
+        addExpense(state, action) {
+            state.data.expenses.push(action.payload)
+        }
     },
+
     extraReducers: (builder) => {
         builder
         .addCase(fetchUserAsync.pending, (state) => {
@@ -42,3 +46,4 @@ export const userSlice = createSlice({
 })
 
 export default userSlice.reducer
+export const { addExpense } = userSlice.actions

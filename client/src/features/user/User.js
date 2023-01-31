@@ -9,20 +9,18 @@ const User = () => {
   
   const user = useSelector(state => state.user.data)
   const categories = useSelector(state => state.categories.data)
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(fetchCategoriesAsync());
-    dispatch(fetchUserAsync());
-  }, [dispatch])
-
-  // console.log(user)
+  
 
   // Current approach: Use the data from the '/categories' endpoint
-  const filteredCategories = categories.filter(category => category.user_expenses.length !==0)
+  // const filteredCategories = categories.filter(category => category.user_expenses.length !==0)
   // console.log(filteredCategories)
 
-  const categoriesList = filteredCategories.map(category => <CategoryLink key={category.id} category={category} />)
+  // const categoriesList = filteredCategories.map(category => <CategoryLink key={category.id} category={category} />)
+
+  const categoriesList = user.categories.map(category => <CategoryLink key={category.id} category={category} />)
+
 
   return (
     <div>

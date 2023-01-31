@@ -32,9 +32,9 @@ const Navbar = () => {
         <NavLink className='navlink' to='/categories'>
           <button className='nav-btn'>Categories</button>
         </NavLink>
-        <NavLink className='navlink' to='/expenses'>
+        {/* <NavLink className='navlink' to='/expenses'>
           <button className='nav-btn'>Expenses</button>
-        </NavLink>
+        </NavLink> */}
         <NavLink className='navlink' to='/expenses/new'>
           <button className='nav-btn'>Add Expense</button>
         </NavLink>

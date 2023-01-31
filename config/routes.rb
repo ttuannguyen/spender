@@ -13,9 +13,13 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create" 
   get "/me", to: "users#show"
 
-  # testing routes 
-  get "/my_categories", to: "categories#my_categories"
+  # expenses CRUD
+  post "/users/:user_id/expenses", to: "expenses#create"
 
+  # custom routes for testing
+  get "/my_categories", to: "categories#my_categories"
+  get "/users/:user_id/expenses", to: "users#expenses_index"
+  get "/categories/:category_id/expenses", to: "categories#expenses_index"
   
   
   # Routing logic: fallback requests for React Router.

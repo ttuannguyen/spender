@@ -1,8 +1,11 @@
 class CategorySerializer < ActiveModel::Serializer
-  attributes :id, :name, :user_expenses
-  # has_many :expenses
+  attributes :id, :name, :expenses, :expenses
+  has_many :expenses
 
-  def user_expenses
+  # when putting the byebug in, the server stops running
+  # byebug
+
+  def expenses
     current_user.expenses.where('category_id = ?', object.id)
   end
 
