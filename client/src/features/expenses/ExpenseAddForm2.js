@@ -4,27 +4,27 @@ import { addExpense } from './ExpensesSlice';
 import { fetchCategoriesAsync } from '../categories/CategoriesSlice';
 
 
-const ExpenseAddForm = () => {
+const ExpenseAddForm2 = ({category}) => {
     
     const dispatch = useDispatch();
     
-    // TO DO: conditional rendering based on loggedIn state
-    // TO DO: To see how we can not make this fetch
+    // TO DO: Make the new expense appear right away
+
     // useEffect(() => {
     //     dispatch(fetchCategoriesAsync());
     //   }, [dispatch]);
     
     const [errorsList, setErrorsList] = useState([]);
-    const categories = useSelector(state => state.categories.data)
+    // const categories = useSelector(state => state.categories.data)
 
-    const categoriesOptions = categories.map(c => <option value={c.id}>{c.name}</option>)
+    // const categoriesOptions = categories.map(c => <option value={c.id}>{c.name}</option>)
 
     // console.log(categories)
     const [formData, setFormData] = useState({
         merchant:'',
         date:'',   
         amount:'',
-        category_id:''
+        category_id: category.id
     });
 
     // console.log(formData)
@@ -43,7 +43,7 @@ const ExpenseAddForm = () => {
             merchant:'',
             date:'',   
             amount:'',
-            category_id:'',
+            // category_id:'',
             // user_id:''
         })
 
@@ -73,12 +73,12 @@ const ExpenseAddForm = () => {
                 <input type="text" name='date' value={formData.date} onChange={handleChange} /><br/>
                 <label>Amount</label>
                 <input type="text" name='amount' value={formData.amount} onChange={handleChange} /><br/>
-                <label>Category:</label>
+                {/* <label>Category:</label> */}
                 {/* TO DO: Reset dropdown after submit */}
-                <select name='category_id' onChange={handleChange}>
+                {/* <select name='category_id' onChange={handleChange}>
                     <option> -- select an option -- </option>
                     {categoriesOptions}
-                </select>
+                </select> */}
                 <button type="submit">Add!</button>
             </form>
             {errorsList}
@@ -86,4 +86,4 @@ const ExpenseAddForm = () => {
   )
 }
 
-export default ExpenseAddForm
+export default ExpenseAddForm2

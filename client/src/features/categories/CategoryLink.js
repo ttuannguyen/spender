@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const CategoryLink = ({category}) => {
   return (
     <div>
-        <Link className='category-link' to={`/categories/${category.id}`}>
+        <Link className='category-link' to={`/categories/${category.id}`} style={{ textDecoration: 'none'}}>
             <h4>{category.name}</h4>
         </Link>
     </div>

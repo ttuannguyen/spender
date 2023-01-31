@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchExpensesAsync } from './ExpensesSlice';
 import { fetchUserAsync } from '../user/UserSlice';
 import { useParams } from 'react-router-dom';
+import ExpenseEditForm from './ExpenseEditForm';
+import ExpenseDeleteButton from './ExpenseDeleteButton';
 // import { fetchUserAsync } from '../user/UserSlice';
 
 const ExpenseDetails = () => {
@@ -36,6 +38,8 @@ const ExpenseDetails = () => {
             <p>Merchant: {expense.merchant}</p>
             <p>Date: {expense.date}</p>
             <p>Amount: {expense.amount}</p>
+            <ExpenseEditForm />
+            <ExpenseDeleteButton />
         </div>
     )
 }

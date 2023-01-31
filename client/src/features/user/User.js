@@ -16,17 +16,17 @@ const User = () => {
     dispatch(fetchUserAsync());
   }, [dispatch])
 
-  console.log(user)
+  // console.log(user)
 
   // Current approach: Use the data from the '/categories' endpoint
   const filteredCategories = categories.filter(category => category.user_expenses.length !==0)
   // console.log(filteredCategories)
 
-  const categoriesList = filteredCategories.map(category => <CategoryLink category={category} />)
+  const categoriesList = filteredCategories.map(category => <CategoryLink key={category.id} category={category} />)
 
   return (
     <div>
-      {categoriesList}
+      {categoriesList}      
     </div>
   )
 }
