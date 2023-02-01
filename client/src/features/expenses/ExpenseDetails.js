@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { fetchExpensesAsync } from './ExpensesSlice';
-import { fetchUserAsync } from '../user/UserSlice';
 import { Link, useParams } from 'react-router-dom';
-import ExpenseEditForm from './ExpenseEditForm';
 import ExpenseDeleteButton from './ExpenseDeleteButton';
+import NoteAddForm from '../notes/NoteAddForm';
 
 const ExpenseDetails = () => {
 
@@ -19,18 +17,16 @@ const ExpenseDetails = () => {
 
     const userData = useSelector(state => state.user.data);
     const [expense, setExpense] = useState({});
+    const [notes, setNotes] = useState([]);
     
     
     if (!expense.id && userData.id) {
         const expenseFound = userData.expenses.find(e => e.id === parseInt(params.id))
         setExpense(expenseFound)
+        setNotes(expenseFound.notes)
     }
 
-    // const expenseFound = userData.expenses.find(e => e.id === parseInt(params.id))
-    // setExpense(expenseFound)
-
-    // console.log(userData)
-    // console.log(expense)
+    const notesList = notes.map(n => <p>{n.content}</p>)
 
 
     return (
@@ -42,6 +38,9 @@ const ExpenseDetails = () => {
             <Link to={`/expenses/${expense.id}/edit`}>
                 <button>Edit</button>
             </Link>
+            <h4>Notes</h4>
+            {notesList}
+            <NoteAddForm expense={expense} />
         </div>
     )
 }

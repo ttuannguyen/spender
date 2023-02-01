@@ -17,7 +17,6 @@ const CategoryDetails = () => {
         <div>
             <h3>{category.name}</h3>
             {expensesList}
-            <p>Add an Expense</p>
             <ExpenseAddForm2 category={category}/>
         </div>
     )

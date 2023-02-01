@@ -1,5 +1,5 @@
 class CategorySerializer < ActiveModel::Serializer
-  attributes :id, :name, :expenses, :expenses
+  attributes :id, :name, :expenses
   has_many :expenses
 
   # when putting the byebug in, the server stops running

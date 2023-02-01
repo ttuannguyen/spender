@@ -8,7 +8,9 @@ const Categories = () => {
   
   const categories = useSelector(state => state.categories.data)
   const loggedIn = useSelector(state => state.auth.loggedIn)
-  // const dispatch = useDispatch()
+
+  console.log(categories)
+
 
   // useEffect(() => {
   //   dispatch(fetchCategoriesAsync());

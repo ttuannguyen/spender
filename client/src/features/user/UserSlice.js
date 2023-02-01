@@ -31,6 +31,9 @@ export const userSlice = createSlice({
         editExpense(state, action) {
             const newArr = state.data.expenses.map(e => e.id === action.payload.id ? action.payload : e)
             state.data.expenses = newArr
+        },
+        addNote(state, action) {
+            state.data.notes.push(action.payload)
         }
     },
 
@@ -51,4 +54,4 @@ export const userSlice = createSlice({
 
 
 export default userSlice.reducer
-export const { addExpense, editExpense, deleteExpense } = userSlice.actions
+export const { addExpense, editExpense, addNote } = userSlice.actions

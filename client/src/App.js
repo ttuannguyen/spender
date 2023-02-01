@@ -16,13 +16,13 @@ import ExpenseDetails from './features/expenses/ExpenseDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategoriesAsync } from './features/categories/CategoriesSlice';
 import { fetchUserAsync } from './features/user/UserSlice';
+import NoteAddForm from './features/notes/NoteAddForm';
 
 const App = () => {
 
   const toggle = useSelector(state => state.toggle.toggleState)
   const dispatch = useDispatch();
-
-  console.log(toggle)
+  // console.log(toggle)
 
   useEffect(() => {
     dispatch(fetchCategoriesAsync());
@@ -42,6 +42,7 @@ const App = () => {
           <Route path='/expenses/:id/edit' element={<ExpenseEditForm />} />
           <Route path='/expenses/:id' element={<ExpenseDetails />}/>
           <Route exact path="/expenses" element={ <Expenses /> } />
+          {/* <Route exact path='/notes/new' element={ <NoteAddForm /> } /> */}
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/signup' element={<Signup />} />
           <Route exact path="/home" element={<Home /> } />

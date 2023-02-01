@@ -1,7 +1,6 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import { deleteExpense } from '../user/UserSlice';
 import { setToggle } from '../auth/ToggleSlice';
 
 const ExpenseDeleteButton = ({expense}) => {
@@ -21,7 +20,6 @@ const ExpenseDeleteButton = ({expense}) => {
             }
         })
         navigate('/my_spends')
-        // dispatch(deleteExpense(expense))
         dispatch(setToggle())
     }
     

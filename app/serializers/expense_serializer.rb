@@ -3,7 +3,7 @@ class ExpenseSerializer < ActiveModel::Serializer
 
   # belongs_to :user
   # belongs_to :category
-  # has_many :notes
+  has_many :notes
 
   def amount 
     "$#{'%.2f' %object.amount}"
