@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addExpense } from './ExpensesSlice';
+import { addExpense } from '../user/UserSlice';
 import { fetchCategoriesAsync } from '../categories/CategoriesSlice';
 
 

@@ -1,6 +1,6 @@
-import React from 'react';
+// import React from 'react';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchUser } from './UserApi';
+import { fetchMe } from './UserApi';
 
 const initialState = {
     data: {
@@ -13,9 +13,9 @@ const initialState = {
 }
 
 export const fetchUserAsync = createAsyncThunk(
-    'user/fetchUser',
+    'user/fetchMe',
     async () => {
-        const response = await fetchUser()
+        const response = await fetchMe()
         return response
     }
 )
@@ -27,6 +27,15 @@ export const userSlice = createSlice({
         // idea: how about we just handle adding new expense here 
         addExpense(state, action) {
             state.data.expenses.push(action.payload)
+        },
+        editExpense(state, action) {
+            const newArr = state.data.expenses.map(e => e.id === action.payload.id ? action.payload : e)
+            state.data.expenses = newArr
+        },
+        deleteExpense(state, action) {
+            const newArr = state.data.expenses.filter(e => e.id !== action.payload.id)
+            console.log(newArr)
+            state.data.expenses = newArr
         }
     },
 
@@ -45,5 +54,6 @@ export const userSlice = createSlice({
     }
 })
 
+
 export default userSlice.reducer
-export const { addExpense } = userSlice.actions
+export const { addExpense, editExpense, deleteExpense } = userSlice.actions

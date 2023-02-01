@@ -10,7 +10,7 @@ import Login from './features/auth/Login';
 import Signup from './features/auth/Signup';
 import ExpenseAddForm from './features/expenses/ExpenseAddForm';
 import ExpenseEditForm from './features/expenses/ExpenseEditForm';
-import User from './features/user/User';
+import User from './features/user/UserSpends';
 import CategoryDetails from './features/categories/CategoryDetails';
 import ExpenseDetails from './features/expenses/ExpenseDetails';
 import { useDispatch } from 'react-redux';
@@ -29,7 +29,7 @@ const App = () => {
   return (
     <div className="App">
       <Router >
-        <h1>Spender</h1>
+        <h1>Spender 💸</h1>
         <Navbar />
         {/* <Counter /> */}
         <Routes>

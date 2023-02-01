@@ -23,14 +23,14 @@ class ExpensesController < ApplicationController
     
     # PATCH "/expenses/:id"
     def update
-        expense = current_user.find_by(id: params[:id])
+        expense = current_user.expenses.find_by(id: params[:id])
         expense.update(expense_params)
         render json: expense, status: :accepted
     end
 
     # DELETE
     def destroy
-        expense = current_user.find_by(id: params[:id])
+        expense = current_user.expenses.find_by(id: params[:id])
         expense.destroy
         head :no_content
     end

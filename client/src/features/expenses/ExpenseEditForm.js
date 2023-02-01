@@ -1,25 +1,21 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import { editExpense } from './ExpensesSlice';
-
+import { editExpense } from '../user/UserSlice';
 
 const ExpenseEditForm = () => {
 
-    // const { user, updateVisit, loggedIn, toggle, setToggle } = useContext(UserContext);
-    const params = useParams(); 
+    // TO DO: To make the changes reflect right away after submitting the update
     const [merchant, setMerchant] = useState('');
     const [date, setDate] = useState('');
     const [amount, setAmount] = useState('');
-    const navigate = useNavigate('');
+
     const loggedIn = useSelector(state => state.auth.loggedIn);
+    const user = useSelector(state => state.user.data)
+
     const dispatch = useDispatch();
-    
-    // const [visitFound, setVisitFound] = useState({});
-    // if (!visitFound.id && user.id) {
-    //     const vf = user.visits.find(v => v.id === parseInt(params.id)); 
-    //     setVisitFound(vf)
-    // }
+    const params = useParams(); 
+    const navigate = useNavigate('');
 
     const [formData, setFormData] = useState({
         merchant: merchant,
@@ -35,7 +31,7 @@ const ExpenseEditForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch(`/expenses/${params.id}`, {
+        fetch(`/users/${user.id}/expenses/${params.id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -45,7 +41,7 @@ const ExpenseEditForm = () => {
         .then(res => res.json())
         .then(data => {
             dispatch(editExpense(data))
-            navigate('/expenses')
+            // navigate('/expenses')
         })
     }
 
@@ -53,6 +49,7 @@ const ExpenseEditForm = () => {
         return (
             <div className='visit-edit-div'>
                 <form onSubmit={handleSubmit}>
+                    Expense Edit Form ⬇️<br/>
                     <label>Merchant</label>
                     <input type="text" name='merchant' value={formData.merchant} onChange={handleChange} /><br/>
                     <label>Date</label>

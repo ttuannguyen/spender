@@ -5,7 +5,7 @@ import { fetchCategoriesAsync } from '../categories/CategoriesSlice';
 import CategoryLink from '../categories/CategoryLink';
 import { fetchUserAsync } from './UserSlice'; 
 
-const User = () => {
+const UserSpends = () => {
   
   const user = useSelector(state => state.user.data)
   const categories = useSelector(state => state.categories.data)
@@ -29,4 +29,4 @@ const User = () => {
   )
 }
 
-export default User
+export default UserSpends

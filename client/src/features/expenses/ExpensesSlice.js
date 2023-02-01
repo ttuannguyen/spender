@@ -22,15 +22,15 @@ export const expensesSlice = createSlice({
         //     // using createSlice lets us mutate state!
         //     state.data.push(action.payload)
         // },
-        editExpense(state, action) {
-            const newArr = state.data.map(e => e.id === action.payload.id ? action.payload : e)
-            state.data = newArr
-        },
-        deleteExpense(state, action) {
-            const newArr = state.data.filter(e => e.id !== action.payload.id)
-            console.log(newArr)
-            state.data = newArr
-        }
+        // editExpense(state, action) {
+        //     const newArr = state.data.map(e => e.id === action.payload.id ? action.payload : e)
+        //     state.data = newArr
+        // },
+        // deleteExpense(state, action) {
+        //     const newArr = state.data.filter(e => e.id !== action.payload.id)
+        //     console.log(newArr)
+        //     state.data = newArr
+        // }
     },
     
     extraReducers: (builder) => {
@@ -50,4 +50,4 @@ export const expensesSlice = createSlice({
 
 
 export default expensesSlice.reducer
-export const {addExpense, editExpense, deleteExpense} = expensesSlice.actions
+// export const {addExpense, editExpense, deleteExpense} = expensesSlice.actions
