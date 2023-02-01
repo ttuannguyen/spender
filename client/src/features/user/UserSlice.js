@@ -31,11 +31,6 @@ export const userSlice = createSlice({
         editExpense(state, action) {
             const newArr = state.data.expenses.map(e => e.id === action.payload.id ? action.payload : e)
             state.data.expenses = newArr
-        },
-        deleteExpense(state, action) {
-            const newArr = state.data.expenses.filter(e => e.id !== action.payload.id)
-            console.log(newArr)
-            state.data.expenses = newArr
         }
     },
 

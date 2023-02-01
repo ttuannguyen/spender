@@ -1,22 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addExpense } from '../user/UserSlice';
+import { setToggle } from '../auth/ToggleSlice';
 
 
 const ExpenseAddForm = () => {
     
     const dispatch = useDispatch();
     
-    // TO DO: conditional rendering based on loggedIn state
-    // TO DO: To see how we can not make this fetch
-    // useEffect(() => {
-    //     dispatch(fetchCategoriesAsync());
-    //   }, [dispatch]);
-    
     const [errorsList, setErrorsList] = useState([]);
     const categories = useSelector(state => state.categories.data)
     const user = useSelector(state => state.user.data)
-    // console.log(user)
 
     const categoriesOptions = categories.map(c => <option value={c.id}>{c.name}</option>)
 
@@ -57,6 +51,7 @@ const ExpenseAddForm = () => {
         .then(json => {
             if (json) {
                 dispatch(addExpense(json))
+                dispatch(setToggle())
             } else {
                 const errorItems = json.errors.map(e => <li key={e.id}>{e}</li>)
                 setErrorsList(errorItems)

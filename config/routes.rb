@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   # expenses CRUD
   post "/users/:user_id/expenses", to: "expenses#create"
   patch "/users/:user_id/expenses/:id", to: "expenses#update"
+  delete "/users/:user_id/expenses/:id", to: "expenses#destroy"
 
   # custom routes for testing
   get "/my_categories", to: "categories#my_categories"

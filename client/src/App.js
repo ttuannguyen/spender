@@ -13,18 +13,21 @@ import ExpenseEditForm from './features/expenses/ExpenseEditForm';
 import User from './features/user/UserSpends';
 import CategoryDetails from './features/categories/CategoryDetails';
 import ExpenseDetails from './features/expenses/ExpenseDetails';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategoriesAsync } from './features/categories/CategoriesSlice';
 import { fetchUserAsync } from './features/user/UserSlice';
 
 const App = () => {
 
+  const toggle = useSelector(state => state.toggle.toggleState)
   const dispatch = useDispatch();
+
+  console.log(toggle)
 
   useEffect(() => {
     dispatch(fetchCategoriesAsync());
     dispatch(fetchUserAsync());
-  }, []);
+  }, [toggle]);
 
   return (
     <div className="App">

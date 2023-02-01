@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { fetchCategoriesAsync } from '../categories/CategoriesSlice';
 // import Category from '../categories/Category';
 import CategoryLink from '../categories/CategoryLink';
@@ -9,9 +9,7 @@ const UserSpends = () => {
   
   const user = useSelector(state => state.user.data)
   const categories = useSelector(state => state.categories.data)
-  // const dispatch = useDispatch()
-
-  
+  const loggedIn = useSelector(state => state.auth.loggedIn)
 
   // Current approach: Use the data from the '/categories' endpoint
   // const filteredCategories = categories.filter(category => category.user_expenses.length !==0)
@@ -19,14 +17,20 @@ const UserSpends = () => {
 
   // const categoriesList = filteredCategories.map(category => <CategoryLink key={category.id} category={category} />)
 
-  const categoriesList = user.categories.map(category => <CategoryLink key={category.id} category={category} />)
+  
 
+  if (loggedIn) {
+    const categoriesList = user.categories.map(category => <CategoryLink key={category.id} category={category} />)
 
-  return (
-    <div>
-      {categoriesList}      
-    </div>
-  )
+    return (
+      <div>
+        {categoriesList}      
+      </div>
+    )
+  } else {
+    return (<h4>Please login or create an Account</h4>) 
+  }
+
 }
 
 export default UserSpends

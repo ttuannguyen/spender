@@ -4,6 +4,7 @@ import categoriesReducer from '../features/categories/CategoriesSlice';
 import expensesReducer from '../features/expenses/ExpensesSlice';
 import authReducer from '../features/auth/AuthSlice';
 import userReducer from '../features/user/UserSlice';
+import toggleReducer from '../features/auth/ToggleSlice'
 // added after installing redux-persist
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
     categories: categoriesReducer,
     expenses: expensesReducer,
     auth: authReducer,
-    user: userReducer
+    user: userReducer,
+    toggle: toggleReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

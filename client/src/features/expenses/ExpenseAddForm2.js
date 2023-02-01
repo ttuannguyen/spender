@@ -1,25 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addExpense } from '../user/UserSlice';
-import { fetchCategoriesAsync } from '../categories/CategoriesSlice';
+import { setToggle } from '../auth/ToggleSlice';
 
 
 const ExpenseAddForm2 = ({category}) => {
     
     const dispatch = useDispatch();
-    
-    // TO DO: Make the new expense appear right away after submitting the form
-
-    // useEffect(() => {
-    //     dispatch(fetchCategoriesAsync());
-    //   }, [dispatch]);
-    
     const [errorsList, setErrorsList] = useState([]);
-    // const categories = useSelector(state => state.categories.data)
-
-    // const categoriesOptions = categories.map(c => <option value={c.id}>{c.name}</option>)
-
-    // console.log(categories)
+    
     const [formData, setFormData] = useState({
         merchant:'',
         date:'',   
@@ -27,7 +16,6 @@ const ExpenseAddForm2 = ({category}) => {
         category_id: category.id
     });
 
-    // console.log(formData)
 
     const handleChange = (e) => {
         setFormData(formData => {
@@ -56,6 +44,7 @@ const ExpenseAddForm2 = ({category}) => {
         .then(json => {
             if (json) {
                 dispatch(addExpense(json))
+                dispatch(setToggle())
             } else {
                 const errorItems = json.errors.map(e => <li key={e.id}>{e}</li>)
                 setErrorsList(errorItems)

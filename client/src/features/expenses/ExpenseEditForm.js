@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { editExpense } from '../user/UserSlice';
+import { setToggle } from '../auth/ToggleSlice';
 
 const ExpenseEditForm = () => {
 
@@ -11,6 +12,8 @@ const ExpenseEditForm = () => {
     const [amount, setAmount] = useState('');
 
     const loggedIn = useSelector(state => state.auth.loggedIn);
+    const toggle = useSelector(state => state.toggle.toggleState);
+   
     const user = useSelector(state => state.user.data)
 
     const dispatch = useDispatch();
@@ -41,7 +44,8 @@ const ExpenseEditForm = () => {
         .then(res => res.json())
         .then(data => {
             dispatch(editExpense(data))
-            // navigate('/expenses')
+            dispatch(setToggle())
+            navigate('/my_spends')
         })
     }
 

@@ -14,9 +14,10 @@ const Categories = () => {
   //   dispatch(fetchCategoriesAsync());
   // }, [dispatch]);
 
-  const categoriesList = categories.map(category => <Category key={category.id} category={category} />)
-
   if (loggedIn) {
+
+    const categoriesList = categories.map(category => <Category key={category.id} category={category} />)
+    
     return (
       <div>
         {categoriesList}
