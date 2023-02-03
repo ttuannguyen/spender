@@ -2,16 +2,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchMe } from './UserApi';
 
-const initialState = {
-    data: {
-        id: null, 
-        username: '',
-        categories: [],
-        expenses: []
-    },
-    status: 'idle'
-}
-
 export const fetchUserAsync = createAsyncThunk(
     'user/fetchMe',
     async () => {
@@ -19,6 +9,36 @@ export const fetchUserAsync = createAsyncThunk(
         return response
     }
 )
+
+export const login = createAsyncThunk('user/login', async (userObj) => {
+    // we're able to get into userObj here
+    return fetch('/login', {
+        method:'POST',
+        headers:{'Content-Type': 'application/json'},
+        body:JSON.stringify(userObj) // need to pass in the user object thing
+    })
+    .then(res => res.json()) 
+    .then(userObj => userObj)
+})
+
+const initialState = {
+    // for fetchUserAsync
+    data: {
+        id: null, 
+        username: '',
+        categories: [],
+        expenses: []
+    },
+    // for fetchLoginAsync
+    userObj: {
+        id: null, 
+        username: '',
+        categories: [],
+        expenses: []
+    },
+    status: 'idle',
+    loggedIn: false
+}
 
 export const userSlice = createSlice({
     name: 'user',
@@ -34,19 +54,34 @@ export const userSlice = createSlice({
         },
         addNote(state, action) {
             state.data.notes.push(action.payload)
+        },
+        logUserIn(state, action) {
+            state.loggedIn = true
         }
     },
 
     extraReducers: (builder) => {
         builder
-        .addCase(fetchUserAsync.pending, (state) => {
+        // .addCase(fetchUserAsync.pending, (state) => {
+        //     state.status = 'loading'
+        // })
+        // .addCase(fetchUserAsync.fulfilled, (state, action) => {
+        //     state.data = action.payload
+        //     state.status = 'fulfilled'
+        // })
+        // .addCase(fetchUserAsync.rejected, (state) => {
+        //     state.status = 'rejected'
+        // })
+        .addCase(login.pending, (state) => {
             state.status = 'loading'
         })
-        .addCase(fetchUserAsync.fulfilled, (state, action) => {
-            state.data = action.payload
+        .addCase(login.fulfilled, (state, action) => {
+            state.userObj = action.payload
             state.status = 'fulfilled'
+            // setting loggedIn to true
+            state.loggedIn = true
         })
-        .addCase(fetchUserAsync.rejected, (state) => {
+        .addCase(login.rejected, (state) => {
             state.status = 'rejected'
         })
     }

@@ -6,7 +6,7 @@ import { setLoggedOutState } from '../features/auth/AuthSlice';
 
 const Navbar = () => {
 
-  const loggedIn = useSelector(state => state.auth.loggedIn)
+  const loggedIn = useSelector(state => state.user.loggedIn)
   // console.log(loggedIn)
 
   const dispatch = useDispatch();

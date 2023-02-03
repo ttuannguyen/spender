@@ -3,23 +3,22 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { setToggle } from '../auth/ToggleSlice';
 
-const ExpenseDeleteButton = ({expense}) => {
+const NoteDeleteButton = ({note, expense}) => {
     // const { user, toggle, setToggle } = useContext(UserContext);
 
-    // ISSUE: The page breaks after the delete action
-    const user = useSelector(state => state.user.data)
+    // const user = useSelector(state => state.user.data)
     const params = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleClick = () => {
-        fetch(`/users/${user.id}/expenses/${params.id}`, {
+        fetch(`/expenses/${expense.id}/notes/${note.id}`, {
             method: "DELETE",
             headers: {
               "Content-Type": "application/json",
             }
         })
-        navigate('/my_spends')
+        // navigate(`/categories/${params.id}`)
         // dispatch(setToggle())
     }
     
@@ -28,4 +27,4 @@ const ExpenseDeleteButton = ({expense}) => {
     )
 }
 
-export default ExpenseDeleteButton
+export default NoteDeleteButton

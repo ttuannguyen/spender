@@ -10,19 +10,17 @@ const Signup = () => {
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
     const [errorsList, setErrorsList] = useState([]);
-
     const dispatch = useDispatch()
-
     const navigate = useNavigate();
 
+    const userObj = {
+        username,
+        password,
+        password_confirmation: passwordConfirmation
+    }
+    
     const handleSubmit = (e) => {
         e.preventDefault()
-
-        const userObj = {
-            username,
-            password,
-            password_confirmation: passwordConfirmation
-        }
 
         fetch('/signup',{
             method:'POST',

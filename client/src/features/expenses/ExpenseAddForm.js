@@ -12,7 +12,7 @@ const ExpenseAddForm = () => {
     const categories = useSelector(state => state.categories.data)
     const user = useSelector(state => state.user.data)
 
-    const categoriesOptions = categories.map(c => <option value={c.id}>{c.name}</option>)
+    const categoriesOptions = categories.map(c => <option value={c.id} key={c.id}>{c.name}</option>)
 
     // console.log(categories)
     const [formData, setFormData] = useState({

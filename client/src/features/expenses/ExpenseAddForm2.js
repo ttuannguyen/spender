@@ -4,10 +4,11 @@ import { addExpense } from '../user/UserSlice';
 import { setToggle } from '../auth/ToggleSlice';
 
 
-const ExpenseAddForm2 = ({category}) => {
+const ExpenseAddForm2 = ({category, afterAddExpense}) => {
     
     const dispatch = useDispatch();
     const [errorsList, setErrorsList] = useState([]);
+    const user = useSelector(state => state.user.data)
     
     const [formData, setFormData] = useState({
         merchant:'',
@@ -35,7 +36,7 @@ const ExpenseAddForm2 = ({category}) => {
             // user_id:''
         })
 
-        fetch('/expenses',{
+        fetch(`/users/${user.id}/expenses`,{
             method:'POST',
             headers:{'Content-Type': 'application/json'},
             body:JSON.stringify(formData)
@@ -44,6 +45,7 @@ const ExpenseAddForm2 = ({category}) => {
         .then(json => {
             if (json) {
                 dispatch(addExpense(json))
+                afterAddExpense()
                 dispatch(setToggle())
             } else {
                 const errorItems = json.errors.map(e => <li key={e.id}>{e}</li>)

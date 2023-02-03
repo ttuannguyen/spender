@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from 'react-router-dom';
 import ExpenseDeleteButton from './ExpenseDeleteButton';
 import NoteAddForm from '../notes/NoteAddForm';
+import Note from '../notes/Note';
 
 const ExpenseDetails = () => {
 
@@ -26,7 +27,7 @@ const ExpenseDetails = () => {
         setNotes(expenseFound.notes)
     }
 
-    const notesList = notes.map(n => <p>{n.content}</p>)
+    const notesList = notes.map(note => <Note key={note.id} note={note} expense={expense}/>)
 
 
     return (

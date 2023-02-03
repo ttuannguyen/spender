@@ -10,7 +10,7 @@ import Login from './features/auth/Login';
 import Signup from './features/auth/Signup';
 import ExpenseAddForm from './features/expenses/ExpenseAddForm';
 import ExpenseEditForm from './features/expenses/ExpenseEditForm';
-import User from './features/user/UserSpends';
+import User from './features/categories/UserCategories';
 import CategoryDetails from './features/categories/CategoryDetails';
 import ExpenseDetails from './features/expenses/ExpenseDetails';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,9 +25,9 @@ const App = () => {
   // console.log(toggle)
 
   useEffect(() => {
-    dispatch(fetchCategoriesAsync());
     dispatch(fetchUserAsync());
-  }, [toggle]);
+    // dispatch(fetchCategoriesAsync());
+  }, []);
 
   return (
     <div className="App">

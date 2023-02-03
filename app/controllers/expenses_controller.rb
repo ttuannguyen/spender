@@ -19,6 +19,7 @@ class ExpensesController < ApplicationController
     def create 
         expense = current_user.expenses.create(expense_params)
         render json: expense, status: :created
+        # byebug
     end
     
     # PATCH "/expenses/:id"

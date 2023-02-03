@@ -2,6 +2,8 @@ class CategoriesController < ApplicationController
     
     # GET "/categories"
     def index
+        # categories = current_user.categories
+        # render json: categories
         render json: Category.all
     end
 
@@ -9,13 +11,6 @@ class CategoriesController < ApplicationController
         category = Category.find_by(id: params[:id])
         render json: category
     end
-
-    # GET "/my_categories"
-    # def my_categories
-    #     c = Category.all
-    #     e = current_user.expenses.where('category_id = ?', current_user.id)
-    #     render json: c
-    # end
 
     # GET "/categories/:id"
     def show
@@ -34,8 +29,21 @@ class CategoriesController < ApplicationController
     end
 
     private
+
     def category_params
         params.permit(:name)
     end
+
+    # def set_category
+    #     @category = Category.find(params[:id])
+    # end
+
+    # def current_user
+    #     current_user = User.find_by(id: session[:customer_id])
+    # end
+
+    # def authorized_user
+    #     authorized_user = render json: { error: "Not authorized" }, status: :unauthorized unless @category.user_id == current_user.id
+    # end
 
 end

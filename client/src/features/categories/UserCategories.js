@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
 import { useSelector } from "react-redux";
-import { fetchCategoriesAsync } from '../categories/CategoriesSlice';
+import { fetchCategoriesAsync } from './CategoriesSlice';
 // import Category from '../categories/Category';
-import CategoryLink from '../categories/CategoryLink';
-import { fetchUserAsync } from './UserSlice'; 
+import CategoryLink from './CategoryLink';
 
-const UserSpends = () => {
+const UserCategories = () => {
   
   const user = useSelector(state => state.user.data)
-  const categories = useSelector(state => state.categories.data)
   const loggedIn = useSelector(state => state.auth.loggedIn)
 
   // Current approach: Use the data from the '/categories' endpoint
@@ -33,4 +31,4 @@ const UserSpends = () => {
 
 }
 
-export default UserSpends
+export default UserCategories
