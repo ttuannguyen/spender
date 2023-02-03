@@ -21,6 +21,13 @@ export const login = createAsyncThunk('user/login', async (userObj) => {
     .then(userObj => userObj)
 })
 
+export const logout = createAsyncThunk('user/logout', async() => {
+    return fetch('/logout', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json'}
+    })
+})
+
 const initialState = {
     // for fetchUserAsync
     data: {
@@ -30,7 +37,7 @@ const initialState = {
         expenses: []
     },
     // for fetchLoginAsync
-    userObj: {
+    user: {
         id: null, 
         username: '',
         categories: [],
@@ -55,9 +62,7 @@ export const userSlice = createSlice({
         addNote(state, action) {
             state.data.notes.push(action.payload)
         },
-        logUserIn(state, action) {
-            state.loggedIn = true
-        }
+        setLoggedOutState: state => {state.loggedIn = false}
     },
 
     extraReducers: (builder) => {
@@ -76,7 +81,8 @@ export const userSlice = createSlice({
             state.status = 'loading'
         })
         .addCase(login.fulfilled, (state, action) => {
-            state.userObj = action.payload
+            // setting user 
+            state.user = action.payload
             state.status = 'fulfilled'
             // setting loggedIn to true
             state.loggedIn = true
@@ -89,4 +95,4 @@ export const userSlice = createSlice({
 
 
 export default userSlice.reducer
-export const { addExpense, editExpense, addNote } = userSlice.actions
+export const { addExpense, editExpense, addNote, setLoggedOutState } = userSlice.actions

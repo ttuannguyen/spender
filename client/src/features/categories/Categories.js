@@ -6,12 +6,15 @@ import CategoryAddForm from './CategoryAddForm';
 
 const Categories = () => {
   
-  const categories = useSelector(state => state.categories.data)
-  const loggedIn = useSelector(state => state.auth.loggedIn)
+  const categories = useSelector(state => state.user.data.categories)
+  console.log(categories)
+  const loggedIn = useSelector(state => state.user.loggedIn)
 
 
   if (loggedIn) {
 
+    // ISSUE: First time load: Backend error: NoMethodError (undefined method `expenses' for nil:NilClass)
+    // where: category_serializer.rb:9:in `expenses'
     const categoriesList = categories.map(category => <Category key={category.id} category={category} />)
     
     return (

@@ -10,7 +10,7 @@ const ExpenseEditForm = () => {
     const [date, setDate] = useState('');
     const [amount, setAmount] = useState('');
 
-    const loggedIn = useSelector(state => state.auth.loggedIn);
+    const loggedIn = useSelector(state => state.user.loggedIn);
    
     const user = useSelector(state => state.user.data)
 

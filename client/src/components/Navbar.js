@@ -2,7 +2,8 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import { setLoggedOutState } from '../features/auth/AuthSlice';
+import { logout } from '../features/user/UserSlice';
+import { setLoggedOutState } from '../features/user/UserSlice';
 
 const Navbar = () => {
 
@@ -13,14 +14,9 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const logoutUser = () => {
-    fetch('/logout', {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json'}
-    }) 
-    .then(() => {
-      navigate('/')
-      dispatch(setLoggedOutState())
-    })
+    dispatch(logout());
+    dispatch(setLoggedOutState());
+    navigate('/')
   }
 
   if (loggedIn) {
