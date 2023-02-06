@@ -1,12 +1,13 @@
 class ExpenseSerializer < ActiveModel::Serializer
-  attributes :id, :merchant, :date, :amount, :category_id, :user_id
-
+  attributes :id, :merchant, :date, :amount, :category_id, :user_id, :notes
+  
   # belongs_to :user
   # belongs_to :category
+  
   has_many :notes
 
-  def amount 
-    "$#{'%.2f' %object.amount}"
-  end
+  # def amount 
+  #   "$#{'%.2f' %object.amount}"
+  # end
 
 end

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+
+    skip_before_action :authorized, only: [:create]
     
     # GET "/me"
     def show 
@@ -6,9 +8,9 @@ class UsersController < ApplicationController
         user = User.find_by(id: session[:user_id])
         if user 
             render json: user, status: :ok 
-            # render json: user, include: ['categories', 'expenses', 'expenses.notes'], status: :ok  
+
             # # if we want to have user/:id/notes, make the association in the user controller then include: ['notes'] in the render json above
-            # if we want to nest 1 more level deep => include: ['categories', 'categories.expenses']
+            # if we want to nest 1 more level deep => include: ['categories', 'categories.expenses', 'expenses', 'expenses.notes']
         else 
             render json: "User not found", status: :unauthorized
         end

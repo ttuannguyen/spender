@@ -13,8 +13,10 @@ class NotesController < ApplicationController
     end
 
     def create
+        
         expense = current_user.expenses.find_by(id: params[:expense_id])
         # expense = Expense.find_by(id: params[:expense_id])
+        # if expense, then we create the note; if not returned, throw an error saying authorized
         note = expense.notes.create(note_params)
         render json: note, status: :created
         # byebug

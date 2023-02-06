@@ -7,9 +7,11 @@ class CategoriesController < ApplicationController
         render json: Category.all
     end
 
+    # for testing
     def expenses_index
         category = Category.find_by(id: params[:id])
-        render json: category
+        expenses = category.expenses
+        render json: expenses
     end
 
     # GET "/categories/:id"
@@ -22,8 +24,9 @@ class CategoriesController < ApplicationController
         end
     end
 
-    # POST "/categories"
+    # POST
     def create 
+        # byebug
         category = Category.create(category_params)
         render json: category, status: :created
     end

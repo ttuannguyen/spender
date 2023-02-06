@@ -15,7 +15,7 @@ export const login = createAsyncThunk('user/login', async (userObj) => {
     return fetch('/login', {
         method:'POST',
         headers:{'Content-Type': 'application/json'},
-        body:JSON.stringify(userObj) // need to pass in the user object thing
+        body:JSON.stringify(userObj) 
     })
     .then(res => res.json()) 
     .then(userObj => userObj)
@@ -37,12 +37,12 @@ const initialState = {
         expenses: []
     },
     // for fetchLoginAsync
-    user: {
-        id: null, 
-        username: '',
-        categories: [],
-        expenses: []
-    },
+    // user: {
+    //     id: null, 
+    //     username: '',
+    //     categories: [],
+    //     expenses: []
+    // },
     status: 'idle',
     loggedIn: false
 }
@@ -67,22 +67,22 @@ export const userSlice = createSlice({
 
     extraReducers: (builder) => {
         builder
-        // .addCase(fetchUserAsync.pending, (state) => {
-        //     state.status = 'loading'
-        // })
-        // .addCase(fetchUserAsync.fulfilled, (state, action) => {
-        //     state.data = action.payload
-        //     state.status = 'fulfilled'
-        // })
-        // .addCase(fetchUserAsync.rejected, (state) => {
-        //     state.status = 'rejected'
-        // })
+        .addCase(fetchUserAsync.pending, (state) => {
+            state.status = 'loading'
+        })
+        .addCase(fetchUserAsync.fulfilled, (state, action) => {
+            state.data = action.payload
+            state.status = 'fulfilled'
+        })
+        .addCase(fetchUserAsync.rejected, (state) => {
+            state.status = 'rejected'
+        })
         .addCase(login.pending, (state) => {
             state.status = 'loading'
         })
         .addCase(login.fulfilled, (state, action) => {
             // setting user 
-            state.user = action.payload
+            state.data = action.payload
             state.status = 'fulfilled'
             // setting loggedIn to true
             state.loggedIn = true

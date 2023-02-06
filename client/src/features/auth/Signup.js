@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { setLoggedInState } from './AuthSlice';
 import { useSelector, useDispatch } from "react-redux";
 
 
@@ -30,7 +29,6 @@ const Signup = () => {
         .then(res => res.json())
         .then(user => {
             if (user) {
-                dispatch(setLoggedInState()) 
                 navigate('/home')
             }
             else {

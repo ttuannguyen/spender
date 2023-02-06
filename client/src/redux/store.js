@@ -2,7 +2,6 @@ import {configureStore, combineReducers} from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/CounterSlice';
 import categoriesReducer from '../features/categories/CategoriesSlice';
 import expensesReducer from '../features/expenses/ExpensesSlice';
-import authReducer from '../features/auth/AuthSlice';
 import userReducer from '../features/user/UserSlice';
 import toggleReducer from '../features/auth/ToggleSlice'
 // added after installing redux-persist
@@ -19,7 +18,6 @@ const rootReducer = combineReducers({
     counter: counterReducer,
     categories: categoriesReducer,
     expenses: expensesReducer,
-    auth: authReducer,
     user: userReducer,
     toggle: toggleReducer
 })

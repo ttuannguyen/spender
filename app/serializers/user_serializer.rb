@@ -3,6 +3,8 @@ class UserSerializer < ActiveModel::Serializer
   
   has_many :categories, through: :expenses
   has_many :expenses
-  # has_many :notes
 
+  has_many :notes, through: :expenses 
+
+  
 end

@@ -15,14 +15,17 @@ class ExpensesController < ApplicationController
         end
     end
 
-    # POST "/expenses"
+    # POST 
     def create 
         expense = current_user.expenses.create(expense_params)
+        # we should only be retrieving the user id from the current session (i.e. most secure way) 
+        # expense = Expense.create(expense_params)
+        # category = Category.find_by(id: params[:category_id])
+        # expense = category.expenses.create(expense_params)
         render json: expense, status: :created
-        # byebug
     end
     
-    # PATCH "/expenses/:id"
+    # PATCH 
     def update
         expense = current_user.expenses.find_by(id: params[:id])
         expense.update(expense_params)
@@ -43,7 +46,7 @@ class ExpensesController < ApplicationController
     # end
 
     def expense_params
-        params.permit(:merchant, :date, :amount, :user_id, :category_id)
+        params.permit(:merchant, :date, :amount, :category_id) # got rid of the user's id
     end
     
 end

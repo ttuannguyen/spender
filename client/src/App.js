@@ -21,13 +21,21 @@ import NoteAddForm from './features/notes/NoteAddForm';
 const App = () => {
 
   const toggle = useSelector(state => state.toggle.toggleState)
+  const loggedIn = useSelector(state => state.user.loggedIn)
+  const categories = useSelector(state => state.categories.entities)
   const dispatch = useDispatch();
   // console.log(toggle)
 
+
   useEffect(() => {
     dispatch(fetchUserAsync());
-    // dispatch(fetchCategoriesAsync());
   }, []);
+
+  useEffect(() => {
+    if (loggedIn) {
+      dispatch(fetchCategoriesAsync());
+    }
+  }, [loggedIn, toggle]);
 
   return (
     <div className="App">

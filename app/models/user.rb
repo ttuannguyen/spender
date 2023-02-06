@@ -3,7 +3,8 @@ class User < ApplicationRecord
     
     has_many :expenses
     has_many :categories, -> { distinct }, through: :expenses
-    
-    # has_many :notes, -> { distinct }, through: :expenses # if we want to have user/:id/notes
+
+    # if we want to have user/:id/notes
+    has_many :notes, -> { distinct }, through: :expenses 
 
 end

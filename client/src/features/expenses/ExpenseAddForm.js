@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addExpense } from '../user/UserSlice';
 import { setToggle } from '../auth/ToggleSlice';
-
+import { addNewExpenseToCategory } from '../categories/CategoriesSlice';
 
 const ExpenseAddForm = () => {
     
@@ -19,9 +19,8 @@ const ExpenseAddForm = () => {
         merchant:'',
         date:'',   
         amount:'',
-        category_id:''
+        category_id:'',
     });
-
     // console.log(formData)
 
     const handleChange = (e) => {
@@ -32,6 +31,8 @@ const ExpenseAddForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        dispatch(addNewExpenseToCategory(formData))
+        dispatch(setToggle())
 
         // to reset form
         setFormData({
@@ -39,24 +40,24 @@ const ExpenseAddForm = () => {
             date:'',   
             amount:'',
             category_id:'',
-            // user_id:''
         })
 
-        fetch(`/users/${user.id}/expenses`,{
-            method:'POST',
-            headers:{'Content-Type': 'application/json'},
-            body:JSON.stringify(formData)
-        })
-        .then(res => res.json())
-        .then(json => {
-            if (json) {
-                dispatch(addExpense(json))
-                dispatch(setToggle())
-            } else {
-                const errorItems = json.errors.map(e => <li key={e.id}>{e}</li>)
-                setErrorsList(errorItems)
-            }
-        })
+        // fetch(`/categories/${formData.category_id}/expenses`,{
+        //     method:'POST',
+        //     headers:{'Content-Type': 'application/json'},
+        //     body:JSON.stringify(formData)
+        // })
+        // .then(res => res.json())
+        // .then(json => {
+        //     if (json) {
+        //         console.log(json)
+        //         // dispatch(addExpense(json))
+        //         // dispatch(setToggle())
+        //     } else {
+        //         const errorItems = json.errors.map(e => <li key={e.id}>{e}</li>)
+        //         setErrorsList(errorItems)
+        //     }
+        // })
     }
 
     return (

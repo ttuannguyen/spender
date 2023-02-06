@@ -6,6 +6,9 @@ import { setToggle } from '../auth/ToggleSlice';
 
 const ExpenseAddForm2 = ({category, afterAddExpense}) => {
     
+    //TO DO: To add the new expense to the associated category instead of user
+    
+    
     const dispatch = useDispatch();
     const [errorsList, setErrorsList] = useState([]);
     const user = useSelector(state => state.user.data)
@@ -16,7 +19,6 @@ const ExpenseAddForm2 = ({category, afterAddExpense}) => {
         amount:'',
         category_id: category.id
     });
-
 
     const handleChange = (e) => {
         setFormData(formData => {
@@ -46,7 +48,7 @@ const ExpenseAddForm2 = ({category, afterAddExpense}) => {
             if (json) {
                 dispatch(addExpense(json))
                 afterAddExpense()
-                dispatch(setToggle())
+                // dispatch(setToggle())
             } else {
                 const errorItems = json.errors.map(e => <li key={e.id}>{e}</li>)
                 setErrorsList(errorItems)

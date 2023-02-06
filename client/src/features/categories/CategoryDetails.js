@@ -10,7 +10,7 @@ const CategoryDetails = () => {
     const afterAddExpense = () => setFormToggle(false) 
 
     const params = useParams();
-    const categories = useSelector(state => state.categories.data)
+    const categories = useSelector(state => state.categories.entities)
 
     const category = categories.find(c => c.id === parseInt(params.id))
     const expensesList = category.expenses.map(expense => <ExpenseLink key={expense.id} expense={expense} />)
