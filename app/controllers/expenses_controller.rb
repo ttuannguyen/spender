@@ -29,6 +29,7 @@ class ExpensesController < ApplicationController
     def update
         expense = current_user.expenses.find_by(id: params[:id])
         expense.update(expense_params)
+        # byebug
         render json: expense, status: :accepted
     end
 
@@ -46,7 +47,7 @@ class ExpensesController < ApplicationController
     # end
 
     def expense_params
-        params.permit(:merchant, :date, :amount, :category_id) # got rid of the user's id
+        params.permit(:id, :merchant, :date, :amount, :category_id) # got rid of the user's id
     end
     
 end

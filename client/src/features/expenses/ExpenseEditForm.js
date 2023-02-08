@@ -5,7 +5,6 @@ import { editExpense } from '../user/UserSlice';
 
 const ExpenseEditForm = () => {
 
-    // TO DO: To make the changes reflect right away after submitting the update
     const [merchant, setMerchant] = useState('');
     const [date, setDate] = useState('');
     const [amount, setAmount] = useState('');
@@ -15,14 +14,17 @@ const ExpenseEditForm = () => {
     const user = useSelector(state => state.user.data)
 
     const dispatch = useDispatch();
-    const params = useParams(); 
+    // const params = useParams(); 
     const navigate = useNavigate('');
+    const { id } = useParams();
 
     const [formData, setFormData] = useState({
         merchant: merchant,
         date: date,   
         amount: amount
     });
+
+    // console.log(formData)
 
     const handleChange = (e) => {
         setFormData(formData => {
@@ -32,18 +34,27 @@ const ExpenseEditForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch(`/users/${user.id}/expenses/${params.id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
+        dispatch(editExpense({id, formData}))
+
+        setFormData({
+            merchant:'',
+            date:'',   
+            amount:'',
         })
-        .then(res => res.json())
-        .then(data => {
-            dispatch(editExpense(data))
-            navigate(`/expenses/${params.id}`)
-        })
+        navigate(`/expenses/${id}`)
+
+        // fetch(`/users/${user.id}/expenses/${params.id}`, {
+        //     method: 'PATCH',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify(formData)
+        // })
+        // .then(res => res.json())
+        // .then(data => {
+        //     dispatch(editExpense(data))
+        //     navigate(`/expenses/${params.id}`)
+        // })
     }
 
     if (loggedIn) {

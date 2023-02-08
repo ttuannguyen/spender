@@ -8,26 +8,28 @@ import Note from '../notes/Note';
 const ExpenseDetails = () => {
 
     const params = useParams();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
+    // const [expense, setExpense] = useState({});
+    // const [notes, setNotes] = useState([]);
 
-    // useEffect(() => {
-    //     // dispatch(fetchCategoriesAsync());
-    //     dispatch(fetchUserAsync());
-    //   }, [dispatch])
+    // Method 1: Using user's data
+    const user = useSelector(state => state.user.data);
+    const expense = user.expenses.find(e => e.id === parseInt(params.id))
 
-    const userData = useSelector(state => state.user.data);
-    const [expense, setExpense] = useState({});
-    const [notes, setNotes] = useState([]);
+    // Method 2: Using categories' data - very involved process
+    // Approach: iterate through each category, iterate through each expense in that category, look for the expense matching the id, return that expense
+    // const categories = useSelector(state => state.categories.entities);
+    // categories.map(category => {
+    //     category.user_expenses.map(expense => console.log(expense))
+    // })    
     
-    
-    if (!expense.id && userData.id) {
-        const expenseFound = userData.expenses.find(e => e.id === parseInt(params.id))
-        setExpense(expenseFound)
-        setNotes(expenseFound.notes)
-    }
 
-    const notesList = notes.map(note => <Note key={note.id} note={note} expense={expense}/>)
+    // if (!expense.id) {
+    //     const expenseFound = user.expenses.find(e => e.id === parseInt(params.id))
+    //     setExpense(expenseFound)
+    // }
+    // const notesList = notes.map(note => <Note key={note.id} note={note} expense={expense}/>)
 
 
     return (
@@ -40,7 +42,7 @@ const ExpenseDetails = () => {
                 <button>Edit</button>
             </Link>
             <h4>Notes</h4>
-            {notesList}
+            {/* {notesList} */}
             <NoteAddForm expense={expense} />
         </div>
     )

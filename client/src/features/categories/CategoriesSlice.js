@@ -63,7 +63,7 @@ export const categoriesSlice = createSlice({
         })
         .addCase(addNewExpenseToCategory.fulfilled, (state, action) => {
             const categoryFound = state.entities.find(c => c.id ===  parseInt(action.payload.category_id))
-            categoryFound.expenses.push(action.payload)
+            categoryFound.user_expenses.push(action.payload)
             state.status = 'fulfilled'
         })
     }

@@ -28,6 +28,42 @@ export const logout = createAsyncThunk('user/logout', async() => {
     })
 })
 
+export const editExpense = createAsyncThunk(
+    'user/editExpense',
+    async ({id, formData}) => {
+        const fetchEditExpense = () => {
+            return fetch(`/expenses/${id}`,{
+                method:'PATCH',
+                headers:{'Content-Type': 'application/json'},
+                body:JSON.stringify(formData)
+            })
+            .then(res => res.json())
+            .then(data => data)
+        }
+        const response = await fetchEditExpense()
+        return response
+    }
+)
+
+export const deleteExpense = createAsyncThunk(
+    'user/deleteExpense',
+    async (id) => {
+        const fetchDeletetExpense = () => {
+            return fetch(`/expenses/${id}`,{
+                method:'DELETE',
+                headers:{'Content-Type': 'application/json'},
+                // body:JSON.stringify(formData)
+            })
+            // .then(res => res.json())
+            // .then(data => data)
+        }
+        fetchDeletetExpense()
+        // const response = await fetchDeletetExpense()
+        // return response
+    }
+)
+
+
 const initialState = {
     // for fetchUserAsync
     data: {
@@ -51,13 +87,8 @@ export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        // idea: how about we just handle adding new expense here 
         addExpense(state, action) {
             state.data.expenses.push(action.payload)
-        },
-        editExpense(state, action) {
-            const newArr = state.data.expenses.map(e => e.id === action.payload.id ? action.payload : e)
-            state.data.expenses = newArr
         },
         addNote(state, action) {
             state.data.notes.push(action.payload)
@@ -90,9 +121,14 @@ export const userSlice = createSlice({
         .addCase(login.rejected, (state) => {
             state.status = 'rejected'
         })
+        .addCase(editExpense.fulfilled, (state, action) => {
+            const newExpenses = state.data.expenses.map(e => e.id ===  parseInt(action.payload.id) ? action.payload : e)
+            state.data.expenses = newExpenses
+            state.status = 'fulfilled'
+        })    
     }
 })
 
 
 export default userSlice.reducer
-export const { addExpense, editExpense, addNote, setLoggedOutState } = userSlice.actions
+export const { addExpense, addNote, setLoggedOutState } = userSlice.actions
