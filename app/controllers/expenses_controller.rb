@@ -2,7 +2,8 @@ class ExpensesController < ApplicationController
     
     # GET "/expenses"
     def index
-        render json: Expense.all
+        # render json: Expense.all
+        render json: current_user.expenses
     end    
 
     # GET "/expenses/:id"

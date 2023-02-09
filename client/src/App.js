@@ -16,26 +16,35 @@ import ExpenseDetails from './features/expenses/ExpenseDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategoriesAsync } from './features/categories/CategoriesSlice';
 import { fetchUserAsync } from './features/user/UserSlice';
+import { fetchExpensesAsync } from './features/expenses/ExpensesSlice';
 import NoteAddForm from './features/notes/NoteAddForm';
 
 const App = () => {
 
-  const toggle = useSelector(state => state.toggle.toggleState)
-  const loggedIn = useSelector(state => state.user.loggedIn)
-  const categories = useSelector(state => state.categories.entities)
+  const loggedIn = useSelector(state => state.user.loggedIn);
   const dispatch = useDispatch();
-  // console.log(toggle)
-
-
+  // const toggle = useSelector(state => state.toggle.toggleState);
+  
   useEffect(() => {
     dispatch(fetchUserAsync());
-  }, [toggle]);
+  }, []);
 
   useEffect(() => {
     if (loggedIn) {
       dispatch(fetchCategoriesAsync());
+      dispatch(fetchExpensesAsync());
     }
-  }, [loggedIn, toggle]);
+  }, [loggedIn, dispatch]);
+  
+  
+  // Note: expenses is a depended state
+  // dispatch(fetchExpensesAsync());
+
+  
+  const categories = useSelector(state => state.categories.entities);
+  const expenses = useSelector(state => state.expenses.entities);
+  console.log(expenses)
+
 
   return (
     <div className="App">

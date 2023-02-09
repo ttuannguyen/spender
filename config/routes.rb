@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   resources :expenses
   # resources :categories
-  # resources :notes
+  resources :notes
 
   # categories
   get "/categories", to: "categories#index"
@@ -29,8 +29,8 @@ Rails.application.routes.draw do
   delete "/users/:user_id/expenses/:id", to: "expenses#destroy"
 
   # notes
-  post "/expenses/:expense_id/notes", to: "notes#create"
-  delete "/expenses/:expense_id/notes/:id", to: "notes#destroy"
+  # post "/expenses/:expense_id/notes", to: "notes#create"
+  # delete "/expenses/:expense_id/notes/:id", to: "notes#destroy"
 
   
   # Routing logic: fallback requests for React Router.

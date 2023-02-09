@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addNote } from '../user/UserSlice';
+import { addNewNoteToExpense } from '../expenses/ExpensesSlice';
 import { setToggle } from '../auth/ToggleSlice';
 
 
@@ -26,28 +26,29 @@ const NoteAddForm = ({expense}) => {
     // ISSUE: The new note renders after 2 refreshes
     const handleSubmit = (e) => {
         e.preventDefault()
+        dispatch(addNewNoteToExpense(formData))
 
         // to reset form
         setFormData({
             content:''        
         })
 
-        fetch(`/expenses/${expense.id}/notes`,{
-            method:'POST',
-            headers:{'Content-Type': 'application/json'},
-            body:JSON.stringify(formData)
-        })
-        .then(res => res.json())
-        .then(json => {
-            if (json) {
-                console.log(json)
-                dispatch(addNote(json))
-            } else {
-                const errorItems = json.errors.map(e => <li key={e.id}>{e}</li>)
-                setErrorsList(errorItems)
-            }
-        })
-        dispatch(setToggle())
+        // fetch(`/expenses/${expense.id}/notes`,{
+        //     method:'POST',
+        //     headers:{'Content-Type': 'application/json'},
+        //     body:JSON.stringify(formData)
+        // })
+        // .then(res => res.json())
+        // .then(json => {
+        //     if (json) {
+        //         console.log(json)
+        //         dispatch(addNote(json))
+        //     } else {
+        //         const errorItems = json.errors.map(e => <li key={e.id}>{e}</li>)
+        //         setErrorsList(errorItems)
+        //     }
+        // })
+        // dispatch(setToggle())
     }
 
 

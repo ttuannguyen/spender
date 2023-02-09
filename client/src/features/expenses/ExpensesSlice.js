@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { fetchExpenses } from './ExpensesApi';
 
 const initialState = {
-    data: [],
+    entities: [],
     status: 'idle'
 }
 
@@ -11,6 +11,57 @@ export const fetchExpensesAsync = createAsyncThunk(
     async () => {
         const response = await fetchExpenses()
         return response
+    }
+)
+
+export const addNewNoteToExpense = createAsyncThunk(
+    'categories/addNewNoteToExpense', 
+    async (formData) => {
+        const fetchAddNewNoteToExpense = () => {
+            return fetch('/notes',{
+                method:'POST',
+                headers:{'Content-Type': 'application/json'},
+                body:JSON.stringify(formData)
+            })
+            .then(res => res.json())
+            .then(data => data)
+        }
+        const response = await fetchAddNewNoteToExpense()
+        return response
+})
+
+export const editExpense = createAsyncThunk(
+    'expenses/editExpense',
+    async ({id, formData}) => {
+        const fetchEditExpense = () => {
+            return fetch(`/expenses/${id}`,{
+                method:'PATCH',
+                headers:{'Content-Type': 'application/json'},
+                body:JSON.stringify(formData)
+            })
+            .then(res => res.json())
+            .then(data => data)
+        }
+        const response = await fetchEditExpense()
+        return response
+    }
+)
+
+export const deleteExpense = createAsyncThunk(
+    'expenses/deleteExpense',
+    async (id) => {
+        const fetchDeletetExpense = () => {
+            return fetch(`/expenses/${id}`,{
+                method:'DELETE',
+                headers:{'Content-Type': 'application/json'},
+                // body:JSON.stringify(formData)
+            })
+            // .then(res => res.json())
+            // .then(data => data)
+        }
+        fetchDeletetExpense()
+        // const response = await fetchDeletetExpense()
+        // return response
     }
 )
 
@@ -39,11 +90,21 @@ export const expensesSlice = createSlice({
             state.status = 'loading'
         })
         .addCase(fetchExpensesAsync.fulfilled, (state, action) => {
-            state.data = action.payload
+            state.entities = action.payload
             state.status = 'fulfilled'
         })
         .addCase(fetchExpensesAsync.rejected, (state) => {
             state.status = 'rejected'
+        })
+        .addCase(editExpense.fulfilled, (state, action) => {
+            const newExpenses = state.entities.map(e => e.id ===  parseInt(action.payload.id) ? action.payload : e)
+            state.entities = newExpenses
+            state.status = 'fulfilled'
+        })   
+        .addCase(addNewNoteToExpense.fulfilled, (state, action) => {
+            const expenseFound = state.entities.find(e => e.id ===  parseInt(action.payload.expense_id))
+            expenseFound.notes.push(action.payload)
+            state.status = 'fulfilled'
         })
     }
 })

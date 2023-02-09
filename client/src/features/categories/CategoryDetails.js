@@ -13,14 +13,14 @@ const CategoryDetails = () => {
     const categories = useSelector(state => state.categories.entities)
 
     const category = categories.find(c => c.id === parseInt(params.id))
-    const expensesList = category.expenses.map(expense => <ExpenseLink key={expense.id} expense={expense} />)
+    const expensesList = category.user_expenses.map(expense => <ExpenseLink key={expense.id} expense={expense} />)
 
 
     return (
         <div>
             <h3>{category.name}</h3>
             {expensesList}
-            {formToggle ? <ExpenseAddForm2 category={category} afterAddExpense={afterAddExpense}/> : <button onClick={() => setFormToggle(true)}>Add an Expense</button>}
+            {/* {formToggle ? <ExpenseAddForm2 category={category} afterAddExpense={afterAddExpense}/> : <button onClick={() => setFormToggle(true)}>Add an Expense</button>} */}
         </div>
     )
 }

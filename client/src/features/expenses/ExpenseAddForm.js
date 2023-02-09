@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addExpense } from '../user/UserSlice';
 import { setToggle } from '../auth/ToggleSlice';
 import { addNewExpenseToCategory } from '../categories/CategoriesSlice';
+import { fetchExpensesAsync } from './ExpensesSlice';
+import { useNavigate } from 'react-router-dom';
 
 const ExpenseAddForm = () => {
     
@@ -11,6 +13,7 @@ const ExpenseAddForm = () => {
     const [errorsList, setErrorsList] = useState([]);
     const categories = useSelector(state => state.categories.data)
     const user = useSelector(state => state.user.data)
+    const navigate = useNavigate();
 
     const categoriesOptions = categories.map(c => <option value={c.id} key={c.id}>{c.name}</option>)
 
@@ -32,7 +35,9 @@ const ExpenseAddForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addNewExpenseToCategory(formData))
-        dispatch(setToggle())
+        // dispatch(fetchExpensesAsync())
+        navigate('/my_spends')
+        // dispatch(setToggle())
 
         // to reset form
         setFormData({
