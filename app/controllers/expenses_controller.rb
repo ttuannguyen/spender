@@ -19,12 +19,15 @@ class ExpensesController < ApplicationController
     # POST 
     def create 
         expense = current_user.expenses.create(expense_params)
-        # we should only be retrieving the user id from the current session (i.e. most secure way) 
         # expense = Expense.create(expense_params)
         # category = Category.find_by(id: params[:category_id])
         # expense = category.expenses.create(expense_params)
         render json: expense, status: :created
     end
+
+    # send back expense and cat separately and dispatch the different payloads
+    # custom separate serializers made for exp and cat
+
     
     # PATCH 
     def update

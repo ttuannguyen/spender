@@ -19,25 +19,25 @@ const CategoryAddForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
+        dispatch(addCategory(formData))
         setFormData({
             name:''
         })
 
-        fetch('/categories',{
-            method:'POST',
-            headers:{'Content-Type': 'application/json'},
-            body:JSON.stringify(formData)
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data) {
-                dispatch(addCategory(data))
-            } else {
-                const errorItems = data.errors.map(e => <li key={e.id}>{e}</li>)
-                setErrorsList(errorItems)
-            }
-        })
+        // fetch('/categories',{
+        //     method:'POST',
+        //     headers:{'Content-Type': 'application/json'},
+        //     body:JSON.stringify(formData)
+        // })
+        // .then(res => res.json())
+        // .then(data => {
+        //     if (data) {
+        //         dispatch(addCategory(data))
+        //     } else {
+        //         const errorItems = data.errors.map(e => <li key={e.id}>{e}</li>)
+        //         setErrorsList(errorItems)
+        //     }
+        // })
     }
 
     return (

@@ -11,10 +11,12 @@ const ExpenseAddForm = () => {
     const dispatch = useDispatch();
     
     const [errorsList, setErrorsList] = useState([]);
-    const categories = useSelector(state => state.categories.data)
+    const categories = useSelector(state => state.categories.entities)
+    const expenses = useSelector(state => state.categories.expenses)
     const user = useSelector(state => state.user.data)
     const navigate = useNavigate();
 
+    console.log(categories)
     const categoriesOptions = categories.map(c => <option value={c.id} key={c.id}>{c.name}</option>)
 
     // console.log(categories)
@@ -37,7 +39,6 @@ const ExpenseAddForm = () => {
         dispatch(addNewExpenseToCategory(formData))
         // dispatch(fetchExpensesAsync())
         navigate('/my_spends')
-        // dispatch(setToggle())
 
         // to reset form
         setFormData({
@@ -46,23 +47,7 @@ const ExpenseAddForm = () => {
             amount:'',
             category_id:'',
         })
-
-        // fetch(`/categories/${formData.category_id}/expenses`,{
-        //     method:'POST',
-        //     headers:{'Content-Type': 'application/json'},
-        //     body:JSON.stringify(formData)
-        // })
-        // .then(res => res.json())
-        // .then(json => {
-        //     if (json) {
-        //         console.log(json)
-        //         // dispatch(addExpense(json))
-        //         // dispatch(setToggle())
-        //     } else {
-        //         const errorItems = json.errors.map(e => <li key={e.id}>{e}</li>)
-        //         setErrorsList(errorItems)
-        //     }
-        // })
+        
     }
 
     return (

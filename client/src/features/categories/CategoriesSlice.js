@@ -16,6 +16,22 @@ export const fetchCategoriesAsync = createAsyncThunk(
     }
 )
 
+export const addCategory = createAsyncThunk(
+    'categories/addCategory', 
+    async (formData) => {
+        const fetchAddCategory = () => {
+            return fetch('/categories',{
+                method:'POST',
+                headers:{'Content-Type': 'application/json'},
+                body:JSON.stringify(formData)
+            })
+            .then(res => res.json())
+            .then(data => data)
+        }
+        const response = await fetchAddCategory()
+        return response
+})
+
 export const addNewExpenseToCategory = createAsyncThunk(
     'categories/addNewExpenseToCategory', 
     async (formData) => {
@@ -40,10 +56,10 @@ export const categoriesSlice = createSlice({
     name: 'categories',
     initialState,
     reducers: {
-        addCategory(state, action) {
-            state.entities.push(action.payload)
-            //action.payload refers to the new category that is being pushed into the state arr
-        }
+        // addCategory(state, action) {
+        //     state.entities.push(action.payload)
+        //     //action.payload refers to the new category that is being pushed into the state arr
+        // }
     },
 
     extraReducers: (builder) => {
@@ -58,6 +74,11 @@ export const categoriesSlice = createSlice({
         .addCase(fetchCategoriesAsync.rejected, (state) => {
             state.status = 'rejected'
         })
+        .addCase(addCategory.fulfilled, (state, action) => {
+            state.entities.push(action.payload)
+            // expenseFound.notes.push(action.payload)
+            // state.status = 'fulfilled'
+        })
         .addCase(addNewExpenseToCategory.pending, (state) => {
             state.status = 'loading'
         })
@@ -71,4 +92,4 @@ export const categoriesSlice = createSlice({
 
 
 export default categoriesSlice.reducer
-export const { addCategory } = categoriesSlice.actions
+// export const { addCategory } = categoriesSlice.actions

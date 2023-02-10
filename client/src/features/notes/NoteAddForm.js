@@ -9,7 +9,7 @@ const NoteAddForm = ({expense}) => {
     const dispatch = useDispatch();
     
     const [errorsList, setErrorsList] = useState([]);
-    const user = useSelector(state => state.user.data)
+    // const user = useSelector(state => state.user.data)
 
 
     const [formData, setFormData] = useState({
@@ -30,7 +30,8 @@ const NoteAddForm = ({expense}) => {
 
         // to reset form
         setFormData({
-            content:''        
+            ...formData, 
+            content:''
         })
 
         // fetch(`/expenses/${expense.id}/notes`,{

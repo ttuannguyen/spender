@@ -23,6 +23,7 @@ const App = () => {
 
   const loggedIn = useSelector(state => state.user.loggedIn);
   const dispatch = useDispatch();
+
   // const toggle = useSelector(state => state.toggle.toggleState);
   
   useEffect(() => {
@@ -32,10 +33,15 @@ const App = () => {
   useEffect(() => {
     if (loggedIn) {
       dispatch(fetchCategoriesAsync());
+      // dispatch(fetchExpensesAsync());
+    }
+  }, [loggedIn]);
+
+    useEffect(() => {
+    if (loggedIn) {
       dispatch(fetchExpensesAsync());
     }
-  }, [loggedIn, dispatch]);
-  
+  }, [loggedIn]);
   
   // Note: expenses is a depended state
   // dispatch(fetchExpensesAsync());
@@ -43,7 +49,7 @@ const App = () => {
   
   const categories = useSelector(state => state.categories.entities);
   const expenses = useSelector(state => state.expenses.entities);
-  console.log(expenses)
+  console.log(categories)
 
 
   return (

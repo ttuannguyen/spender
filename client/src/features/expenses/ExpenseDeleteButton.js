@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { deleteExpense } from '../user/UserSlice';
 import { setToggle } from '../auth/ToggleSlice';
+import { fetchCategoriesAsync } from '../categories/CategoriesSlice';
 
 const ExpenseDeleteButton = ({expense}) => {
     // const { user, toggle, setToggle } = useContext(UserContext);
@@ -18,15 +19,8 @@ const ExpenseDeleteButton = ({expense}) => {
     const handleClick = () => {
         
         dispatch(deleteExpense(id))
-        dispatch(setToggle())
+        dispatch(fetchCategoriesAsync())
         navigate('/my_spends')
-        
-        // fetch(`/users/${user.id}/expenses/${params.id}`, {
-        //     method: "DELETE",
-        //     headers: {
-        //       "Content-Type": "application/json",
-        //     }
-        // })
     }
     
     return (

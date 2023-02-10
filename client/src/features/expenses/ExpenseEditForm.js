@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import { editExpense } from '../user/UserSlice';
+import { editExpense } from './ExpensesSlice';
 
 const ExpenseEditForm = () => {
 
