@@ -27,7 +27,7 @@ class CategoriesController < ApplicationController
     # POST
     def create 
         # byebug
-        category = Category.create(category_params)
+        category = Category.create!(category_params)
         render json: category, status: :created
     end
 

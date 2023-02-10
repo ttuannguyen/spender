@@ -15,9 +15,7 @@ class NotesController < ApplicationController
     def create
         expense = current_user.expenses.find_by(id: params[:expense_id])
         # expense = Expense.find_by(id: params[:expense_id])
-        # byebug
-        note = expense.notes.create(note_params)
-        # byebug
+        note = expense.notes.create!(note_params)
         render json: note, status: :created
     end
 

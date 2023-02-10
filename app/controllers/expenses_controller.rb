@@ -18,7 +18,7 @@ class ExpensesController < ApplicationController
 
     # POST 
     def create 
-        expense = current_user.expenses.create(expense_params)
+        expense = current_user.expenses.create!(expense_params)
         # expense = Expense.create(expense_params)
         # category = Category.find_by(id: params[:category_id])
         # expense = category.expenses.create(expense_params)
@@ -32,9 +32,11 @@ class ExpensesController < ApplicationController
     # PATCH 
     def update
         expense = current_user.expenses.find_by(id: params[:id])
-        expense.update(expense_params)
-        # byebug
-        render json: expense, status: :accepted
+        if expense 
+            expense.update(expense_params)
+            render json: expense, status: :accepted
+        else
+            render json: {error: "Unable to update"}, status: :not_found
     end
 
     # DELETE
