@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addExpense } from '../user/UserSlice';
-import { setToggle } from '../auth/ToggleSlice';
 import { addNewExpenseToCategory } from '../categories/CategoriesSlice';
 import { fetchExpensesAsync } from './ExpensesSlice';
 import { useNavigate } from 'react-router-dom';
+import { setToggle } from './ExpensesSlice';
+
 
 const ExpenseAddForm = () => {
     
@@ -13,10 +14,10 @@ const ExpenseAddForm = () => {
     const [errorsList, setErrorsList] = useState([]);
     const categories = useSelector(state => state.categories.entities)
     const expenses = useSelector(state => state.categories.expenses)
-    const user = useSelector(state => state.user.data)
+    const user = useSelector(state => state.user.entities)
+    const toggle = useSelector(state => state.expenses.toggle);
     const navigate = useNavigate();
 
-    console.log(categories)
     const categoriesOptions = categories.map(c => <option value={c.id} key={c.id}>{c.name}</option>)
 
     // console.log(categories)
@@ -37,6 +38,7 @@ const ExpenseAddForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addNewExpenseToCategory(formData))
+        dispatch(setToggle())
         // dispatch(fetchExpensesAsync())
         navigate('/my_spends')
 
@@ -49,6 +51,8 @@ const ExpenseAddForm = () => {
         })
         
     }
+
+    console.log(toggle)
 
     return (
         <div>

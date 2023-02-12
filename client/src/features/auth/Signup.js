@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-
-
+import { useNavigate } from 'react-router-dom';
+import { signup } from '../user/UserSlice';
 
 const Signup = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
+    const errors = useSelector(state => state.user.errors)
     const [errorsList, setErrorsList] = useState([]);
     const dispatch = useDispatch()
     const navigate = useNavigate();
@@ -17,28 +17,37 @@ const Signup = () => {
         password,
         password_confirmation: passwordConfirmation
     }
+
+    let errorsToDisplay = null
+    if (errors) {
+        errorsToDisplay = errors.map(error => <p key={error}>{error}</p>)
+    }
     
     const handleSubmit = (e) => {
         e.preventDefault()
+        dispatch(signup(userObj))
+        if (!errors) {
+            navigate('/home')
+        }
 
-        fetch('/signup',{
-            method:'POST',
-            headers:{'Content-Type': 'application/json'},
-            body:JSON.stringify(userObj)
-        })
-        .then(res => res.json())
-        .then(user => {
-            if (user) {
-                navigate('/home')
-            }
-            else {
-                setUsername('')
-                setPassword('')
-                setPasswordConfirmation('')
-                const errorItems = user.errors.map(e => <p key={e.id}>{e}</p>) 
-                setErrorsList(errorItems) 
-            }
-        })
+        // fetch('/signup',{
+        //     method:'POST',
+        //     headers:{'Content-Type': 'application/json'},
+        //     body:JSON.stringify(userObj)
+        // })
+        // .then(res => res.json())
+        // .then(user => {
+        //     if (user) {
+        //         navigate('/home')
+        //     }
+        //     else {
+        //         setUsername('')
+        //         setPassword('')
+        //         setPasswordConfirmation('')
+        //         const errorItems = user.errors.map(e => <p key={e.id}>{e}</p>) 
+        //         setErrorsList(errorItems) 
+        //     }
+        // })
     }
 
     return (
@@ -53,7 +62,7 @@ const Signup = () => {
         <button type="submit">Sign up!</button>
       </form>
       <ul>
-          {errorsList}
+        {errorsToDisplay}
       </ul>
     </div>
     )

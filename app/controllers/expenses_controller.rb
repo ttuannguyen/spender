@@ -37,6 +37,7 @@ class ExpensesController < ApplicationController
             render json: expense, status: :accepted
         else
             render json: {error: "Unable to update"}, status: :not_found
+        end
     end
 
     # DELETE
@@ -55,5 +56,5 @@ class ExpensesController < ApplicationController
     def expense_params
         params.permit(:id, :merchant, :date, :amount, :category_id) # got rid of the user's id
     end
-    
+
 end

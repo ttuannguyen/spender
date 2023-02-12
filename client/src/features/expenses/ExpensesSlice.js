@@ -3,7 +3,8 @@ import { fetchExpenses } from './ExpensesApi';
 
 const initialState = {
     entities: [],
-    status: 'idle'
+    status: 'idle',
+    toggle: false
 }
 
 export const fetchExpensesAsync = createAsyncThunk(
@@ -69,6 +70,7 @@ export const expensesSlice = createSlice({
     name: 'expenses',
     initialState, 
     reducers: {
+        setToggle: state => {state.toggle = !state.toggle},
         // addExpense(state, action) {
         //     // using createSlice lets us mutate state!
         //     state.data.push(action.payload)
@@ -92,6 +94,7 @@ export const expensesSlice = createSlice({
         .addCase(fetchExpensesAsync.fulfilled, (state, action) => {
             state.entities = action.payload
             state.status = 'fulfilled'
+            state.toggle = true
         })
         .addCase(fetchExpensesAsync.rejected, (state) => {
             state.status = 'rejected'
@@ -111,4 +114,5 @@ export const expensesSlice = createSlice({
 
 
 export default expensesSlice.reducer
+export const {setToggle} = expensesSlice.actions
 // export const {addExpense, editExpense, deleteExpense} = expensesSlice.actions

@@ -8,20 +8,35 @@ const Login = () => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(''); // going to useSelector for this piece
+  const errors = useSelector(state => state.user.errors)
   const dispatch = useDispatch()
   const navigate = useNavigate();
 
   const userObj = {
     username,
-    password,
-    // error: null
+    password, 
   }
+
+  // ISSUE: Error message keeps persisting on page
+  let errorsToDisplay = null
+  if (errors) {
+      errorsToDisplay = errors.map(error => <p key={error}>{error}</p>)
+  }
+
+
+  // const [errorsFound, setErrorsFound] = useState([]);
+  // if (errors) {
+  //   setErrorsFound(errors)
+  // }
+  // const errorsList = errorsFound.map(error => <p key={error}>{error}</p>)
+
   
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(login(userObj))
-    navigate('/home')
+    if (!errors) {
+      navigate('/home')
+    } 
   
   //   fetch('/login',{
   //     method:'POST',
@@ -54,7 +69,7 @@ const Login = () => {
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} /><br/>
         <button type="submit">Login</button>
       </form>
-    {/* <p>{error}</p> */}
+      {errorsToDisplay}
     </div>
   )
 

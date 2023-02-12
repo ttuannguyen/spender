@@ -8,6 +8,7 @@ const Categories = () => {
   const categories = useSelector(state => state.categories.entities)
   // const [categoriesFound, setCategoriesFound] = useState([])
   const loggedIn = useSelector(state => state.user.loggedIn)
+  console.log(categories)
 
   // if (categories.length !== 0) {
   //   setCategoriesFound(categories)

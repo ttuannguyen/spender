@@ -20,7 +20,7 @@ const ExpenseDetails = () => {
 
     const expenses = useSelector(state => state.expenses.entities);
     const expense = expenses.find(e => e.id === parseInt(params.id));
-    // console.log(expenses)
+    console.log(expenses)
 
     
     // const findVisit = () => {
@@ -46,11 +46,16 @@ const ExpenseDetails = () => {
     //     category.user_expenses.map(expense => console.log(expense))
     // })    
 
-    const notesList = expense.notes.map(n => <p>{n.content}</p>)
-
-    if (!expense) {
+    let notesList = null
+    if (expense) {
+        notesList = expense.notes.map(n => <p>{n.content}</p>)
+    } else {
         return <div>Loading ...</div>
     }
+
+    // if (!expense) {
+    //     return <div>Loading ...</div>
+    // }
 
     return (
         <div>

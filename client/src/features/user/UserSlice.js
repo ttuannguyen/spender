@@ -11,7 +11,6 @@ export const fetchUserAsync = createAsyncThunk(
 )
 
 export const login = createAsyncThunk('user/login', async (userObj) => {
-    // we're able to get into userObj here
     return fetch('/login', {
         method:'POST',
         headers:{'Content-Type': 'application/json'},
@@ -27,6 +26,17 @@ export const logout = createAsyncThunk('user/logout', async() => {
         headers: { 'Content-Type': 'application/json'}
     })
 })
+
+export const signup = createAsyncThunk('user/signup', async (userObj) => {
+    return fetch('/signup', {
+        method:'POST',
+        headers:{'Content-Type': 'application/json'},
+        body:JSON.stringify(userObj) 
+    })
+    .then(res => res.json()) 
+    .then(userObj => userObj)
+})
+
 
 export const editExpense = createAsyncThunk(
     'user/editExpense',
@@ -65,20 +75,13 @@ export const deleteExpense = createAsyncThunk(
 
 
 const initialState = {
-    // for fetchUserAsync
-    data: {
+    entities: {
         id: null, 
         username: '',
         categories: [],
         expenses: []
     },
-    // for fetchLoginAsync
-    // user: {
-    //     id: null, 
-    //     username: '',
-    //     categories: [],
-    //     expenses: []
-    // },
+    errors: [],
     status: 'idle',
     loggedIn: false
 }
@@ -88,10 +91,10 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         addExpense(state, action) {
-            state.data.expenses.push(action.payload)
+            state.entities.expenses.push(action.payload)
         },
         addNote(state, action) {
-            state.data.notes.push(action.payload)
+            state.entities.notes.push(action.payload)
         },
         setLoggedOutState: state => {state.loggedIn = false}
     },
@@ -102,7 +105,7 @@ export const userSlice = createSlice({
             state.status = 'loading'
         })
         .addCase(fetchUserAsync.fulfilled, (state, action) => {
-            state.data = action.payload
+            state.entities = action.payload
             state.status = 'fulfilled'
         })
         .addCase(fetchUserAsync.rejected, (state) => {
@@ -112,18 +115,31 @@ export const userSlice = createSlice({
             state.status = 'loading'
         })
         .addCase(login.fulfilled, (state, action) => {
-            // setting user 
-            state.data = action.payload
             state.status = 'fulfilled'
-            // setting loggedIn to true
-            state.loggedIn = true
+            if (action.payload.errors) {
+                state.errors = action.payload.errors
+            } else {
+                state.entities = action.payload
+                state.errors = []
+                state.loggedIn = true
+            }
         })
         .addCase(login.rejected, (state) => {
             state.status = 'rejected'
         })
+        .addCase(signup.fulfilled, (state, action) => {
+            state.status = 'fulfilled'
+            if (action.payload.errors) {
+                state.errors = action.payload.errors
+            } else {
+                state.entities = action.payload
+                state.loggedIn = true
+            }
+        })
+        // CRUD Actions Using User Slice
         .addCase(editExpense.fulfilled, (state, action) => {
-            const newExpenses = state.data.expenses.map(e => e.id ===  parseInt(action.payload.id) ? action.payload : e)
-            state.data.expenses = newExpenses
+            const newExpenses = state.entities.expenses.map(e => e.id ===  parseInt(action.payload.id) ? action.payload : e)
+            state.entities.expenses = newExpenses
             state.status = 'fulfilled'
         })    
     }
