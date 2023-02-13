@@ -10,16 +10,6 @@ export const fetchUserAsync = createAsyncThunk(
     }
 )
 
-export const login = createAsyncThunk('user/login', async (userObj) => {
-    return fetch('/login', {
-        method:'POST',
-        headers:{'Content-Type': 'application/json'},
-        body:JSON.stringify(userObj) 
-    })
-    .then(res => res.json()) 
-    .then(userObj => userObj)
-})
-
 export const logout = createAsyncThunk('user/logout', async() => {
     return fetch('/logout', {
         method: 'DELETE',
@@ -34,9 +24,8 @@ export const signup = createAsyncThunk('user/signup', async (userObj) => {
         body:JSON.stringify(userObj) 
     })
     .then(res => res.json()) 
-    .then(userObj => userObj)
+    // .then(userObj => userObj)
 })
-
 
 export const editExpense = createAsyncThunk(
     'user/editExpense',
@@ -73,6 +62,15 @@ export const deleteExpense = createAsyncThunk(
     }
 )
 
+export const login = createAsyncThunk('user/login', async (userObj) => {
+    return fetch('/login', {
+        method:'POST',
+        headers:{'Content-Type': 'application/json'},
+        body:JSON.stringify(userObj) 
+    })
+    .then(res => res.json()) 
+    // .then(data => data)
+})
 
 const initialState = {
     entities: {
@@ -81,7 +79,9 @@ const initialState = {
         categories: [],
         expenses: []
     },
-    errors: [],
+    errors: null,
+    loginErrors: null,
+    signupErrors: null,
     status: 'idle',
     loggedIn: false
 }
@@ -96,7 +96,9 @@ export const userSlice = createSlice({
         addNote(state, action) {
             state.entities.notes.push(action.payload)
         },
-        setLoggedOutState: state => {state.loggedIn = false}
+        setLoggedOutState: state => {state.loggedIn = false},
+        resetErrors: state => {state.errors = null}
+
     },
 
     extraReducers: (builder) => {
@@ -107,21 +109,25 @@ export const userSlice = createSlice({
         .addCase(fetchUserAsync.fulfilled, (state, action) => {
             state.entities = action.payload
             state.status = 'fulfilled'
+            // state.errors = null // idea: bc this loads first in App.js, we can try to reset errors here
         })
         .addCase(fetchUserAsync.rejected, (state) => {
             state.status = 'rejected'
         })
         .addCase(login.pending, (state) => {
             state.status = 'loading'
+            state.errors = null
         })
         .addCase(login.fulfilled, (state, action) => {
             state.status = 'fulfilled'
             if (action.payload.errors) {
-                state.errors = action.payload.errors
+                // state.errors = action.payload.errors
+                state.loginErrors = action.payload.errors
             } else {
-                state.entities = action.payload
-                state.errors = []
                 state.loggedIn = true
+                // state.errors = null
+                state.loginErrors = null
+                state.entities = action.payload
             }
         })
         .addCase(login.rejected, (state) => {
@@ -130,10 +136,13 @@ export const userSlice = createSlice({
         .addCase(signup.fulfilled, (state, action) => {
             state.status = 'fulfilled'
             if (action.payload.errors) {
-                state.errors = action.payload.errors
+                // state.errors = action.payload.errors
+                state.signupErrors = action.payload.errors
             } else {
-                state.entities = action.payload
                 state.loggedIn = true
+                // state.errors = null
+                state.signupErrors = null
+                state.entities = action.payload
             }
         })
         // CRUD Actions Using User Slice
@@ -147,4 +156,4 @@ export const userSlice = createSlice({
 
 
 export default userSlice.reducer
-export const { addExpense, addNote, setLoggedOutState } = userSlice.actions
+export const { addExpense, addNote, setLoggedOutState, resetErrors } = userSlice.actions

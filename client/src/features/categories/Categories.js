@@ -8,7 +8,7 @@ const Categories = () => {
   const categories = useSelector(state => state.categories.entities)
   // const [categoriesFound, setCategoriesFound] = useState([])
   const loggedIn = useSelector(state => state.user.loggedIn)
-  console.log(categories)
+  // console.log(categories)
 
   // if (categories.length !== 0) {
   //   setCategoriesFound(categories)
@@ -19,8 +19,6 @@ const Categories = () => {
 
   if (loggedIn) {
 
-    // ISSUE: First time load: Page breaks
-    // const categoriesList = categoriesFound.map(category => <Category key={category.id} category={category} />)
     const categoriesList = categories.map(category => <Category key={category.id} category={category} />)
     
     return (

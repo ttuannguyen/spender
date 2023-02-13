@@ -8,7 +8,6 @@ import { fetchCategoriesAsync } from '../categories/CategoriesSlice';
 const ExpenseDeleteButton = ({expense}) => {
     // const { user, toggle, setToggle } = useContext(UserContext);
 
-    // ISSUE: The page breaks after the delete action
     const user = useSelector(state => state.user.data)
     // const params = useParams();
     const { id } = useParams();
@@ -19,7 +18,14 @@ const ExpenseDeleteButton = ({expense}) => {
     const handleClick = () => {
         
         dispatch(deleteExpense(id))
-        dispatch(fetchCategoriesAsync())
+        
+        // Issue: Related category still rendered even when all of its expenses are deleted
+        // Solution: fetch categories after the deletion
+        // dispatch(fetchCategoriesAsync())
+
+
+        // Issue: The page breaks after the delete action
+        // Solution: Navigate away to My Spends
         navigate('/my_spends')
     }
     

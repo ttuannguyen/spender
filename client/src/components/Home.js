@@ -5,7 +5,7 @@ const Home = () => {
 
   const loggedIn = useSelector(state => state.user.loggedIn)
   const user = useSelector(state => state.user.entities)
-  console.log(user)
+  // console.log(user)
 
   if (loggedIn) {
     return (

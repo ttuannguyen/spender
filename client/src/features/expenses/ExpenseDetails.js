@@ -11,16 +11,17 @@ const ExpenseDetails = () => {
     const params = useParams();
     const dispatch = useDispatch();
     // const [expense, setExpense] = useState({});
-    // const [notes, setNotes] = useState([]);
-
+    const [notes, setNotes] = useState([]);
+    
     // METHOD 1: Render using expenses' data
-    // Issue: State is not updated after new expense gets added
-
-
+    // Issue: State is not updated after new expense gets added. Expenses state is a depended state.
+    // Solution: Fetch expenses after a new expense has been added
 
     const expenses = useSelector(state => state.expenses.entities);
     const expense = expenses.find(e => e.id === parseInt(params.id));
-    console.log(expenses)
+
+    const notesList = expense.notes.map(note => <p>{note.content}</p>)
+
 
     
     // const findVisit = () => {
@@ -46,12 +47,12 @@ const ExpenseDetails = () => {
     //     category.user_expenses.map(expense => console.log(expense))
     // })    
 
-    let notesList = null
-    if (expense) {
-        notesList = expense.notes.map(n => <p>{n.content}</p>)
-    } else {
-        return <div>Loading ...</div>
-    }
+    // let notesList = null
+    // if (expense) {
+    //     notesList = expense.notes.map(n => <p>{n.content}</p>)
+    // } else {
+    //     return <div>Loading ...</div>
+    // }
 
     // if (!expense) {
     //     return <div>Loading ...</div>

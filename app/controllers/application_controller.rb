@@ -8,7 +8,8 @@ class ApplicationController < ActionController::API
   end
   
   def authorized
-    return render json: {error: "Not authorized"}, status: :unauthorized unless session.include? :user_id
+    # return render json: {error: "Not authorized"}, status: :unauthorized unless session.include? :user_id
+    return render json: {error: "Not authorized"}, status: :unauthorized unless current_user
   end
 
   private

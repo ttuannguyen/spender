@@ -4,12 +4,20 @@ import { useNavigate } from 'react-router-dom';
 import { signup } from '../user/UserSlice';
 
 const Signup = () => {
+
+// Issue: Error messages keep persisting
+  // Solution 1: make a state var for signup-related error messages
+  // Issues: errors not rendered immediately, not navigated to /home right away 
+  // Solution 2: send command to user slice to reset errors
+  // Solution 3: make the post fetch and display errors in this component
+    
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
-    const errors = useSelector(state => state.user.errors)
-    const [errorsList, setErrorsList] = useState([]);
-    const dispatch = useDispatch()
+    const [errorMessages, setErrorMessages] = useState([]);
+    // const errors = useSelector(state => state.user.errors);
+    const errors = useSelector(state => state.user.signupErrors);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const userObj = {
@@ -17,38 +25,21 @@ const Signup = () => {
         password,
         password_confirmation: passwordConfirmation
     }
-
-    let errorsToDisplay = null
-    if (errors) {
-        errorsToDisplay = errors.map(error => <p key={error}>{error}</p>)
-    }
     
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(signup(userObj))
-        if (!errors) {
+        if (errors) {
+            setErrorMessages(errors)
+            setUsername('')
+            setPassword('')
+            setPasswordConfirmation('')
+        } else {
             navigate('/home')
         }
-
-        // fetch('/signup',{
-        //     method:'POST',
-        //     headers:{'Content-Type': 'application/json'},
-        //     body:JSON.stringify(userObj)
-        // })
-        // .then(res => res.json())
-        // .then(user => {
-        //     if (user) {
-        //         navigate('/home')
-        //     }
-        //     else {
-        //         setUsername('')
-        //         setPassword('')
-        //         setPasswordConfirmation('')
-        //         const errorItems = user.errors.map(e => <p key={e.id}>{e}</p>) 
-        //         setErrorsList(errorItems) 
-        //     }
-        // })
     }
+
+    console.log(errors)
 
     return (
         <div id='signup'> 
@@ -62,7 +53,8 @@ const Signup = () => {
         <button type="submit">Sign up!</button>
       </form>
       <ul>
-        {errorsToDisplay}
+        {errorMessages?.map(error => <p key={error}>{error}</p>)}
+        {/* {errors?.map(error => <p key={error}>{error}</p>)} */}
       </ul>
     </div>
     )

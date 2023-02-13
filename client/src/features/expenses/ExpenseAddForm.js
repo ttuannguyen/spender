@@ -20,14 +20,12 @@ const ExpenseAddForm = () => {
 
     const categoriesOptions = categories.map(c => <option value={c.id} key={c.id}>{c.name}</option>)
 
-    // console.log(categories)
     const [formData, setFormData] = useState({
         merchant:'',
         date:'',   
         amount:'',
         category_id:'',
     });
-    // console.log(formData)
 
     const handleChange = (e) => {
         setFormData(formData => {
@@ -48,11 +46,8 @@ const ExpenseAddForm = () => {
             date:'',   
             amount:'',
             category_id:'',
-        })
-        
+        })        
     }
-
-    console.log(toggle)
 
     return (
         <div>

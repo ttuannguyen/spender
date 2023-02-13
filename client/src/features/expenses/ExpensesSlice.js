@@ -72,7 +72,6 @@ export const expensesSlice = createSlice({
     reducers: {
         setToggle: state => {state.toggle = !state.toggle},
         // addExpense(state, action) {
-        //     // using createSlice lets us mutate state!
         //     state.data.push(action.payload)
         // },
         // editExpense(state, action) {
