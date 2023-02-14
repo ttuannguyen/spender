@@ -44,7 +44,8 @@ class ExpensesController < ApplicationController
     def destroy
         expense = current_user.expenses.find_by(id: params[:id])
         expense.destroy
-        head :no_content
+        render json: expense
+        # head :no_content
     end
 
     private

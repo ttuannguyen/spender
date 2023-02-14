@@ -23,10 +23,10 @@ Rails.application.routes.draw do
   # get "/categories/:category_id/expenses", to: "categories#expenses_index"
   # get "/categories/:category_id/expenses", to: "expenses#create"
   # get "/categories/:id/expenses", to: "categories#expenses_index"
-  post "/expenses", to: "expenses#create" 
+  # post "/expenses", to: "expenses#create" 
   # post "/categories/:id/expenses", to: "expenses#create"
-  patch "/users/:user_id/expenses/:id", to: "expenses#update"
-  delete "/users/:user_id/expenses/:id", to: "expenses#destroy"
+  # patch "/users/:user_id/expenses/:id", to: "expenses#update"
+  # delete "/users/:user_id/expenses/:id", to: "expenses#destroy"
 
   # notes
   # post "/expenses/:expense_id/notes", to: "notes#create"

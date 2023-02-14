@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import { editExpense } from './ExpensesSlice';
+// import { editExpense } from './ExpensesSlice';
+import { editExpense } from '../categories/CategoriesSlice';
+
+
 
 const ExpenseEditForm = () => {
 
@@ -16,7 +19,7 @@ const ExpenseEditForm = () => {
     const dispatch = useDispatch();
     // const params = useParams(); 
     const navigate = useNavigate('');
-    const { id } = useParams();
+    const params = useParams();
 
     const [formData, setFormData] = useState({
         merchant: merchant,
@@ -34,14 +37,16 @@ const ExpenseEditForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(editExpense({id, formData}))
+        dispatch(editExpense({params, formData}))
 
         setFormData({
             merchant:'',
             date:'',   
             amount:'',
         })
-        navigate(`/expenses/${id}`)
+        console.log(params)
+        
+        navigate(`/categories/${params.category_id}/expenses/${params.id}`)
 
         // fetch(`/users/${user.id}/expenses/${params.id}`, {
         //     method: 'PATCH',

@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from 'react-router-dom';
-import { login, resetErrors } from '../user/UserSlice';
+import { redirect, useNavigate } from 'react-router-dom';
+import { login } from '../user/UserSlice';
 
 const Login = () => {
   
-  // Issue: Error messages keep persisting
+  // Issue: Error messages keep persisting because errors are saved in global state
+
   // Solution 1: make a state var for login-related error messages
-  // Solution 2: send command to user slice to reset errors
-  // Solution 3: make the post fetch and display errors in this component
+  // Solution 2: send command to user slice to reset errors - unsuccessful so far
+  // Solution 3: make the post fetch and display errors in this component as all we need is the presence of the user to login; we don't necessarily need to save errors in global state
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessages, setErrorMessages] = useState([]);
-  // const errors = useSelector(state => state.user.errors);
-  const errors = useSelector(state => state.user.loginErrors);
+  const user = useSelector(state => state.user.entities);
+  const errors = useSelector(state => state.user.errors);
+  // const errors = useSelector(state => state.user.loginErrors);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -26,14 +28,41 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(login(userObj))
-    if (errors) {
-      setErrorMessages(errors)
+    // we have to check for user as well and no errors
+    // if there's a user and no errors go home
+    // if (errors) {
+    //   setErrorMessages(errors)
+    //   setUsername('')
+    //   setPassword('')
+    // } else {
+    //   // Issue with Solution 1: because the above dispatch login function is async, when logging initially when errors state is null, it's going to take the null value before the new errors are set, and go to /home
+    //   navigate('/home')
+    // }
+    if (user && !errors) {
+      // navigate('/home')
+      redirect ('/home')
+    } else {
       setUsername('')
       setPassword('')
-    } else {
-      navigate('/home')
     }
   }
+
+  // fetch('/login',{
+  //   method:'POST',
+  //   headers:{'Content-Type': 'application/json'},
+  //   body:JSON.stringify(userObj)
+  // })
+  // .then(res => res.json())
+  // .then(user => {
+  //     if(user.errors) {
+  //       errorMessages(user.errors)
+  //       setUsername('')
+  //       setPassword('')
+  //   } else {
+  //       login(user)
+  //       navigate('/')
+  //   }
+  // })
 
   return (
     <div id='login'> 
@@ -44,8 +73,8 @@ const Login = () => {
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} /><br/>
         <button type="submit">Login</button>
       </form>
-      {errorMessages?.map(error => <p key={error}>{error}</p>)}
-      {/* {errors?.map(error => <p key={error}>{error}</p>)} */}
+      {/* {errorMessages?.map(error => <p key={error}>{error}</p>)} */}
+      {errors?.map(error => <p key={error}>{error}</p>)}
     </div>
   )
 }

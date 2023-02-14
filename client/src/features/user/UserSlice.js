@@ -15,6 +15,7 @@ export const logout = createAsyncThunk('user/logout', async() => {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json'}
     })
+    .then(res => res.json()) 
 })
 
 export const signup = createAsyncThunk('user/signup', async (userObj) => {
@@ -73,12 +74,13 @@ export const login = createAsyncThunk('user/login', async (userObj) => {
 })
 
 const initialState = {
-    entities: {
-        id: null, 
-        username: '',
-        categories: [],
-        expenses: []
-    },
+    // entities: {
+    //     id: null, 
+    //     username: '',
+    //     categories: [],
+    //     expenses: []
+    // },
+    entities: {},
     errors: null,
     loginErrors: null,
     signupErrors: null,
@@ -97,7 +99,7 @@ export const userSlice = createSlice({
             state.entities.notes.push(action.payload)
         },
         setLoggedOutState: state => {state.loggedIn = false},
-        resetErrors: state => {state.errors = null}
+        reset: state => {state.errors = null}
 
     },
 
@@ -121,14 +123,19 @@ export const userSlice = createSlice({
         .addCase(login.fulfilled, (state, action) => {
             state.status = 'fulfilled'
             if (action.payload.errors) {
-                // state.errors = action.payload.errors
-                state.loginErrors = action.payload.errors
+                state.errors = action.payload.errors
+                // state.loginErrors = action.payload.errors
             } else {
                 state.loggedIn = true
-                // state.errors = null
-                state.loginErrors = null
+                state.errors = null
+                // state.loginErrors = null
                 state.entities = action.payload
             }
+        })
+        .addCase(logout.fulfilled, (state) => {
+            state.status = 'fulfilled'
+            state.entities = {}
+            state.errors = null
         })
         .addCase(login.rejected, (state) => {
             state.status = 'rejected'
@@ -136,12 +143,12 @@ export const userSlice = createSlice({
         .addCase(signup.fulfilled, (state, action) => {
             state.status = 'fulfilled'
             if (action.payload.errors) {
-                // state.errors = action.payload.errors
-                state.signupErrors = action.payload.errors
+                state.errors = action.payload.errors
+                // state.signupErrors = action.payload.errors
             } else {
                 state.loggedIn = true
-                // state.errors = null
-                state.signupErrors = null
+                state.errors = null
+                // state.signupErrors = null
                 state.entities = action.payload
             }
         })
@@ -156,4 +163,4 @@ export const userSlice = createSlice({
 
 
 export default userSlice.reducer
-export const { addExpense, addNote, setLoggedOutState, resetErrors } = userSlice.actions
+export const { addExpense, addNote, setLoggedOutState, reset } = userSlice.actions

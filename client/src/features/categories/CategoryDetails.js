@@ -13,7 +13,7 @@ const CategoryDetails = () => {
     const categories = useSelector(state => state.categories.entities)
 
     const category = categories.find(c => c.id === parseInt(params.id))
-    const expensesList = category.user_expenses.map(expense => <ExpenseLink key={expense.id} expense={expense} />)
+    const expensesList = category.user_expenses.map(expense => <ExpenseLink key={expense.id} expense={expense} category_id={params.id} />)
 
 
     return (

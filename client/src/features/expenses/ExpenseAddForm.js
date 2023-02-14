@@ -36,8 +36,9 @@ const ExpenseAddForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addNewExpenseToCategory(formData))
-        dispatch(setToggle())
         // dispatch(fetchExpensesAsync())
+        // Note: due to addNewExpenseToCategory being async, it's going to go fetchExpensesAsync immediately but the new expense is not even in state for expenses state yet. Thus, we have to move the above fetch somewhere else.
+        // dispatch(setToggle())
         navigate('/my_spends')
 
         // to reset form

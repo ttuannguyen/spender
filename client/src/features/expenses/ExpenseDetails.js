@@ -14,15 +14,22 @@ const ExpenseDetails = () => {
     const [notes, setNotes] = useState([]);
     
     // METHOD 1: Render using expenses' data
-    // Issue: State is not updated after new expense gets added. Expenses state is a depended state.
+    // Issue: Expenses state is not updated after new expense gets added. Expenses state is a depended state.
     // Solution: Fetch expenses after a new expense has been added
 
-    const expenses = useSelector(state => state.expenses.entities);
-    const expense = expenses.find(e => e.id === parseInt(params.id));
+    const categories = useSelector(state => state.categories.entities);
+    const category = categories.find(e => e.id === parseInt(params.category_id));
+    // note: we can extract the category_id from the params
+    // console.log(category)
 
-    const notesList = expense.notes.map(note => <p>{note.content}</p>)
+    const expense = category.user_expenses.find(e => e.id === parseInt(params.id));
 
 
+    // const expenses = useSelector(state => state.expenses.entities);
+    // const expense = expenses.find(e => e.id === parseInt(params.id));
+    // console.log(expenses)
+
+    // const notesList = expense.notes.map(note => <p>{note.content}</p>)
     
     // const findVisit = () => {
     //     const eFound = expenses.find(e => e.id === parseInt(params.id));
@@ -64,11 +71,11 @@ const ExpenseDetails = () => {
             <p>Date: {expense.date}</p>
             <p>Amount: {expense.amount}</p>
             <ExpenseDeleteButton />
-            <Link to={`/expenses/${expense.id}/edit`}>
+            <Link to={`/categories/${params.category_id}/expenses/${params.id}/edit`}>
                 <button>Edit</button>
             </Link>
             <h4>Notes</h4>
-            {notesList}
+            {/* {notesList} */}
             <NoteAddForm expense={expense} />
         </div>
     )

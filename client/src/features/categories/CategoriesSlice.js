@@ -50,6 +50,39 @@ export const addNewExpenseToCategory = createAsyncThunk(
         // async thunk is handled with extra reducer, create a builder that responds to this case 
 })
 
+export const editExpense = createAsyncThunk(
+    'expenses/editExpense',
+    async ({params, formData}) => {
+        const fetchEditExpense = () => {
+            return fetch(`/expenses/${params.id}`,{
+                method:'PATCH',
+                headers:{'Content-Type': 'application/json'},
+                body:JSON.stringify(formData)
+            })
+            .then(res => res.json())
+            .then(data => data)
+        }
+        const response = await fetchEditExpense()
+        return response
+    }
+)
+
+export const deleteExpense = createAsyncThunk(
+    'expenses/deleteExpense',
+    async (params) => {
+        const fetchDeletetExpense = () => {
+            return fetch(`/expenses/${params.id}`,{
+                method:'DELETE',
+                headers:{'Content-Type': 'application/json'},
+            })
+            .then(res => res.json())
+            .then(data => data)
+        }
+        // fetchDeletetExpense()
+        const response = await fetchDeletetExpense()
+        return response
+    }
+)
 
 
 export const categoriesSlice = createSlice({
@@ -85,6 +118,18 @@ export const categoriesSlice = createSlice({
         .addCase(addNewExpenseToCategory.fulfilled, (state, action) => {
             const categoryFound = state.entities.find(c => c.id ===  parseInt(action.payload.category_id))
             categoryFound.user_expenses.push(action.payload)
+            state.status = 'fulfilled'
+        })
+        .addCase(editExpense.fulfilled, (state, action) => {
+            const categoryFound = state.entities.find(c => c.id ===  parseInt(action.payload.category_id))
+            const newExpenses = categoryFound.user_expenses.map(e => e.id ===  parseInt(action.payload.id) ? action.payload : e)
+            categoryFound.user_expenses = newExpenses
+            state.status = 'fulfilled'
+        })
+        .addCase(deleteExpense.fulfilled, (state, action) => {
+            const categoryFound = state.entities.find(c => c.id ===  parseInt(action.payload.category_id))
+            const newExpenses = categoryFound.user_expenses.filter(e => e.id !== action.payload.id)
+            categoryFound.user_expenses = newExpenses
             state.status = 'fulfilled'
         })
     }

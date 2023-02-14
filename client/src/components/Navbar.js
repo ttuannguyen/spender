@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import { logout } from '../features/user/UserSlice';
+import { logout, reset } from '../features/user/UserSlice';
 import { setLoggedOutState } from '../features/user/UserSlice';
 
 const Navbar = () => {
@@ -44,9 +44,9 @@ const Navbar = () => {
     return (
       <div>
         <NavLink className='navlink' to='/login'>
-          <button className='nav-btn'>Login</button>
+          <button className='nav-btn' onClick={() => dispatch(reset())}>Login</button>
         </NavLink>
-        <NavLink className='navlink' to='/signup'>
+        <NavLink className='navlink' to='/signup' onClick={() => dispatch(reset())}>
           <button className='nav-btn'>Signup</button>
         </NavLink>
       </div>

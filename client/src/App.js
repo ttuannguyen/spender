@@ -55,8 +55,9 @@ const App = () => {
           <Route path='/categories/:id' element={<CategoryDetails />}/>
           <Route exact path='/categories' element={ <Categories /> } />
           <Route exact path='/expenses/new' element={ <ExpenseAddForm /> } />
-          <Route path='/expenses/:id/edit' element={<ExpenseEditForm />} />
-          <Route path='/expenses/:id' element={<ExpenseDetails />}/>
+          <Route path='/categories/:category_id/expenses/:id/edit' element={<ExpenseEditForm />} />
+          <Route path='/categories/:category_id/expenses/:id' element={<ExpenseDetails />}/>
+          {/* The route above is designed so we have the category_id and id (of expense) in order to work with data in state and extract the expense we want. We don't actually need a corresponding route in the backend. */}
           <Route exact path="/expenses" element={ <Expenses /> } />
           {/* <Route exact path='/notes/new' element={ <NoteAddForm /> } /> */}
           <Route exact path='/login' element={<Login />} />
