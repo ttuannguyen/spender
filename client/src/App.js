@@ -18,6 +18,7 @@ import { fetchCategoriesAsync } from './features/categories/CategoriesSlice';
 import { fetchUserAsync } from './features/user/UserSlice';
 import { fetchExpensesAsync } from './features/expenses/ExpensesSlice';
 import NoteAddForm from './features/notes/NoteAddForm';
+import Notes from './features/notes/Notes';
 
 const App = () => {
 
@@ -64,6 +65,7 @@ const App = () => {
           <Route exact path='/signup' element={<Signup />} />
           <Route exact path="/home" element={<Home /> } />
           <Route exact path="/my_spends" element={<User />}/>
+          <Route exact path="/notes" element={<Notes />}/>
         </Routes>
       </Router>
     </div>

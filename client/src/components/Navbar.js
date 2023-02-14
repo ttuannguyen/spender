@@ -37,6 +37,9 @@ const Navbar = () => {
         <NavLink className='navlink' to='/my_spends'>
           <button className='nav-btn'>My Spends</button>
         </NavLink>
+        <NavLink className='navlink' to='/notes'>
+          <button className='nav-btn'>My Notes</button>
+        </NavLink>
         <button className='nav-btn' onClick={logoutUser}>Logout</button>
       </div>
     )

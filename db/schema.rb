@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2023_01_14_020025) do
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "expense_id", null: false
+    t.integer "user_id", null: false
   end
 
   create_table "users", force: :cascade do |t|
