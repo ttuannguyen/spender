@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import { setLoggedOutState, reset } from '../features/user/UserSlice';
+import { reset, setLoggedOutState, resetErrors } from '../features/user/UserSlice';
 import { logout } from '../features/user/UserSlice';
 
 
@@ -16,7 +16,10 @@ const Navbar = () => {
 
   const logoutUser = () => {
     dispatch(logout());
+    dispatch(reset());
+    dispatch(resetErrors());
     dispatch(setLoggedOutState());
+    
     navigate('/')
   }
 
@@ -48,9 +51,9 @@ const Navbar = () => {
     return (
       <div>
         <NavLink className='navlink' to='/login'>
-          <button className='nav-btn' onClick={() => dispatch(reset())}>Login</button>
+          <button className='nav-btn' onClick={() => dispatch(resetErrors())}>Login</button>
         </NavLink>
-        <NavLink className='navlink' to='/signup' onClick={() => dispatch(reset())}>
+        <NavLink className='navlink' to='/signup' onClick={() => dispatch(resetErrors())}>
           <button className='nav-btn'>Signup</button>
         </NavLink>
       </div>

@@ -1,13 +1,16 @@
 // import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchMe } from './UserApi';
 
 const initialState = {
     entities: {},
     errors: null,
+    noteErrors: null,
     status: 'idle',
     loggedIn: false
 }
+
 
 export const fetchUserAsync = createAsyncThunk(
     'user/fetchMe',
@@ -129,9 +132,15 @@ export const userSlice = createSlice({
         // addNote(state, action) {
         //     state.entities.notes.push(action.payload)
         // },
-        // resetUser: state => {state.entities = {}},
-        setLoggedOutState: state => {state.loggedIn = false},
-        reset: state => {state.errors = null}
+        reset(state) {
+            state.entities = {}
+        },
+        setLoggedOutState(state) {
+            state.loggedIn = false
+        },
+        resetErrors(state) {
+            state.errors = null
+        }
     },
 
     extraReducers: (builder) => {
@@ -142,6 +151,7 @@ export const userSlice = createSlice({
         .addCase(fetchUserAsync.fulfilled, (state, action) => {
             state.entities = action.payload
             state.status = 'fulfilled'
+            state.noteErrors = null
             // state.errors = null // idea: bc this loads first in App.js, we can try to reset errors here
         })
         .addCase(fetchUserAsync.rejected, (state) => {
@@ -194,7 +204,8 @@ export const userSlice = createSlice({
             // const newExpenses = state.entities.expenses.map(e => e.id ===  parseInt(action.payload.id) ? action.payload : e)
             // state.entities.expenses = newExpenses
             if (action.payload.errors) {
-                state.errors = action.payload.errors
+                state.noteErrors = action.payload.errors
+                // state.errors = action.payload.errors
             } else {
                 state.entities.notes.push(action.payload)
                 state.status = 'fulfilled'
@@ -205,4 +216,4 @@ export const userSlice = createSlice({
 
 
 export default userSlice.reducer
-export const { addExpense, setLoggedOutState, reset, resetUser } = userSlice.actions
+export const { addExpense, setLoggedOutState, reset, resetErrors, resetUser } = userSlice.actions

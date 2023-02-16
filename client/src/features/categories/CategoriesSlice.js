@@ -94,6 +94,9 @@ export const categoriesSlice = createSlice({
         //     state.entities.push(action.payload)
         //     //action.payload refers to the new category that is being pushed into the state arr
         // }
+        resetErrors(state) {
+            state.errors = null
+        }
     },
 
     extraReducers: (builder) => {
@@ -103,6 +106,7 @@ export const categoriesSlice = createSlice({
         })
         .addCase(fetchCategoriesAsync.fulfilled, (state, action) => {
             state.entities = action.payload
+            state.errors = null // to clear out errors at page refresh
             state.status = 'fulfilled'
         })
         .addCase(fetchCategoriesAsync.rejected, (state) => {
@@ -144,4 +148,4 @@ export const categoriesSlice = createSlice({
 
 
 export default categoriesSlice.reducer
-// export const { addCategory } = categoriesSlice.actions
+export const { resetErrors } = categoriesSlice.actions

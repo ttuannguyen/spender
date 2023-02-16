@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addExpense } from '../user/UserSlice';
-import { addNewExpenseToCategory } from '../categories/CategoriesSlice';
+import { addNewExpenseToCategory, resetErrors } from '../categories/CategoriesSlice';
 import { fetchExpensesAsync } from './ExpensesSlice';
 import { useNavigate } from 'react-router-dom';
 import { setToggle } from './ExpensesSlice';
@@ -28,6 +28,8 @@ const ExpenseAddForm = () => {
         category_id:'',
     });
 
+    // dispatch(resetErrors()) // this causes too many re-renders
+
     const handleChange = (e) => {
         setFormData(formData => {
             return {...formData, [e.target.name]:e.target.value}
@@ -37,8 +39,7 @@ const ExpenseAddForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addNewExpenseToCategory(formData))
-        navigate('/my_spends')
-
+        // navigate('/my_spends')
         // to reset form
         setFormData({
             merchant:'',

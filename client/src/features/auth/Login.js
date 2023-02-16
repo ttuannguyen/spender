@@ -15,11 +15,12 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   // const [errorMessages, setErrorMessages] = useState([]);
-  // const loggedIn = useSelector(state => state.user.loggedIn)
   const user = useSelector(state => state.user.entities);
   const errors = useSelector(state => state.user.errors);
+  const loggedIn = useSelector(state => state.user.loggedIn)
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
 
   console.log(user)
   console.log(errors)
@@ -34,9 +35,13 @@ const Login = () => {
     dispatch(login(userObj))
     if (user.id && !user.error && !errors) {
       navigate('/home')
+      // because of the async nature of the login fetch, it's going to skip to the form reset
     } else {
       setUsername('')
       setPassword('')
+    }
+    if (loggedIn) {
+      navigate('/home')
     }
   }
 

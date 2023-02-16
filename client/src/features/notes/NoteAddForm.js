@@ -8,6 +8,7 @@ import { setToggle } from '../auth/ToggleSlice';
 const NoteAddForm = () => {
 
     const dispatch = useDispatch();
+    const errors = useSelector(state => state.user.noteErrors);
     
     // const user = useSelector(state => state.user.data)
     const [formData, setFormData] = useState({
@@ -40,6 +41,7 @@ const NoteAddForm = () => {
                     <textarea type="text" name='content' value={formData.content} onChange={handleChange} /><br/>
                     <button type="submit">Add!</button>
                 </form>
+                {errors?.map(error => <p key={error}>{error}</p>)}
             </div>
     )
 }

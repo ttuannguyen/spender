@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from 'react-router-dom';
 import Category from './Category';
 import CategoryAddForm from './CategoryAddForm';
 
 const Categories = () => {
   
   const categories = useSelector(state => state.categories.entities)
-  // const [categoriesFound, setCategoriesFound] = useState([])
   const loggedIn = useSelector(state => state.user.loggedIn)
+  // const [categoriesFound, setCategoriesFound] = useState([])
+  // const [formToggle, setFormToggle] = useState(false); 
+  // const afterAddCategory = () => setFormToggle(false) 
+
   // console.log(categories)
 
   // if (categories.length !== 0) {
@@ -24,7 +28,12 @@ const Categories = () => {
     return (
       <div>
         {categoriesList}
-        <CategoryAddForm />
+        <Link to={'/categories/new'}>
+          <button>Add a Category</button>
+        </Link>
+        {/* {formToggle ? <CategoryAddForm afterAddCategory={afterAddCategory} /> : <button onClick={() => setFormToggle(true)}>Add a Category!</button>} */}
+        {/* {formToggle ? <CategoryAddForm afterAddSpot={afterAddSpot}/> : <button onClick={() => setFormToggle(true)}>Add a Spot!</button>} */}
+        {/* <CategoryAddForm /> */}
       </div>
     )
   } else {

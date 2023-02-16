@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addCategory } from './CategoriesSlice';
 
-const CategoryAddForm = () => {
+const CategoryAddForm = ({afterAddCategory}) => {
 
     // const { addSecretSpot } = useContext(UserContext);
     const dispatch = useDispatch()
@@ -38,6 +38,8 @@ const CategoryAddForm = () => {
 
         if (errors) {
             setErrorList(errors)
+        } else {
+            // afterAddCategory()
         }
     
         // fetch('/categories',{

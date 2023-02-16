@@ -19,6 +19,7 @@ import { fetchUserAsync } from './features/user/UserSlice';
 import { fetchExpensesAsync } from './features/expenses/ExpensesSlice';
 import NoteAddForm from './features/notes/NoteAddForm';
 import Notes from './features/notes/Notes';
+import CategoryAddForm from './features/categories/CategoryAddForm';
 
 const App = () => {
 
@@ -27,6 +28,7 @@ const App = () => {
 
   // const toggle = useSelector(state => state.expenses.toggle);
   // console.log(toggle)
+
   
   useEffect(() => {
     console.log("in app")
@@ -54,6 +56,7 @@ const App = () => {
         {/* <Counter /> */}
         <Routes>
           <Route path='/categories/:id' element={<CategoryDetails />}/>
+          <Route exact path='/categories/new' element={ <CategoryAddForm /> } />
           <Route exact path='/categories' element={ <Categories /> } />
           <Route exact path='/expenses/new' element={ <ExpenseAddForm /> } />
           <Route path='/categories/:category_id/expenses/:id/edit' element={<ExpenseEditForm />} />
