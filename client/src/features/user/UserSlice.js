@@ -2,6 +2,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchMe } from './UserApi';
 
+const initialState = {
+    entities: {},
+    errors: null,
+    status: 'idle',
+    loggedIn: false
+}
+
 export const fetchUserAsync = createAsyncThunk(
     'user/fetchMe',
     async () => {
@@ -10,6 +17,37 @@ export const fetchUserAsync = createAsyncThunk(
     }
 )
 
+// export const login = (userObj) => {
+//     fetch('/login', {
+//         method:'POST',
+//         headers:{'Content-Type': 'application/json'},
+//         body:JSON.stringify(userObj) 
+//     })
+//     .then(res => res.json())
+//     .then(data => data)
+// }
+
+export const login = createAsyncThunk('user/login', async (userObj) => {
+    return fetch('/login', {
+        method:'POST',
+        headers:{'Content-Type': 'application/json'},
+        body:JSON.stringify(userObj) 
+    })
+    .then(res => res.json()) 
+    // .then(data => data)
+})
+
+
+// export const login = createAsyncThunk('user/login', async (userObj) => {
+//     return fetch('/login', {
+//         method:'POST',
+//         headers:{'Content-Type': 'application/json'},
+//         body:JSON.stringify(userObj) 
+//     })
+//     .then(res => res.json()) 
+//     // .then(data => data)
+// })
+
 export const logout = createAsyncThunk('user/logout', async() => {
     return fetch('/logout', {
         method: 'DELETE',
@@ -17,6 +55,8 @@ export const logout = createAsyncThunk('user/logout', async() => {
     })
     .then(res => res.json()) 
 })
+    
+
 
 export const signup = createAsyncThunk('user/signup', async (userObj) => {
     return fetch('/signup', {
@@ -63,44 +103,35 @@ export const deleteExpense = createAsyncThunk(
     }
 )
 
-export const login = createAsyncThunk('user/login', async (userObj) => {
-    return fetch('/login', {
-        method:'POST',
-        headers:{'Content-Type': 'application/json'},
-        body:JSON.stringify(userObj) 
-    })
-    .then(res => res.json()) 
-    // .then(data => data)
+export const addNote = createAsyncThunk(
+    'user/addNote', 
+    async (formData) => {
+        const fetchAddNote = () => {
+            return fetch('/notes',{
+                method:'POST',
+                headers:{'Content-Type': 'application/json'},
+                body:JSON.stringify(formData)
+            })
+            .then(res => res.json())
+            .then(data => data)
+        }
+        const response = await fetchAddNote()
+        return response
 })
-
-const initialState = {
-    // entities: {
-    //     id: null, 
-    //     username: '',
-    //     categories: [],
-    //     expenses: []
-    // },
-    entities: {},
-    errors: null,
-    loginErrors: null,
-    signupErrors: null,
-    status: 'idle',
-    loggedIn: false
-}
 
 export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        addExpense(state, action) {
-            state.entities.expenses.push(action.payload)
-        },
-        addNote(state, action) {
-            state.entities.notes.push(action.payload)
-        },
+        // addExpense(state, action) {
+        //     state.entities.expenses.push(action.payload)
+        // },
+        // addNote(state, action) {
+        //     state.entities.notes.push(action.payload)
+        // },
+        // resetUser: state => {state.entities = {}},
         setLoggedOutState: state => {state.loggedIn = false},
         reset: state => {state.errors = null}
-
     },
 
     extraReducers: (builder) => {
@@ -136,6 +167,7 @@ export const userSlice = createSlice({
             state.status = 'fulfilled'
             state.entities = {}
             state.errors = null
+            state.loggedIn = false
         })
         .addCase(login.rejected, (state) => {
             state.status = 'rejected'
@@ -157,10 +189,16 @@ export const userSlice = createSlice({
             const newExpenses = state.entities.expenses.map(e => e.id ===  parseInt(action.payload.id) ? action.payload : e)
             state.entities.expenses = newExpenses
             state.status = 'fulfilled'
-        })    
+        })   
+        .addCase(addNote.fulfilled, (state, action) => {
+            // const newExpenses = state.entities.expenses.map(e => e.id ===  parseInt(action.payload.id) ? action.payload : e)
+            // state.entities.expenses = newExpenses
+            state.entities.notes.push(action.payload)
+            state.status = 'fulfilled'
+        })   
     }
 })
 
 
 export default userSlice.reducer
-export const { addExpense, addNote, setLoggedOutState, reset } = userSlice.actions
+export const { addExpense, setLoggedOutState, reset, resetUser } = userSlice.actions

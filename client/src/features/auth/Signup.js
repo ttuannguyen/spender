@@ -17,10 +17,14 @@ const Signup = () => {
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
     // const [errorMessages, setErrorMessages] = useState([]);
+    const user = useSelector(state => state.user.entities);
     const errors = useSelector(state => state.user.errors);
     // const errors = useSelector(state => state.user.signupErrors);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    console.log(user)
+    console.log(errors)
 
     const userObj = {
         username,
@@ -31,7 +35,9 @@ const Signup = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(signup(userObj))
-        if (!errors) return redirect ('/home')
+        if (user.id && !user.error && !errors) { 
+          navigate('/home')
+        }
         // if (errors) {
         //     // setErrorMessages(errors)
         //     setUsername('')
@@ -41,8 +47,6 @@ const Signup = () => {
         //     navigate('/home')
         // }
     }
-
-    console.log(errors)
 
     return (
         <div id='signup'> 

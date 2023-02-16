@@ -1,6 +1,6 @@
 class Expense < ApplicationRecord
     belongs_to :user
     belongs_to :category
-    
-    # has_many :notes
+
+    validates :merchant, :date, :amount, presence: true
 end

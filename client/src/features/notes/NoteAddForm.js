@@ -1,20 +1,17 @@
 import React, {useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addNewNoteToExpense } from '../expenses/ExpensesSlice';
+// import { addNewNoteToExpense } from '../expenses/ExpensesSlice';
+import { addNote } from '../user/UserSlice';
 import { setToggle } from '../auth/ToggleSlice';
 
 
-const NoteAddForm = ({expense}) => {
+const NoteAddForm = () => {
 
     const dispatch = useDispatch();
     
-    const [errorsList, setErrorsList] = useState([]);
     // const user = useSelector(state => state.user.data)
-
-
     const [formData, setFormData] = useState({
-        content:'',
-        expense_id: expense.id
+        content:''
     });
 
     const handleChange = (e) => {
@@ -26,33 +23,14 @@ const NoteAddForm = ({expense}) => {
     // ISSUE: The new note renders after 2 refreshes
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(addNewNoteToExpense(formData))
+        dispatch(addNote(formData))
 
         // to reset form
         setFormData({
             ...formData, 
             content:''
         })
-
-        // fetch(`/expenses/${expense.id}/notes`,{
-        //     method:'POST',
-        //     headers:{'Content-Type': 'application/json'},
-        //     body:JSON.stringify(formData)
-        // })
-        // .then(res => res.json())
-        // .then(json => {
-        //     if (json) {
-        //         console.log(json)
-        //         dispatch(addNote(json))
-        //     } else {
-        //         const errorItems = json.errors.map(e => <li key={e.id}>{e}</li>)
-        //         setErrorsList(errorItems)
-        //     }
-        // })
-        // dispatch(setToggle())
     }
-
-
 
     return (
             <div>
@@ -62,7 +40,6 @@ const NoteAddForm = ({expense}) => {
                     <textarea type="text" name='content' value={formData.content} onChange={handleChange} /><br/>
                     <button type="submit">Add!</button>
                 </form>
-                {errorsList}
             </div>
     )
 }

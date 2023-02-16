@@ -2,8 +2,9 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import { logout, reset } from '../features/user/UserSlice';
-import { setLoggedOutState } from '../features/user/UserSlice';
+import { setLoggedOutState, reset } from '../features/user/UserSlice';
+import { logout } from '../features/user/UserSlice';
+
 
 const Navbar = () => {
 
