@@ -6,7 +6,19 @@ const CategoryAddForm = () => {
 
     // const { addSecretSpot } = useContext(UserContext);
     const dispatch = useDispatch()
-    const [errorsList, setErrorsList] = useState([]);
+    const errors = useSelector(state => state.categories.errors)
+    const [errorList, setErrorList] = useState([]);
+    console.log(errors)
+
+    // TO DO: Need to clear out errors upon refresh
+
+    // if (errors) {
+    //     setErrorList(errors)
+    // }
+
+    console.log(errorList)
+
+
     const [formData, setFormData] = useState({
         name:''
     });
@@ -24,6 +36,10 @@ const CategoryAddForm = () => {
             name:''
         })
 
+        if (errors) {
+            setErrorList(errors)
+        }
+    
         // fetch('/categories',{
         //     method:'POST',
         //     headers:{'Content-Type': 'application/json'},
@@ -48,7 +64,8 @@ const CategoryAddForm = () => {
             <input type="text" name='name' value={formData.name} onChange={handleChange} /><br/>
             <button type="submit">Add!</button>
         </form>
-        {errorsList}
+        {errors?.map(error => <p key={error}>{error}</p>)}
+        {/* {errorList?.map(error => <p key={error}>{error}</p>)} */}
     </div>
     )
 }

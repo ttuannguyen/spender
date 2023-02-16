@@ -3,6 +3,7 @@ import { fetchExpenses } from './ExpensesApi';
 
 const initialState = {
     entities: [],
+    errors: null,
     status: 'idle',
     toggle: false
 }
@@ -103,9 +104,13 @@ export const expensesSlice = createSlice({
             state.status = 'fulfilled'
         })   
         .addCase(addNewNoteToExpense.fulfilled, (state, action) => {
-            const expenseFound = state.entities.find(e => e.id ===  parseInt(action.payload.expense_id))
-            expenseFound.notes.push(action.payload)
-            state.status = 'fulfilled'
+            if (action.payload.errors) {
+                state.errors = action.payload.errors
+            } else {
+                const expenseFound = state.entities.find(e => e.id ===  parseInt(action.payload.expense_id))
+                expenseFound.notes.push(action.payload)
+                state.status = 'fulfilled'
+            }
         })
     }
 })

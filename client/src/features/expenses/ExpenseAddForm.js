@@ -13,6 +13,7 @@ const ExpenseAddForm = () => {
     
     const [errorsList, setErrorsList] = useState([]);
     const categories = useSelector(state => state.categories.entities)
+    const errors = useSelector(state => state.categories.errors);
     const expenses = useSelector(state => state.categories.expenses)
     const user = useSelector(state => state.user.entities)
     const toggle = useSelector(state => state.expenses.toggle);
@@ -36,9 +37,6 @@ const ExpenseAddForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addNewExpenseToCategory(formData))
-        // dispatch(fetchExpensesAsync())
-        // Note: due to addNewExpenseToCategory being async, it's going to go fetchExpensesAsync immediately but the new expense is not even in state for expenses state yet. Thus, we have to move the above fetch somewhere else.
-        // dispatch(setToggle())
         navigate('/my_spends')
 
         // to reset form
@@ -68,7 +66,7 @@ const ExpenseAddForm = () => {
                 </select>
                 <button type="submit">Add!</button>
             </form>
-            {errorsList}
+            {errors?.map(error => <p key={error}>{error}</p>)}
         </div>
   )
 }

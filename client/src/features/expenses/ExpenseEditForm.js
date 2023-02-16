@@ -26,7 +26,6 @@ const ExpenseEditForm = () => {
         date: date,   
         amount: amount
     });
-
     // console.log(formData)
 
     const handleChange = (e) => {

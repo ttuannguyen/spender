@@ -193,8 +193,12 @@ export const userSlice = createSlice({
         .addCase(addNote.fulfilled, (state, action) => {
             // const newExpenses = state.entities.expenses.map(e => e.id ===  parseInt(action.payload.id) ? action.payload : e)
             // state.entities.expenses = newExpenses
-            state.entities.notes.push(action.payload)
-            state.status = 'fulfilled'
+            if (action.payload.errors) {
+                state.errors = action.payload.errors
+            } else {
+                state.entities.notes.push(action.payload)
+                state.status = 'fulfilled'
+            }
         })   
     }
 })

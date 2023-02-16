@@ -3,6 +3,7 @@ import { fetchCategories } from "./CategoriesApi";
 
 const initialState = {
     entities: [],
+    errors: null,
     status: 'idle'
 }
 
@@ -108,17 +109,23 @@ export const categoriesSlice = createSlice({
             state.status = 'rejected'
         })
         .addCase(addCategory.fulfilled, (state, action) => {
-            state.entities.push(action.payload)
-            // expenseFound.notes.push(action.payload)
-            // state.status = 'fulfilled'
+            if (action.payload.errors) {
+                state.errors = action.payload.errors
+            } else {
+                state.entities.push(action.payload)
+            }
         })
         .addCase(addNewExpenseToCategory.pending, (state) => {
             state.status = 'loading'
         })
         .addCase(addNewExpenseToCategory.fulfilled, (state, action) => {
-            const categoryFound = state.entities.find(c => c.id ===  parseInt(action.payload.category_id))
-            categoryFound.user_expenses.push(action.payload)
-            state.status = 'fulfilled'
+            if (action.payload.errors) {
+                state.errors = action.payload.errors
+            } else {
+                const categoryFound = state.entities.find(c => c.id ===  parseInt(action.payload.category_id))
+                categoryFound.user_expenses.push(action.payload)
+                state.status = 'fulfilled'
+            }
         })
         .addCase(editExpense.fulfilled, (state, action) => {
             const categoryFound = state.entities.find(c => c.id ===  parseInt(action.payload.category_id))
