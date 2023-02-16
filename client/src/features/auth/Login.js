@@ -15,16 +15,13 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   // const [errorMessages, setErrorMessages] = useState([]);
+  // const loggedIn = useSelector(state => state.user.loggedIn)
   const user = useSelector(state => state.user.entities);
   const errors = useSelector(state => state.user.errors);
-  const loggedIn = useSelector(state => state.user.loggedIn)
+  const status = useSelector(state => state.user.status)
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-
-  console.log(user)
-  console.log(errors)
-
+  
   const userObj = {
     username,
     password, 
@@ -33,17 +30,20 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(login(userObj))
-    if (user.id && !user.error && !errors) {
-      navigate('/home')
-      // because of the async nature of the login fetch, it's going to skip to the form reset
-    } else {
-      setUsername('')
-      setPassword('')
-    }
-    if (loggedIn) {
-      navigate('/home')
-    }
+
+    // if (user.id && !user.error && !errors) {
+    //   navigate('/home')
+    //   // because of the async nature of the login fetch, it's going to skip to the form reset
+    // } else {
+    //   setUsername('')
+    //   setPassword('')
+    // }
   }
+
+  if (user.id && !errors) {
+    navigate('/home')
+  } 
+
 
   // fetch('/login',{
   //   method:'POST',

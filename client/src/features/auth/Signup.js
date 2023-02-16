@@ -3,15 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { redirect, useNavigate } from 'react-router-dom';
 import { signup } from '../user/UserSlice';
 
-const Signup = () => {
-
-    // Current Issue: Not navigating to /home right away after a successful signup
-    
-    // Issue: Error messages keep persisting because errors are saved in global state
-    // Solution 1: make a state var for signup-related error messages
-    // Issues: errors not rendered immediately, not navigated to /home right away 
-    // Solution 2: send command to user slice to reset errors - unsuccessful so far
-    // Solution 3: make the post fetch and display errors in this component as all we need is the presence of the user to login; we don't necessarily need to save errors in global state
+const Signup = () => {  
     
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -35,9 +27,7 @@ const Signup = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(signup(userObj))
-        if (user.id && !user.error && !errors) { 
-          navigate('/home')
-        }
+        
         // if (errors) {
         //     // setErrorMessages(errors)
         //     setUsername('')
@@ -47,6 +37,11 @@ const Signup = () => {
         //     navigate('/home')
         // }
     }
+
+    if (user.id && !errors) { 
+      navigate('/home')
+    }
+
 
     return (
         <div id='signup'> 

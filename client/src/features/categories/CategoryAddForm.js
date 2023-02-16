@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { addCategory } from './CategoriesSlice';
 
 const CategoryAddForm = ({afterAddCategory}) => {
@@ -7,16 +8,9 @@ const CategoryAddForm = ({afterAddCategory}) => {
     // const { addSecretSpot } = useContext(UserContext);
     const dispatch = useDispatch()
     const errors = useSelector(state => state.categories.errors)
-    const [errorList, setErrorList] = useState([]);
+    const navigate = useNavigate();
+
     console.log(errors)
-
-    // TO DO: Need to clear out errors upon refresh
-
-    // if (errors) {
-    //     setErrorList(errors)
-    // }
-
-    console.log(errorList)
 
 
     const [formData, setFormData] = useState({
@@ -32,31 +26,23 @@ const CategoryAddForm = ({afterAddCategory}) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addCategory(formData))
+        
         setFormData({
+            ...formData, 
             name:''
         })
 
-        if (errors) {
-            setErrorList(errors)
-        } else {
-            // afterAddCategory()
+        // ISSUE: Async is going to skip to this step and navigate to /categories
+        // Solution: If the new category exists and there are no errors, navigate
+        // How to test if the new category has been created?
+        if (!errors) {
+            navigate('/categories')
         }
-    
-        // fetch('/categories',{
-        //     method:'POST',
-        //     headers:{'Content-Type': 'application/json'},
-        //     body:JSON.stringify(formData)
-        // })
-        // .then(res => res.json())
-        // .then(data => {
-        //     if (data) {
-        //         dispatch(addCategory(data))
-        //     } else {
-        //         const errorItems = data.errors.map(e => <li key={e.id}>{e}</li>)
-        //         setErrorsList(errorItems)
-        //     }
-        // })
+
     }
+
+
+
 
     return (
         <div>

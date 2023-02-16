@@ -9,15 +9,74 @@ import { setToggle } from './ExpensesSlice';
 
 const ExpenseAddForm = () => {
     
+    const errors = useSelector(state => state.categories.errors);    
     const dispatch = useDispatch();
     
-    const [errorsList, setErrorsList] = useState([]);
+    // const [errorsList, setErrorsList] = useState([]);
     const categories = useSelector(state => state.categories.entities)
-    const errors = useSelector(state => state.categories.errors);
+    const status = useSelector(state => state.categories.status)
     const expenses = useSelector(state => state.categories.expenses)
     const user = useSelector(state => state.user.entities)
     const toggle = useSelector(state => state.expenses.toggle);
     const navigate = useNavigate();
+    const [formFlag, setFormFlag] = useState(true)
+    const [count, setCount] = useState(null)
+    
+
+    console.log(status)
+    console.log(expenses)
+
+    useEffect(() => {
+        if (!errors) {
+            setFormData({
+                ...formData,
+                merchant:'',
+                date:'',   
+                amount:'',
+                category_id:'',
+            })   
+            // setFormData(true)
+            navigate('/my_spends')
+        } else {
+            setFormFlag(true)
+        }
+      }, []);
+
+    // useEffect(() => {
+    //     if (!formFlag && !!errors) {
+    //         setFormData({
+    //             ...formData,
+    //             merchant:'',
+    //             date:'',   
+    //             amount:'',
+    //             category_id:'',
+    //         })   
+    //         // setFormData(true)
+    //         navigate('/my_spends')
+    //     } else {
+    //         setFormFlag(true)
+    //     }
+    //   }, [formFlag, expenses, navigate]);
+      
+      //&& errors.length === 0
+    
+    // useEffect(() => {
+    //     setCount(expenses.length)
+    // }, [])
+
+    // useEffect(() => {
+    //     if (expenses.length !== count) {
+    //         setFormData({
+    //             ...formData,
+    //             merchant:'',
+    //             date:'',   
+    //             amount:'',
+    //             category_id:'',
+    //         })   
+    //         // setFormData(true)
+    //         navigate('/my_spends')
+    //     }
+    //   }, [expenses]);
 
     const categoriesOptions = categories.map(c => <option value={c.id} key={c.id}>{c.name}</option>)
 
@@ -39,15 +98,18 @@ const ExpenseAddForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addNewExpenseToCategory(formData))
-        // navigate('/my_spends')
-        // to reset form
-        setFormData({
-            merchant:'',
-            date:'',   
-            amount:'',
-            category_id:'',
-        })        
+
+        
+        // setFormFlag(false)
+        // if (!errors) {
+        //     navigate('/my_spends')
+        // }
+
     }
+
+    // # of expenses ; if the # changes, navigate 
+
+
 
     return (
         <div>

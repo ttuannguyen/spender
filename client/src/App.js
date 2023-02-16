@@ -31,7 +31,7 @@ const App = () => {
 
   
   useEffect(() => {
-    console.log("in app")
+    // console.log("in app")
     dispatch(fetchUserAsync());
   }, []);
 

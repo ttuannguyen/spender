@@ -11,7 +11,6 @@ const initialState = {
     loggedIn: false
 }
 
-
 export const fetchUserAsync = createAsyncThunk(
     'user/fetchMe',
     async () => {
@@ -147,11 +146,12 @@ export const userSlice = createSlice({
         builder
         .addCase(fetchUserAsync.pending, (state) => {
             state.status = 'loading'
+            state.errors = null // reset auth errors at page refresh
         })
         .addCase(fetchUserAsync.fulfilled, (state, action) => {
             state.entities = action.payload
             state.status = 'fulfilled'
-            state.noteErrors = null
+            // state.noteErrors = null
             // state.errors = null // idea: bc this loads first in App.js, we can try to reset errors here
         })
         .addCase(fetchUserAsync.rejected, (state) => {
@@ -159,7 +159,7 @@ export const userSlice = createSlice({
         })
         .addCase(login.pending, (state) => {
             state.status = 'loading'
-            state.errors = null
+            // state.errors = null
         })
         .addCase(login.fulfilled, (state, action) => {
             state.status = 'fulfilled'
