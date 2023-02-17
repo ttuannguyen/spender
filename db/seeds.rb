@@ -17,12 +17,12 @@
 # u1 = User.create(username: "john", password: "asdfghjk")
 # u2 = User.create(username: "pikachu", password: "asdfghjk")
 
-# c1 = Category.create(name: "Rent & Utilities")
-# c2 = Category.create(name: "Groceries")
-# c3 = Category.create(name: "Entertainment")
-# c4 = Category.create(name: "Essentials")
-# c5 = Category.create(name: "Transportation")
-# c6 = Category.create(name: "Subscriptions")
+c1 = Category.create(name: "Rent & Utilities")
+c2 = Category.create(name: "Groceries")
+c3 = Category.create(name: "Entertainment")
+c4 = Category.create(name: "Essentials")
+c5 = Category.create(name: "Transportation")
+c6 = Category.create(name: "Subscriptions")
 
 
 # e1 = Expense.create(merchant: "FirstService Residential", date: "1/1/2023", amount: 2000.00, user: u1, category: c1)
