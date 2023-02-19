@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: capstone
+  database: capstone_db
 
   # database: react_rails_api_project_template_development
 
