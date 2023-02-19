@@ -27,7 +27,7 @@ const Login = () => {
   }
 
   useEffect(() => {
-    if (user && !user.errors) {
+    if (user.id && !user.errors) {
       navigate('/home')
     } 
   }, [user])

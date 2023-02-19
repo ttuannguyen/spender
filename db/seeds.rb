@@ -14,7 +14,7 @@
 
 
 
-# u1 = User.create(username: "john", password: "asdfghjk")
+u1 = User.create(username: "john", password: "asdfghjk")
 # u2 = User.create(username: "pikachu", password: "asdfghjk")
 
 c1 = Category.create(name: "Rent & Utilities")

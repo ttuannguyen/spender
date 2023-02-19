@@ -8,7 +8,7 @@ class User < ApplicationRecord
     # if we want to have user/:id/notes
     # has_many :notes, -> { distinct }, through: :expenses 
 
-    # validates :username, presence: true, uniqueness: true 
-    # validates :password, :password_confirmation, presence: true
+    validates :username, presence: true, uniqueness: true 
+    validates :password, :password_confirmation, presence: true
 
 end
