@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { login } from '../user/UserSlice';
 
 const Login = () => {
@@ -18,7 +18,6 @@ const Login = () => {
   // const loggedIn = useSelector(state => state.user.loggedIn)
   const user = useSelector(state => state.user.entities);
   const errors = useSelector(state => state.user.errors);
-  const status = useSelector(state => state.user.status)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   

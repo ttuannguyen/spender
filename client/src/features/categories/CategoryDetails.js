@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import ExpenseLink from '../expenses/ExpenseLink';
-import ExpenseAddForm2 from '../expenses/ExpenseAddForm2';
 
 const CategoryDetails = () => {
 

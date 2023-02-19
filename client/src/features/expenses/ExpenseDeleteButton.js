@@ -3,8 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 // import { deleteExpense } from '../user/UserSlice';
 import { deleteExpense } from '../categories/CategoriesSlice';
-import { setToggle } from '../auth/ToggleSlice';
-import { fetchCategoriesAsync } from '../categories/CategoriesSlice';
+
 
 const ExpenseDeleteButton = ({expense}) => {
     // const { user, toggle, setToggle } = useContext(UserContext);

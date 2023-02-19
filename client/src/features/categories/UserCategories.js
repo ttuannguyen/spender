@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from "react-redux";
-import { fetchCategoriesAsync } from './CategoriesSlice';
 // import Category from '../categories/Category';
 import CategoryLink from './CategoryLink';
 

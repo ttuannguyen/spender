@@ -1,7 +1,5 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from "react-redux";
-import { setToggle } from '../auth/ToggleSlice';
 
 const NoteDeleteButton = ({note, expense}) => {
     // const { user, toggle, setToggle } = useContext(UserContext);

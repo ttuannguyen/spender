@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addExpense } from '../user/UserSlice';
-import { setToggle } from '../auth/ToggleSlice';
 
 
 const ExpenseAddForm2 = ({category, afterAddExpense}) => {

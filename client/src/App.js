@@ -17,7 +17,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategoriesAsync } from './features/categories/CategoriesSlice';
 import { fetchUserAsync } from './features/user/UserSlice';
 import { fetchExpensesAsync } from './features/expenses/ExpensesSlice';
-import NoteAddForm from './features/notes/NoteAddForm';
 import Notes from './features/notes/Notes';
 import CategoryAddForm from './features/categories/CategoryAddForm';
 

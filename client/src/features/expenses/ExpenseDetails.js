@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from 'react-router-dom';
 import ExpenseDeleteButton from './ExpenseDeleteButton';
 import NoteAddForm from '../notes/NoteAddForm';
-import Note from '../notes/Note';
-import { fetchExpensesAsync } from './ExpensesSlice';
+
 
 const ExpenseDetails = () => {
 

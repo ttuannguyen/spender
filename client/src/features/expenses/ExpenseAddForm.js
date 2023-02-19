@@ -1,10 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addExpense } from '../user/UserSlice';
 import { addNewExpenseToCategory, resetErrors } from '../categories/CategoriesSlice';
-import { fetchExpensesAsync } from './ExpensesSlice';
 import { useNavigate } from 'react-router-dom';
-import { setToggle } from './ExpensesSlice';
 
 
 const ExpenseAddForm = () => {

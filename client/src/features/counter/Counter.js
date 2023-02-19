@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { increment, decrement, reset, incrementByAmount, fetchRandomDogImageAsync } from './CounterSlice'
 import { useSelector, useDispatch } from "react-redux";
 import './Counter.css'
