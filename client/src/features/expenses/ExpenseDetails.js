@@ -8,9 +8,9 @@ import NoteAddForm from '../notes/NoteAddForm';
 const ExpenseDetails = () => {
 
     const params = useParams();
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     // const [expense, setExpense] = useState({});
-    const [notes, setNotes] = useState([]);
+    // const [notes, setNotes] = useState([]);
     
     // METHOD 1: Render using expenses' data
     // Issue: Expenses state is not updated after new expense gets added. Expenses state is a depended state.

@@ -1,9 +1,9 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './components/Home';
 import Navbar from './components/Navbar';
-import Counter from './features/counter/Counter';
+// import Counter from './features/counter/Counter';
 import Categories from './features/categories/Categories';
 import Expenses from './features/expenses/Expenses';
 import Login from './features/auth/Login';
@@ -32,19 +32,19 @@ const App = () => {
   useEffect(() => {
     // console.log("in app")
     dispatch(fetchUserAsync());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (loggedIn) {
       dispatch(fetchCategoriesAsync());
       dispatch(fetchExpensesAsync());
     }
-  }, [loggedIn]);  
+  }, [loggedIn, dispatch]);  
   // Note: expenses is a depended state
 
-  const categories = useSelector(state => state.categories.entities);
-  const expenses = useSelector(state => state.expenses.entities);
-  const user = useSelector(state => state.user.entities)
+  // const categories = useSelector(state => state.categories.entities);
+  // const expenses = useSelector(state => state.expenses.entities);
+  // const user = useSelector(state => state.user.entities)
   // console.log(expenses)
 
   return (

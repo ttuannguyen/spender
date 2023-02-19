@@ -13,11 +13,11 @@ const ExpenseAddForm = () => {
     const categories = useSelector(state => state.categories.entities)
     const status = useSelector(state => state.categories.status)
     const expenses = useSelector(state => state.categories.expenses)
-    const user = useSelector(state => state.user.entities)
-    const toggle = useSelector(state => state.expenses.toggle);
+    // const user = useSelector(state => state.user.entities)
+    // const toggle = useSelector(state => state.expenses.toggle);
     const navigate = useNavigate();
     const [formFlag, setFormFlag] = useState(true)
-    const [count, setCount] = useState(null)
+    // const [count, setCount] = useState(null)
     
 
     console.log(status)
