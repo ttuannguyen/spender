@@ -26,6 +26,12 @@ const Login = () => {
     password, 
   }
 
+  useEffect(() => {
+    if (user && !user.errors) {
+      navigate('/home')
+    } 
+  }, [user])
+
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(login(userObj))
@@ -39,9 +45,7 @@ const Login = () => {
     // }
   }
 
-  if (user.id && !errors) {
-    navigate('/home')
-  } 
+  
 
 
   // fetch('/login',{
