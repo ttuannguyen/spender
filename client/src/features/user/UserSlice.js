@@ -147,12 +147,13 @@ export const userSlice = createSlice({
         .addCase(fetchUserAsync.pending, (state) => {
             state.status = 'loading'
             state.errors = null // reset auth errors at page refresh
+            state.noteErrors = null
         })
         .addCase(fetchUserAsync.fulfilled, (state, action) => {
             state.entities = action.payload
             state.status = 'fulfilled'
             // state.noteErrors = null
-            // state.errors = null // idea: bc this loads first in App.js, we can try to reset errors here
+            state.errors = null // idea: bc this loads first in App.js, we can try to reset errors here
         })
         .addCase(fetchUserAsync.rejected, (state) => {
             state.status = 'rejected'
@@ -204,8 +205,8 @@ export const userSlice = createSlice({
             // const newExpenses = state.entities.expenses.map(e => e.id ===  parseInt(action.payload.id) ? action.payload : e)
             // state.entities.expenses = newExpenses
             if (action.payload.errors) {
-                state.noteErrors = action.payload.errors
-                // state.errors = action.payload.errors
+                // state.noteErrors = action.payload.errors
+                state.errors = action.payload.errors
             } else {
                 state.entities.notes.push(action.payload)
                 state.status = 'fulfilled'

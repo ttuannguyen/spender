@@ -45,7 +45,7 @@ const Signup = () => {
 
     return (
         <div id='signup'> 
-        <form onSubmit={handleSubmit}>
+        {/* <form onSubmit={handleSubmit}>
         <label>Username</label>
         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}/><br/>
         <label>Password</label>
@@ -53,6 +53,22 @@ const Signup = () => {
         <label>Password Confirmation</label>
         <input type="password" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}/><br/>
         <button type="submit">Sign up!</button>
+      </form> */}
+
+      <form onSubmit={handleSubmit}>
+        <div className='form-group'>
+          <label htmlFor='username'>Username</label>
+          <input type="text" className='form-control' id='username' value={username} onChange={(e) => setUsername(e.target.value)}/><br/>
+        </div>
+        <div className='form-group'>
+          <label htmlFor='password'>Password</label>
+          <input type='password' className='form-control' id='password' value={password} onChange={(e) => setPassword(e.target.value)}/><br/>
+        </div>
+        <div className='form-group'>
+          <label htmlFor='passwordConfirmation'>Password Confirmation</label>
+          <input type='password' className='form-control' id='passwordConfirmation' value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}/><br/>
+        </div>
+        <button className='btn btn-primary' type="submit">Sign up!</button>
       </form>
       <ul>
         {/* {errorMessages?.map(error => <p key={error}>{error}</p>)} */}

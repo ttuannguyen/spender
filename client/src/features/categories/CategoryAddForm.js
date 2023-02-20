@@ -32,12 +32,14 @@ const CategoryAddForm = ({afterAddCategory}) => {
             name:''
         })
 
+
         // ISSUE: Async is going to skip to this step and navigate to /categories
         // Solution: If the new category exists and there are no errors, navigate
-        // How to test if the new category has been created?
-        if (!errors) {
-            navigate('/categories')
-        }
+        // How to test if the new category has been created? length
+        // For now we can remove redirect
+        // if (!errors) {
+        //     navigate('/categories')
+        // }
 
     }
 

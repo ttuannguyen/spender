@@ -16,28 +16,27 @@ const ExpenseAddForm = () => {
     // const user = useSelector(state => state.user.entities)
     // const toggle = useSelector(state => state.expenses.toggle);
     const navigate = useNavigate();
-    const [formFlag, setFormFlag] = useState(true)
+    const [formFlag, setFormFlag] = useState(false)
     // const [count, setCount] = useState(null)
     
-
     console.log(status)
     console.log(expenses)
 
-    useEffect(() => {
-        if (!errors) {
-            setFormData({
-                ...formData,
-                merchant:'',
-                date:'',   
-                amount:'',
-                category_id:'',
-            })   
-            // setFormData(true)
-            navigate('/my_spends')
-        } else {
-            setFormFlag(true)
-        }
-      }, []);
+    // useEffect(() => {
+    //     if (!errors) {
+    //         setFormData({
+    //             ...formData,
+    //             merchant:'',
+    //             date:'',   
+    //             amount:'',
+    //             category_id:'',
+    //         })   
+    //         // setFormData(true)
+    //         navigate('/my_spends')
+    //     } else {
+    //         setFormFlag(true)
+    //     }
+    //   }, []);
 
     // useEffect(() => {
     //     if (!formFlag && !!errors) {
@@ -84,7 +83,8 @@ const ExpenseAddForm = () => {
         category_id:'',
     });
 
-    // dispatch(resetErrors()) // this causes too many re-renders
+    console.log(formData)
+
 
     const handleChange = (e) => {
         setFormData(formData => {
@@ -96,8 +96,17 @@ const ExpenseAddForm = () => {
         e.preventDefault()
         dispatch(addNewExpenseToCategory(formData))
 
+        setFormData({
+            ...formData,
+            merchant:'',
+            date:'',   
+            amount:'',
+            // category_id:'',
+        })   
+
+        // dropdown()
         
-        // setFormFlag(false)
+        // setFormFlag(true)
         // if (!errors) {
         //     navigate('/my_spends')
         // }
@@ -106,7 +115,18 @@ const ExpenseAddForm = () => {
 
     // # of expenses ; if the # changes, navigate 
 
+    // function reset() {
+    //     const text = document.getElementById("none").defaultValue;
+    // }
 
+    // const dropdown = () => {
+    //     return (
+    //         <select name='category_id' onChange={handleChange}>
+    //             <option value="none" id="none" selected="selected"> -- select an option -- </option>
+    //             {categoriesOptions}`
+    //         </select>
+    //     )
+    // }
 
     return (
         <div>
@@ -121,9 +141,10 @@ const ExpenseAddForm = () => {
                 <label>Category:</label>
                 {/* TO DO: Reset dropdown after submit */}
                 <select name='category_id' onChange={handleChange}>
-                    <option> -- select an option -- </option>
+                    <option value="none" id="none" selected disabled hidden> -- select an option -- </option>
                     {categoriesOptions}
                 </select>
+                {/* {dropdown()} */}
                 <button type="submit">Add!</button>
             </form>
             {errors?.map(error => <p key={error}>{error}</p>)}

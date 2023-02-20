@@ -1,4 +1,4 @@
-import './App.css';
+import './assets/css/App.css';
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './components/Home';
@@ -19,6 +19,7 @@ import { fetchUserAsync } from './features/user/UserSlice';
 import { fetchExpensesAsync } from './features/expenses/ExpensesSlice';
 import Notes from './features/notes/Notes';
 import CategoryAddForm from './features/categories/CategoryAddForm';
+import NoteAddForm from './features/notes/NoteAddForm';
 
 const App = () => {
 
@@ -54,20 +55,21 @@ const App = () => {
         <Navbar />
         {/* <Counter /> */}
         <Routes>
-          <Route path='/categories/:id' element={<CategoryDetails />}/>
+          <Route path='/categories/:id' element={<CategoryDetails />} />
           <Route exact path='/categories/new' element={ <CategoryAddForm /> } />
           <Route exact path='/categories' element={ <Categories /> } />
           <Route exact path='/expenses/new' element={ <ExpenseAddForm /> } />
           <Route path='/categories/:category_id/expenses/:id/edit' element={<ExpenseEditForm />} />
-          <Route path='/categories/:category_id/expenses/:id' element={<ExpenseDetails />}/>
+          <Route path='/categories/:category_id/expenses/:id' element={<ExpenseDetails />} />
           {/* The route above is designed so we have the category_id and id (of expense) in order to work with data in state and extract the expense we want. We don't actually need a corresponding route in the backend. */}
           <Route exact path="/expenses" element={ <Expenses /> } />
           {/* <Route exact path='/notes/new' element={ <NoteAddForm /> } /> */}
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/signup' element={<Signup />} />
-          <Route exact path="/home" element={<Home /> } />
-          <Route exact path="/my_spends" element={<User />}/>
-          <Route exact path="/notes" element={<Notes />}/>
+          <Route exact path='/home' element={<Home /> } />
+          <Route exact path='/my_spends' element={<User />} />
+          <Route exact path='/notes/new' element={<NoteAddForm />} />
+          <Route exact path="/notes" element={<Notes />} />
         </Routes>
       </Router>
     </div>

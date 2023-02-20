@@ -8,7 +8,11 @@ import { setToggle } from '../auth/ToggleSlice';
 const NoteAddForm = () => {
 
     const dispatch = useDispatch();
-    const errors = useSelector(state => state.user.noteErrors);
+    // const errors = useSelector(state => state.user.noteErrors);
+    const errors = useSelector(state => state.user.errors);
+    const user = useSelector(state => state.user.entities);
+
+    console.log(user.notes.length)
     
     // const user = useSelector(state => state.user.data)
     const [formData, setFormData] = useState({
@@ -21,12 +25,10 @@ const NoteAddForm = () => {
         })
     };
 
-    // ISSUE: The new note renders after 2 refreshes
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addNote(formData))
 
-        // to reset form
         setFormData({
             ...formData, 
             content:''
