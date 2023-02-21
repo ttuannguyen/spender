@@ -1,14 +1,12 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 // import { deleteExpense } from '../user/UserSlice';
 import { deleteExpense } from '../categories/CategoriesSlice';
 
 
 const ExpenseDeleteButton = ({expense}) => {
     // const { user, toggle, setToggle } = useContext(UserContext);
-
-    const user = useSelector(state => state.user.data)
     // const params = useParams();
     const params = useParams();
     const dispatch = useDispatch();

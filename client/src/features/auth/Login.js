@@ -30,19 +30,11 @@ const Login = () => {
     if (user.id && !user.errors) {
       navigate('/home')
     } 
-  }, [user])
+  }, [user, navigate])
 
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(login(userObj))
-
-    // if (user.id && !user.error && !errors) {
-    //   navigate('/home')
-    //   // because of the async nature of the login fetch, it's going to skip to the form reset
-    // } else {
-    //   setUsername('')
-    //   setPassword('')
-    // }
   }
 
   

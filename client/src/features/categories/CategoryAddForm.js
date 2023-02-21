@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { addCategory } from './CategoriesSlice';
 
 const CategoryAddForm = () => {
@@ -9,7 +8,7 @@ const CategoryAddForm = () => {
     const dispatch = useDispatch()
     const categories = useSelector(state => state.categories.entities)
     const errors = useSelector(state => state.categories.errors)
-    const navigate = useNavigate();
+    const loggedIn = useSelector(state => state.user.loggedIn)
 
     console.log(categories)
     console.log(errors)
@@ -44,21 +43,25 @@ const CategoryAddForm = () => {
 
     }
 
-    return (
-        <div id='category-add'>
-            <h4>Add a Category</h4>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="name">Name</label>
-                    <input type="text" className="form-control" id="name" name="name" value={formData.name} onChange={handleChange} /><br/>
-                </div>
-                <button type="submit" className="btn btn-primary">Add!</button>
-                {errors?.map(error => <p key={error}>{error}</p>)}
-            </form>
-            {/* {errors?.map(error => <p key={error}>{error}</p>)} */}
-            {/* {errorList?.map(error => <p key={error}>{error}</p>)} */}
-        </div>
-    )
+    if (loggedIn) {
+        return (
+            <div id='category-add'>
+                <h4>Add a Category</h4>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="name">Name</label>
+                        <input type="text" className="form-control" id="name" name="name" value={formData.name} onChange={handleChange} /><br/>
+                    </div>
+                    <button type="submit" className="btn btn-primary">Add!</button>
+                    {errors?.map(error => <p key={error}>{error}</p>)}
+                </form>
+                {/* {errors?.map(error => <p key={error}>{error}</p>)} */}
+                {/* {errorList?.map(error => <p key={error}>{error}</p>)} */}
+            </div>
+        )
+    } else {
+        return (<h4>Please login or create an Account</h4>) 
+    }
 }
 
 export default CategoryAddForm

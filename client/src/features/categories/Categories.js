@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
-import Category from './Category';
+// import Category from './Category';
 
 const Categories = () => {
   
@@ -20,7 +20,7 @@ const Categories = () => {
 
   if (loggedIn) {
 
-    const categoriesList = categories.map(category => <Category key={category.id} category={category} />)
+    const categoriesList = categories.map(category => <p key={category.id} category={category}>{category.name}</p>)
     
     return (
       <div>

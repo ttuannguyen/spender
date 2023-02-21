@@ -1,8 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addNewExpenseToCategory, resetErrors } from '../categories/CategoriesSlice';
-import { useNavigate } from 'react-router-dom';
-
+import { addNewExpenseToCategory } from '../categories/CategoriesSlice';
 
 const ExpenseAddForm = () => {
     
@@ -13,10 +11,10 @@ const ExpenseAddForm = () => {
     const categories = useSelector(state => state.categories.entities)
     const status = useSelector(state => state.categories.status)
     const expenses = useSelector(state => state.categories.expenses)
+    const loggedIn = useSelector(state => state.user.loggedIn)
     // const user = useSelector(state => state.user.entities)
     // const toggle = useSelector(state => state.expenses.toggle);
-    const navigate = useNavigate();
-    const [formFlag, setFormFlag] = useState(false)
+    // const [formFlag, setFormFlag] = useState(false)
     // const [count, setCount] = useState(null)
     
     console.log(status)
@@ -126,37 +124,41 @@ const ExpenseAddForm = () => {
     //     )
     // }
 
-    return (
-        <div id='expense-add-form'>
-            <h4>Add an Expense</h4>
-            <form onSubmit={handleSubmit}>
-                <div className='form-group'>
-                    <label htmlFor='merchant'>Merchant</label>
-                    <input type='text' className='form-control' id='merchant' name='merchant' value={formData.merchant} onChange={handleChange} /><br/>
-                </div>
-                <div className='form-group'>
-                    <label htmlFor='date'>Date</label>
-                    <input type='text' className='form-control' id='date' name='date' value={formData.date} onChange={handleChange} /><br/>
-                </div>
-                <div className='form-group'>
-                    <label htmlFor='amount'>Amount</label>
-                    <input type='text' className='form-control' id='amount' name='amount' value={formData.amount} onChange={handleChange} /><br/>
-                </div>
-   
-                <div class='dropdown'> 
-                    <label>Category:</label>
-                    {/* TO DO: Reset dropdown after submit */}
-                    <select name='category_id' onChange={handleChange}>
-                        <option value="none" id="none" selected disabled hidden> -- select an option -- </option>
-                        {categoriesOptions}
-                    </select>
-                    {/* {dropdown()} */}
-                </div>
-                <button type="submit" class='btn btn-primary'>Add!</button>
-            </form>
-            {errors?.map(error => <p key={error}>{error}</p>)}
-        </div>
-  )
+    if (loggedIn) {
+        return (
+            <div id='expense-add-form'>
+                <h4>Add an Expense</h4>
+                <form onSubmit={handleSubmit}>
+                    <div className='form-group'>
+                        <label htmlFor='merchant'>Merchant</label>
+                        <input type='text' className='form-control' id='merchant' name='merchant' value={formData.merchant} onChange={handleChange} /><br/>
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor='date'>Date</label>
+                        <input type='text' className='form-control' id='date' name='date' value={formData.date} onChange={handleChange} /><br/>
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor='amount'>Amount</label>
+                        <input type='text' className='form-control' id='amount' name='amount' value={formData.amount} onChange={handleChange} /><br/>
+                    </div>
+       
+                    <div class='dropdown'> 
+                        <label>Category:</label>
+                        {/* TO DO: Reset dropdown after submit */}
+                        <select name='category_id' onChange={handleChange}>
+                            <option value="none" id="none" selected disabled hidden> -- select an option -- </option>
+                            {categoriesOptions}
+                        </select>
+                        {/* {dropdown()} */}
+                    </div>
+                    <button type="submit" class='btn btn-primary'>Add!</button>
+                </form>
+                {errors?.map(error => <p key={error}>{error}</p>)}
+            </div>
+      )
+    } else {
+        return (<h4>Please login or create an Account</h4>)    
+    }
 }
 
 export default ExpenseAddForm

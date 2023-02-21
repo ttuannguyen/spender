@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from "react-redux";
+import React from 'react';
+import { useSelector } from "react-redux";
 import { Link, useParams } from 'react-router-dom';
 import ExpenseDeleteButton from './ExpenseDeleteButton';
 
@@ -7,6 +7,7 @@ import ExpenseDeleteButton from './ExpenseDeleteButton';
 const ExpenseDetails = () => {
 
     const params = useParams();
+    const loggedIn = useSelector(state => state.user.loggedIn);
     // const dispatch = useDispatch();
     // const [expense, setExpense] = useState({});
     // const [notes, setNotes] = useState([]);
@@ -63,17 +64,22 @@ const ExpenseDetails = () => {
     //     return <div>Loading ...</div>
     // }
 
-    return (
-        <div>
-            <p>Merchant: {expense.merchant}</p>
-            <p>Date: {expense.date}</p>
-            <p>Amount: ${expense.amount}</p>
-            <ExpenseDeleteButton />
-            <Link to={`/categories/${params.category_id}/expenses/${params.id}/edit`}>
-                <button>Edit</button>
-            </Link>
-        </div>
-    )
+    if (loggedIn) {
+        return (
+            <div>
+                <p>Merchant: {expense.merchant}</p>
+                <p>Date: {expense.date}</p>
+                <p>Amount: ${expense.amount}</p>
+                <ExpenseDeleteButton />
+                <Link to={`/categories/${params.category_id}/expenses/${params.id}/edit`}>
+                    <button>Edit</button>
+                </Link>
+            </div>
+        )
+    } else {
+        return (<h4>Please login or create an Account</h4>) 
+    }
+
 }
 
 export default ExpenseDetails

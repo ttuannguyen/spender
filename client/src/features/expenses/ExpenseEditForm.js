@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 // import { editExpense } from './ExpensesSlice';
 import { editExpense } from '../categories/CategoriesSlice';
@@ -8,19 +8,17 @@ import { editExpense } from '../categories/CategoriesSlice';
 
 const ExpenseEditForm = () => {
 
-    const [merchant, setMerchant] = useState('');
-    const [date, setDate] = useState('');
-    const [amount, setAmount] = useState('');
+    // const [merchant, setMerchant] = useState('');
+    // const [date, setDate] = useState('');
+    // const [amount, setAmount] = useState('');
 
     const loggedIn = useSelector(state => state.user.loggedIn);
-    const user = useSelector(state => state.user.data);
     const errors = useSelector(state => state.categories.errors);    
     const categories = useSelector(state => state.categories.entities);
 
 
     const dispatch = useDispatch();
     // const params = useParams(); 
-    const navigate = useNavigate('');
     const params = useParams();
 
     const category = categories.find(e => e.id === parseInt(params.category_id));
@@ -31,7 +29,7 @@ const ExpenseEditForm = () => {
     const [formData, setFormData] = useState({
         merchant: expense.merchant,
         date: expense.date,   
-        amount: '',
+        amount: expense.amount,
         // merchant: merchant,
         // date: date,   
         // amount: amount

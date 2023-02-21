@@ -1,12 +1,9 @@
-// import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchMe } from './UserApi';
 
 const initialState = {
     entities: {},
     errors: null,
-    noteErrors: null,
     status: 'idle',
     loggedIn: false
 }
@@ -29,14 +26,15 @@ export const fetchUserAsync = createAsyncThunk(
 //     .then(data => data)
 // }
 
-export const login = createAsyncThunk('user/login', async (userObj) => {
+export const login = createAsyncThunk(
+    'user/login', 
+    async (userObj) => {
     return fetch('/login', {
         method:'POST',
         headers:{'Content-Type': 'application/json'},
         body:JSON.stringify(userObj) 
     })
     .then(res => res.json()) 
-    // .then(data => data)
 })
 
 
@@ -146,20 +144,19 @@ export const userSlice = createSlice({
         builder
         .addCase(fetchUserAsync.pending, (state) => {
             state.status = 'loading'
-            state.errors = null // reset auth errors at page refresh
-            state.noteErrors = null
+            state.errors = null // reset errors at page refresh
         })
         .addCase(fetchUserAsync.fulfilled, (state, action) => {
             state.entities = action.payload
             state.status = 'fulfilled'
-            state.errors = null // idea: bc this loads first in App.js, we can try to reset errors here
+            state.errors = null 
         })
         .addCase(fetchUserAsync.rejected, (state) => {
             state.status = 'rejected'
         })
         .addCase(login.pending, (state) => {
             state.status = 'loading'
-            // state.errors = null
+            state.errors = null // reset errors at page refresh
         })
         .addCase(login.fulfilled, (state, action) => {
             state.status = 'fulfilled'

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
-import NoteAddForm from './NoteAddForm';
 
 
 const Notes = () => {
@@ -17,7 +16,6 @@ const Notes = () => {
             <Link to={'/notes/new'}>  
                 <button>Add a Note</button>
             </Link>
-            {/* <NoteAddForm /> */}
         </div>
     )
 }
