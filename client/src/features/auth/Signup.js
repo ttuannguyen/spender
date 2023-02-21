@@ -15,8 +15,8 @@ const Signup = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    console.log(user)
-    console.log(errors)
+    // console.log(user)
+    // console.log(errors)
 
     const userObj = {
         username,

@@ -15,7 +15,7 @@ const CategoryDetails = () => {
     if (loggedIn) {
         return (
             <div>
-                <h3>{category.name}</h3>
+                <h4>{category.name} Expenses</h4>
                 {expensesList}
             </div>
         )

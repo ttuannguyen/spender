@@ -66,7 +66,7 @@ const ExpenseDetails = () => {
 
     if (loggedIn) {
         return (
-            <div>
+            <div className='expense-show-page'>
                 <p>Merchant: {expense.merchant}</p>
                 <p>Date: {expense.date}</p>
                 <p>Amount: ${expense.amount}</p>

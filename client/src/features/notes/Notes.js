@@ -11,11 +11,15 @@ const Notes = () => {
 
     return (
         <div>
-            <p>Keep track of your spending habits with notes!</p>
+            <div className='notebook'>
+                <p>Keep track of your spending habits with notes!</p>
             {notesList}
-            <Link to={'/notes/new'}>  
-                <button>Add a Note</button>
-            </Link>
+            </div>
+            <div className='add-note'>
+                <Link to={'/notes/new'}>  
+                    <button className="btn btn-primary">Add a Note</button>
+                </Link>
+            </div>
         </div>
     )
 }

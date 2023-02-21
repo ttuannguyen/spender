@@ -70,16 +70,22 @@ const ExpenseEditForm = () => {
 
     if (loggedIn) {
         return (
-            <div className='visit-edit-div'>
+            <div className='expense-edit-form'>
+                <h4>Expense Edit Form ⬇️</h4><br/>
                 <form onSubmit={handleSubmit}>
-                    Expense Edit Form ⬇️<br/>
-                    <label>Merchant</label>
-                    <input type="text" name='merchant' value={formData.merchant} onChange={handleChange} /><br/>
-                    <label>Date</label>
-                    <input type="text" name='date' value={formData.date} onChange={handleChange} /><br/>
-                    <label>Amount</label>
-                    <input type="text" name='amount' value={formData.amount} onChange={handleChange} /><br/>
-                    <button type="submit">Edit</button>
+                    <div className="form-group">
+                        <label htmlFor='merchant'>Merchant</label>
+                        <input type="text"  className="form-control" name='merchant' value={formData.merchant} onChange={handleChange} /><br/>
+                    </div>
+                    <div className="form-group">
+                        <label className="form-group">Date</label>
+                        <input type="text" className="form-control" name='date' value={formData.date} onChange={handleChange} /><br/>    
+                    </div>
+                    <div className="form-group">
+                        <label className="form-group">Amount</label>
+                        <input type="text" className="form-control" name='amount' value={formData.amount} onChange={handleChange} /><br/>
+                    </div>
+                    <button type="submit" className="btn btn-primary">Edit</button>
                 </form>
                 {errors?.map(error => <p key={error}>{error}</p>)}
             </div>

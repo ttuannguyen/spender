@@ -21,7 +21,7 @@ const UserCategories = () => {
     const categoriesList = filteredCategories.map(category => <CategoryLink key={category.id} category={category} />)
 
     return (
-      <div>
+      <div className='user-categories'>
         {categoriesList}      
       </div>
     )

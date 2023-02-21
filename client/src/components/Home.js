@@ -9,12 +9,14 @@ const Home = () => {
 
   if (loggedIn) {
     return (
-      <div>
+      <div className='home'>
           <h3>Welcome, {user.username}!</h3>
           <h4>Usage Instructions</h4>
-          <p>Use the expense add form to add a new expense </p>
-          <p>Go to Categories to view a list of expense categories and add a new category </p>
-          <p>Go to an Expense Category to view a list of your expenses in that category</p>
+          <h5>Keep all of your important expenses in one place with Spender!</h5>
+          <p>Go to Categories to view a list of expense categories. If you need to add a new expense category, use the Category Add Form. </p>
+          <p>To add a new expense, navigate to Add Expense and use the form to add a new expense. Be sure to select the category that the expense belongs to. </p>
+          <p>To view a list of your expenses in that category, navigate to My Expenses by Category.</p>
+          <p>Use "My Notes" to journal your spending habits.</p>
       </div>
     )
   } else {
