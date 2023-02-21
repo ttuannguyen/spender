@@ -152,7 +152,6 @@ export const userSlice = createSlice({
         .addCase(fetchUserAsync.fulfilled, (state, action) => {
             state.entities = action.payload
             state.status = 'fulfilled'
-            // state.noteErrors = null
             state.errors = null // idea: bc this loads first in App.js, we can try to reset errors here
         })
         .addCase(fetchUserAsync.rejected, (state) => {
@@ -209,6 +208,7 @@ export const userSlice = createSlice({
                 state.errors = action.payload.errors
             } else {
                 state.entities.notes.push(action.payload)
+                state.errors = null
                 state.status = 'fulfilled'
             }
         })   

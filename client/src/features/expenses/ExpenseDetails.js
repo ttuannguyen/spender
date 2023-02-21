@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from 'react-router-dom';
 import ExpenseDeleteButton from './ExpenseDeleteButton';
-import NoteAddForm from '../notes/NoteAddForm';
 
 
 const ExpenseDetails = () => {
@@ -73,9 +72,6 @@ const ExpenseDetails = () => {
             <Link to={`/categories/${params.category_id}/expenses/${params.id}/edit`}>
                 <button>Edit</button>
             </Link>
-            <h4>Notes</h4>
-            {/* {notesList} */}
-            <NoteAddForm expense={expense} />
         </div>
     )
 }

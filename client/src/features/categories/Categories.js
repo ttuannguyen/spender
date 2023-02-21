@@ -11,8 +11,6 @@ const Categories = () => {
   // const [formToggle, setFormToggle] = useState(false); 
   // const afterAddCategory = () => setFormToggle(false) 
 
-  // console.log(categories)
-
   // if (categories.length !== 0) {
   //   setCategoriesFound(categories)
   // }

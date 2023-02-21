@@ -129,23 +129,32 @@ const ExpenseAddForm = () => {
     // }
 
     return (
-        <div>
+        <div id='expense-add-form'>
             <h4>Add an Expense</h4>
             <form onSubmit={handleSubmit}>
-                <label>Merchant</label>
-                <input type="text" name='merchant' value={formData.merchant} onChange={handleChange} /><br/>
-                <label>Date</label>
-                <input type="text" name='date' value={formData.date} onChange={handleChange} /><br/>
-                <label>Amount</label>
-                <input type="text" name='amount' value={formData.amount} onChange={handleChange} /><br/>
-                <label>Category:</label>
-                {/* TO DO: Reset dropdown after submit */}
-                <select name='category_id' onChange={handleChange}>
-                    <option value="none" id="none" selected disabled hidden> -- select an option -- </option>
-                    {categoriesOptions}
-                </select>
-                {/* {dropdown()} */}
-                <button type="submit">Add!</button>
+                <div className='form-group'>
+                    <label htmlFor='merchant'>Merchant</label>
+                    <input type='text' className='form-control' id='merchant' name='merchant' value={formData.merchant} onChange={handleChange} /><br/>
+                </div>
+                <div className='form-group'>
+                    <label htmlFor='date'>Date</label>
+                    <input type='text' className='form-control' id='date' name='date' value={formData.date} onChange={handleChange} /><br/>
+                </div>
+                <div className='form-group'>
+                    <label htmlFor='amount'>Amount</label>
+                    <input type='text' className='form-control' id='amount' name='amount' value={formData.amount} onChange={handleChange} /><br/>
+                </div>
+   
+                <div class='dropdown'> 
+                    <label>Category:</label>
+                    {/* TO DO: Reset dropdown after submit */}
+                    <select name='category_id' onChange={handleChange}>
+                        <option value="none" id="none" selected disabled hidden> -- select an option -- </option>
+                        {categoriesOptions}
+                    </select>
+                    {/* {dropdown()} */}
+                </div>
+                <button type="submit" class='btn btn-primary'>Add!</button>
             </form>
             {errors?.map(error => <p key={error}>{error}</p>)}
         </div>

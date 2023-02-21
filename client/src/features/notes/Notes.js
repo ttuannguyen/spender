@@ -12,6 +12,7 @@ const Notes = () => {
 
     return (
         <div>
+            <p>Keep track of your spending habits with notes!</p>
             {notesList}
             <Link to={'/notes/new'}>  
                 <button>Add a Note</button>

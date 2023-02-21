@@ -36,12 +36,14 @@ const NoteAddForm = () => {
     }
 
     return (
-            <div>
-                <h4>Add an Note</h4>
+            <div id="note-add-form">
+                <h4>Let's reflect on your spending!</h4>
                 <form onSubmit={handleSubmit}>
-                    <label>Content</label>
-                    <textarea type="text" name='content' value={formData.content} onChange={handleChange} /><br/>
-                    <button type="submit">Add!</button>
+                    <div className='form-group'>
+                        <label htmlFor='content'>Note</label>
+                        <textarea type="text" className='form-control' id='content' name='content' value={formData.content} onChange={handleChange} /><br/>
+                    </div>
+                    <button type="submit" className="btn btn-primary">Add!</button>
                 </form>
                 {errors?.map(error => <p key={error}>{error}</p>)}
             </div>

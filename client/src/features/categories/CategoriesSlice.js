@@ -118,6 +118,8 @@ export const categoriesSlice = createSlice({
                 state.errors = action.payload.errors
             } else {
                 state.entities.push(action.payload)
+                state.errors = null
+                state.status = 'fulfilled'
             }
         })
         .addCase(addNewExpenseToCategory.pending, (state) => {
@@ -129,7 +131,6 @@ export const categoriesSlice = createSlice({
             } else {
                 const categoryFound = state.entities.find(c => c.id ===  parseInt(action.payload.category_id))
                 categoryFound.user_expenses.push(action.payload)
-                // state.errors = []
                 state.errors = null
                 state.status = 'fulfilled'
             }
