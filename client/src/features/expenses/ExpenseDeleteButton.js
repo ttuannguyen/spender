@@ -30,7 +30,7 @@ const ExpenseDeleteButton = ({expense}) => {
     }
     
     return (
-        <button onClick={handleClick}>Delete</button>
+        <button className="btn btn-danger" onClick={handleClick}>Delete</button>
     )
 }
 

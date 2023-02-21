@@ -12,7 +12,7 @@ const Notes = () => {
     return (
         <div>
             <div className='notebook'>
-                <p>Keep track of your spending habits with notes!</p>
+                <h3>Keep track of your spending habits with notes!</h3>
             {notesList}
             </div>
             <div className='add-note'>

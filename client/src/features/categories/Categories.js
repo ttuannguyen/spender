@@ -20,19 +20,20 @@ const Categories = () => {
 
   if (loggedIn) {
 
-    const categoriesList = categories.map(category => <h4 key={category.id} category={category}>{category.name}</h4>)
+    const categoriesList = categories.map(category => <h5 key={category.id} category={category}>{category.name}</h5>)
     
     return (
       <>
         <div className='categories'>
+          <h4>Here are the available categories!</h4>
           {categoriesList}
           {/* {formToggle ? <CategoryAddForm afterAddCategory={afterAddCategory} /> : <button onClick={() => setFormToggle(true)}>Add a Category!</button>} */}
           {/* {formToggle ? <CategoryAddForm afterAddSpot={afterAddSpot}/> : <button onClick={() => setFormToggle(true)}>Add a Spot!</button>} */}
           {/* <CategoryAddForm /> */}
+          <Link to={'/categories/new'}>
+            <button className="btn btn-primary">Add a Category</button>
+          </Link>
         </div>
-        <Link to={'/categories/new'}>
-            <button id='category-add-button'>Add a Category</button>
-        </Link>
       </>
     )
   } else {

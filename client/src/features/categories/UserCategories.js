@@ -22,6 +22,8 @@ const UserCategories = () => {
 
     return (
       <div className='user-categories'>
+        <h3>Here are your Categories</h3>
+        <p>Click on each category to see your expenses.</p>
         {categoriesList}      
       </div>
     )

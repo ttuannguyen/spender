@@ -67,13 +67,13 @@ const ExpenseDetails = () => {
     if (loggedIn) {
         return (
             <div className='expense-show-page'>
-                <p>Merchant: {expense.merchant}</p>
-                <p>Date: {expense.date}</p>
-                <p>Amount: ${expense.amount}</p>
-                <ExpenseDeleteButton />
+                <h3>Merchant: {expense.merchant}</h3>
+                <h4>Date: {expense.date}</h4>
+                <h5>Amount: ${expense.amount}</h5>
                 <Link to={`/categories/${params.category_id}/expenses/${params.id}/edit`}>
-                    <button>Edit</button>
+                    <button className="btn btn-primary">Edit</button>
                 </Link>
+                <ExpenseDeleteButton />
             </div>
         )
     } else {
