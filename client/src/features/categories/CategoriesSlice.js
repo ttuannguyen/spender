@@ -136,10 +136,15 @@ export const categoriesSlice = createSlice({
             }
         })
         .addCase(editExpense.fulfilled, (state, action) => {
-            const categoryFound = state.entities.find(c => c.id ===  parseInt(action.payload.category_id))
-            const newExpenses = categoryFound.user_expenses.map(e => e.id ===  parseInt(action.payload.id) ? action.payload : e)
-            categoryFound.user_expenses = newExpenses
-            state.status = 'fulfilled'
+            if (action.payload.errors) {
+                state.errors = action.payload.errors
+            } else {
+                const categoryFound = state.entities.find(c => c.id ===  parseInt(action.payload.category_id))
+                const newExpenses = categoryFound.user_expenses.map(e => e.id ===  parseInt(action.payload.id) ? action.payload : e)
+                categoryFound.user_expenses = newExpenses
+                state.errors = null
+                state.status = 'fulfilled'
+            }
         })
         .addCase(deleteExpense.fulfilled, (state, action) => {
             const categoryFound = state.entities.find(c => c.id ===  parseInt(action.payload.category_id))

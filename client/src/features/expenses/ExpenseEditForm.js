@@ -13,18 +13,28 @@ const ExpenseEditForm = () => {
     const [amount, setAmount] = useState('');
 
     const loggedIn = useSelector(state => state.user.loggedIn);
-   
-    const user = useSelector(state => state.user.data)
+    const user = useSelector(state => state.user.data);
+    const errors = useSelector(state => state.categories.errors);    
+    const categories = useSelector(state => state.categories.entities);
+
 
     const dispatch = useDispatch();
     // const params = useParams(); 
     const navigate = useNavigate('');
     const params = useParams();
 
+    const category = categories.find(e => e.id === parseInt(params.category_id));
+    const expense = category.user_expenses.find(e => e.id === parseInt(params.id));
+    console.log(expense)
+
+
     const [formData, setFormData] = useState({
-        merchant: merchant,
-        date: date,   
-        amount: amount
+        merchant: expense.merchant,
+        date: expense.date,   
+        amount: '',
+        // merchant: merchant,
+        // date: date,   
+        // amount: amount
     });
     // console.log(formData)
 
@@ -38,14 +48,13 @@ const ExpenseEditForm = () => {
         e.preventDefault();
         dispatch(editExpense({params, formData}))
 
-        setFormData({
-            merchant:'',
-            date:'',   
-            amount:'',
-        })
-        console.log(params)
+        // setFormData({
+        //     merchant:'',
+        //     date:'',   
+        //     amount:'',
+        // })
         
-        navigate(`/categories/${params.category_id}/expenses/${params.id}`)
+        // navigate(`/categories/${params.category_id}/expenses/${params.id}`)
 
         // fetch(`/users/${user.id}/expenses/${params.id}`, {
         //     method: 'PATCH',
@@ -74,6 +83,7 @@ const ExpenseEditForm = () => {
                     <input type="text" name='amount' value={formData.amount} onChange={handleChange} /><br/>
                     <button type="submit">Edit</button>
                 </form>
+                {errors?.map(error => <p key={error}>{error}</p>)}
             </div>
         )
     } else {

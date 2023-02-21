@@ -67,7 +67,7 @@ const ExpenseDetails = () => {
         <div>
             <p>Merchant: {expense.merchant}</p>
             <p>Date: {expense.date}</p>
-            <p>Amount: {expense.amount}</p>
+            <p>Amount: ${expense.amount}</p>
             <ExpenseDeleteButton />
             <Link to={`/categories/${params.category_id}/expenses/${params.id}/edit`}>
                 <button>Edit</button>

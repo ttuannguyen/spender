@@ -8,7 +8,7 @@ const ExpenseLink = ({category_id ,expense}) => {
   return (
 
       <Link to={`/categories/${category_id}/expenses/${expense.id}`} className='expense-link' style={{ textDecoration: 'none'}} >
-          <h4>{expense.merchant} | {expense.date} | {expense.amount} </h4>
+          <h4>{expense.merchant} | {expense.date} | ${expense.amount} </h4>
       </Link>
 
   )

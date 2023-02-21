@@ -82,9 +82,7 @@ const ExpenseAddForm = () => {
         amount:'',
         category_id:'',
     });
-
-    console.log(formData)
-
+    // console.log(formData)
 
     const handleChange = (e) => {
         setFormData(formData => {
