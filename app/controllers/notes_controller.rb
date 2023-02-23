@@ -1,16 +1,17 @@
 class NotesController < ApplicationController
-    def index
-        render json: current_user.notes
-    end     
+    
+    # def index
+    #     render json: current_user.notes
+    # end     
 
-    def show
-        note = Note.find_by(id: params[:id])
-        if note 
-            render json: note, status: :ok 
-        else 
-            render json: { error: "Note not found", status: :unauthorized} 
-        end
-    end
+    # def show
+    #     note = Note.find_by(id: params[:id])
+    #     if note 
+    #         render json: note, status: :ok 
+    #     else 
+    #         render json: { error: "Note not found", status: :unauthorized} 
+    #     end
+    # end
 
     def create
         # expense = current_user.expenses.find_by(id: params[:expense_id])

@@ -7,22 +7,22 @@ class CategoriesController < ApplicationController
         render json: Category.all
     end
 
-    # for testing
-    def expenses_index
-        category = Category.find_by(id: params[:id])
-        expenses = category.expenses
-        render json: expenses
-    end
+    # # for testing
+    # def expenses_index
+    #     category = Category.find_by(id: params[:id])
+    #     expenses = category.expenses
+    #     render json: expenses
+    # end
 
-    # GET "/categories/:id"
-    def show
-        category = Category.find_by(id: params[:id])
-        if category 
-            render json: category.to_json, status: :ok 
-        else 
-            render json: { error: "Category not found", status: :unauthorized} 
-        end
-    end
+    # # GET "/categories/:id"
+    # def show
+    #     category = Category.find_by(id: params[:id])
+    #     if category 
+    #         render json: category.to_json, status: :ok 
+    #     else 
+    #         render json: { error: "Category not found", status: :unauthorized} 
+    #     end
+    # end
 
     # POST
     def create 

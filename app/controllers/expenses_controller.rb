@@ -1,20 +1,20 @@
 class ExpensesController < ApplicationController
     
-    # GET "/expenses"
+    # # GET "/expenses"
     def index
         # render json: Expense.all
         render json: current_user.expenses
     end    
 
-    # GET "/expenses/:id"
-    def show
-        expense = Expense.find_by(id: params[:id])
-        if expense 
-            render json: expense.to_json, status: :ok 
-        else 
-            render json: { error: "Expense not found", status: :unauthorized} 
-        end
-    end
+    # # GET "/expenses/:id"
+    # def show
+    #     expense = Expense.find_by(id: params[:id])
+    #     if expense 
+    #         render json: expense.to_json, status: :ok 
+    #     else 
+    #         render json: { error: "Expense not found", status: :unauthorized} 
+    #     end
+    # end
 
     # POST 
     def create 
@@ -25,19 +25,18 @@ class ExpensesController < ApplicationController
         render json: expense, status: :created
     end
 
-    # send back expense and cat separately and dispatch the different payloads
-    # custom separate serializers made for exp and cat
-
     
     # PATCH 
     def update
         expense = current_user.expenses.find_by(id: params[:id])
-        if expense 
-            expense.update(expense_params)
-            render json: expense, status: :accepted
-        else
-            render json: {error: "Unable to update"}, status: :not_found
-        end
+        expense.update!(expense_params)
+        render json: expense, status: :accepted
+        # if expense 
+        #     expense.update!(expense_params)
+        #     render json: expense, status: :accepted
+        # else
+        #     render json: {error: "Unable to update"}, status: :not_found
+        # end
     end
 
     # DELETE
