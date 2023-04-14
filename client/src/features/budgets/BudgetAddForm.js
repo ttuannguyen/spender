@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
+import { addBudget } from './BudgetsSlice';
 
 const BudgetAddForm = () => {
 
     const dispatch = useDispatch()
     const budgets = useSelector(state => state.budgets.entities)
-    // const errors = useSelector(state => state.categories.errors)
+    const errors = useSelector(state => state.budgets.errors)
     const loggedIn = useSelector(state => state.user.loggedIn)
 
-    console.log(budgets)
+    console.log(errors)
 
     const [formData, setFormData] = useState({
         name:''
@@ -23,14 +23,14 @@ const BudgetAddForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // dispatch(addCategory(formData))
+        dispatch(addBudget(formData))
         
-        // setFormData({
-        //     ...formData, 
-        //     name:''
-        // })
+        setFormData({
+            ...formData, 
+            name:''
+        })
 
-        // ISSUE: Async is going to skip to this step and navigate to /categories
+        // ISSUE: Async is going to skip to this step and navigate to /budgets
         // Solution: If the new category exists and there are no errors, navigate
         // How to test if the new category has been created? length
         // For now we can remove redirect

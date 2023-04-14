@@ -8,6 +8,7 @@ class BudgetsController < ApplicationController
 
     def create
         budget = Budget.create!(budget_params)
+        # byebug
         render json: budget, status: :created
     end
 

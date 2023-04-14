@@ -50,7 +50,7 @@ const Navbar = () => {
             <button className='nav-btn'>All Categories</button>
           </NavLink>
           <NavLink className='navlink' to='/budgets' >
-            <button className='nav-btn'>All Budgets</button>
+            <button className='nav-btn'>Budgets</button>
           </NavLink>
           <NavLink className='navlink' to='/expenses/new' onClick={() => dispatch(resetCategoryErrors())}></NavLink>
           <NavLink className='navlink' to='/expenses/new'>
