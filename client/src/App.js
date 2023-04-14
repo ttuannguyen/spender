@@ -5,6 +5,7 @@ import Home from './components/Home';
 import Navbar from './components/Navbar';
 // import Counter from './features/counter/Counter';
 import Categories from './features/categories/Categories';
+import Budgets from './features/budgets/Budgets';
 import Expenses from './features/expenses/Expenses';
 import Login from './features/auth/Login';
 import Signup from './features/auth/Signup';
@@ -62,6 +63,7 @@ const App = () => {
           <Route path='/categories/:category_id/expenses/:id/edit' element={<ExpenseEditForm />} />
           <Route path='/categories/:category_id/expenses/:id' element={<ExpenseDetails />} />
           {/* The route above is designed so we have the category_id and id (of expense) in order to work with data in state and extract the expense we want. We don't actually need a corresponding route in the backend. */}
+          <Route exact path='/budgets' element={ <Budgets /> } />
           <Route exact path="/expenses" element={ <Expenses /> } />
           {/* <Route exact path='/notes/new' element={ <NoteAddForm /> } /> */}
           <Route exact path='/login' element={<Login />} />

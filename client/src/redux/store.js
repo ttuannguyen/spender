@@ -1,6 +1,7 @@
 import {configureStore, combineReducers} from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/CounterSlice';
 import categoriesReducer from '../features/categories/CategoriesSlice';
+import budgetsReducer from '../features/budgets/BudgetsSlice';
 import expensesReducer from '../features/expenses/ExpensesSlice';
 import userReducer from '../features/user/UserSlice';
 import toggleReducer from '../features/auth/ToggleSlice'
@@ -17,6 +18,7 @@ const persistConfig = {
 const rootReducer = combineReducers({ 
     counter: counterReducer,
     categories: categoriesReducer,
+    budgets: budgetsReducer,
     expenses: expensesReducer,
     user: userReducer,
     toggle: toggleReducer

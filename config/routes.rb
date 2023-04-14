@@ -1,14 +1,9 @@
 Rails.application.routes.draw do
   
-  resources :categories, only: [:index, :create] 
+  # resources :categories, only: [:index, :create] 
   resources :expenses, only: [:index, :create, :update, :destroy] 
   resources :notes, only: [:create]
-
-  # categories
-  # get "/categories", to: "categories#index"
-  # get "/categories/:id", to: "categories#show"
-  # post "/categories", to: "categories#create"
-  # get "/categories/:id/expenses", to: "categories#expenses_index"
+  resources :budgets 
 
   # users
   get "/me", to: "users#show"
@@ -17,11 +12,6 @@ Rails.application.routes.draw do
   # sessions
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
-
-
-  # notes
-  # post "/expenses/:expense_id/notes", to: "notes#create"
-  # delete "/expenses/:expense_id/notes/:id", to: "notes#destroy"
 
   
   # Routing logic: fallback requests for React Router.

@@ -49,6 +49,9 @@ const Navbar = () => {
           <NavLink className='navlink' to='/categories' onClick={() => dispatch(resetCategoryErrors())}>
             <button className='nav-btn'>All Categories</button>
           </NavLink>
+          <NavLink className='navlink' to='/budgets' >
+            <button className='nav-btn'>All Budgets</button>
+          </NavLink>
           <NavLink className='navlink' to='/expenses/new' onClick={() => dispatch(resetCategoryErrors())}></NavLink>
           <NavLink className='navlink' to='/expenses/new'>
             <button className='nav-btn' >Add Expense</button>
