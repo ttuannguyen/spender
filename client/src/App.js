@@ -21,6 +21,7 @@ import { fetchUserAsync } from './features/user/UserSlice';
 import { fetchExpensesAsync } from './features/expenses/ExpensesSlice';
 import Notes from './features/notes/Notes';
 import CategoryAddForm from './features/categories/CategoryAddForm';
+import BudgetAddForm from './features/budgets/BudgetAddForm';
 import NoteAddForm from './features/notes/NoteAddForm';
 
 const App = () => {
@@ -65,6 +66,7 @@ const App = () => {
           <Route path='/categories/:category_id/expenses/:id/edit' element={<ExpenseEditForm />} />
           <Route path='/categories/:category_id/expenses/:id' element={<ExpenseDetails />} />
           {/* The route above is designed so we have the category_id and id (of expense) in order to work with data in state and extract the expense we want. We don't actually need a corresponding route in the backend. */}
+          <Route exact path='/budgets/new' element={ <BudgetAddForm /> } />
           <Route exact path='/budgets' element={ <Budgets /> } />
           <Route exact path="/expenses" element={ <Expenses /> } />
           {/* <Route exact path='/notes/new' element={ <NoteAddForm /> } /> */}

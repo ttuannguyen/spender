@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addCategory } from './CategoriesSlice';
 
-const CategoryAddForm = () => {
 
-    // const { addSecretSpot } = useContext(UserContext);
+const BudgetAddForm = () => {
+
     const dispatch = useDispatch()
-    const categories = useSelector(state => state.categories.entities)
-    const errors = useSelector(state => state.categories.errors)
+    const budgets = useSelector(state => state.budgets.entities)
+    // const errors = useSelector(state => state.categories.errors)
     const loggedIn = useSelector(state => state.user.loggedIn)
 
-    // console.log(categories)
-    // console.log(errors)
+    console.log(budgets)
 
     const [formData, setFormData] = useState({
         name:''
@@ -25,12 +23,12 @@ const CategoryAddForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(addCategory(formData))
+        // dispatch(addCategory(formData))
         
-        setFormData({
-            ...formData, 
-            name:''
-        })
+        // setFormData({
+        //     ...formData, 
+        //     name:''
+        // })
 
         // ISSUE: Async is going to skip to this step and navigate to /categories
         // Solution: If the new category exists and there are no errors, navigate
@@ -45,14 +43,14 @@ const CategoryAddForm = () => {
     if (loggedIn) {
         return (
             <div id='category-add'>
-                <h4>Add a Category</h4>
+                <h4>Add a Budget</h4>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="name">Name</label>
                         <input type="text" className="form-control" id="name" name="name" value={formData.name} onChange={handleChange} /><br/>
                     </div>
                     <button type="submit" className="btn btn-primary">Add!</button>
-                    {errors?.map(error => <p key={error}>{error}</p>)}
+                    {/* {errors?.map(error => <p key={error}>{error}</p>)} */}
                 </form>
                 {/* {errors?.map(error => <p key={error}>{error}</p>)} */}
                 {/* {errorList?.map(error => <p key={error}>{error}</p>)} */}
@@ -63,4 +61,4 @@ const CategoryAddForm = () => {
     }
 }
 
-export default CategoryAddForm
+export default BudgetAddForm

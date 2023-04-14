@@ -5,6 +5,18 @@ class BudgetsController < ApplicationController
         # render json: budgets
         render json: Budget.all
     end
+
+    def create
+        budget = Budget.create!(budget_params)
+        render json: budget, status: :created
+    end
+
+
+    private
+    def budget_params
+        params.permit(:name)
+    end
+
 end
 
 # class CategoriesController < ApplicationController
