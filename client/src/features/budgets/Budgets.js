@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 
 const Budgets = () => {
 
+    const loggedIn = useSelector(state => state.user.loggedIn)
 
-    return (
-        <div>Budgets</div>
-    )
+    if (loggedIn) {
+        return (
+            <div>Budgets</div>
+        )   
+    }
 }
 
 export default Budgets

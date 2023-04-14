@@ -16,6 +16,7 @@ import CategoryDetails from './features/categories/CategoryDetails';
 import ExpenseDetails from './features/expenses/ExpenseDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategoriesAsync } from './features/categories/CategoriesSlice';
+import { fetchBudgetsAsync } from './features/budgets/BudgetsSlice';
 import { fetchUserAsync } from './features/user/UserSlice';
 import { fetchExpensesAsync } from './features/expenses/ExpensesSlice';
 import Notes from './features/notes/Notes';
@@ -39,6 +40,7 @@ const App = () => {
   useEffect(() => {
     if (loggedIn) {
       dispatch(fetchCategoriesAsync());
+      dispatch(fetchBudgetsAsync());
       dispatch(fetchExpensesAsync());
     }
   }, [loggedIn, dispatch]);  
