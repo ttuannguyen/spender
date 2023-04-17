@@ -9,7 +9,7 @@ const BudgetAddForm = () => {
     const errors = useSelector(state => state.budgets.errors)
     const loggedIn = useSelector(state => state.user.loggedIn)
 
-    console.log(errors)
+    // console.log(errors)
 
     const [formData, setFormData] = useState({
         name:''

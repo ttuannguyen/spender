@@ -56,6 +56,9 @@ const Navbar = () => {
           <NavLink className='navlink' to='/expenses/new'>
             <button className='nav-btn' >Add Expense</button>
           </NavLink>
+          <NavLink className='navlink' to='/my_budgets'>
+            <button className='nav-btn'>My Budgets</button>
+          </NavLink>
           <NavLink className='navlink' to='/my_spends'>
             <button className='nav-btn'>My Expenses By Category</button>
           </NavLink>

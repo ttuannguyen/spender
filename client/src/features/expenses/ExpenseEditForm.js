@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-// import { editExpense } from './ExpensesSlice';
-import { editExpense } from '../categories/CategoriesSlice';
-
-
+import { editExpense } from '../budgets/BudgetsSlice';
 
 const ExpenseEditForm = () => {
 
@@ -13,17 +10,18 @@ const ExpenseEditForm = () => {
     // const [amount, setAmount] = useState('');
 
     const loggedIn = useSelector(state => state.user.loggedIn);
-    const errors = useSelector(state => state.categories.errors);    
-    const categories = useSelector(state => state.categories.entities);
+    const errors = useSelector(state => state.budgets.errors);    
+    // const categories = useSelector(state => state.categories.entities);
+    const budgets = useSelector(state => state.budgets.entities);
 
 
     const dispatch = useDispatch();
     // const params = useParams(); 
     const params = useParams();
 
-    const category = categories.find(e => e.id === parseInt(params.category_id));
-    const expense = category.user_expenses.find(e => e.id === parseInt(params.id));
-    console.log(expense)
+    const budget = budgets.find(b => b.id === parseInt(params.budget_id));
+    const expense = budget.user_expenses.find(e => e.id === parseInt(params.id));
+    // console.log(expense)
 
 
     const [formData, setFormData] = useState({
@@ -42,9 +40,12 @@ const ExpenseEditForm = () => {
         })
     };
 
+    console.log(formData)
+
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(editExpense({params, formData}))
+        // dispatch(editExpense({params, formData}))
 
         // setFormData({
         //     merchant:'',

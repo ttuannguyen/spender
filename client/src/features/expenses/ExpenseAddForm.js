@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addNewExpenseToCategory } from '../categories/CategoriesSlice';
+// import { addNewExpenseToCategory } from '../categories/CategoriesSlice';
+import { addNewExpenseToBudget } from '../budgets/BudgetsSlice';
 
 const ExpenseAddForm = () => {
     
-    const errors = useSelector(state => state.categories.errors);    
+    const errors = useSelector(state => state.budgets.errors);    
     const dispatch = useDispatch();
     
     // const [errorsList, setErrorsList] = useState([]);
-    const categories = useSelector(state => state.categories.entities)
-    const status = useSelector(state => state.categories.status)
-    const expenses = useSelector(state => state.categories.expenses)
+    const budgets = useSelector(state => state.budgets.entities)
+    const status = useSelector(state => state.budgets.status)
+    const expenses = useSelector(state => state.budgets.expenses)
     const loggedIn = useSelector(state => state.user.loggedIn)
     // const user = useSelector(state => state.user.entities)
     // const toggle = useSelector(state => state.expenses.toggle);
@@ -72,13 +73,14 @@ const ExpenseAddForm = () => {
     //     }
     //   }, [expenses]);
 
-    const categoriesOptions = categories.map(c => <option value={c.id} key={c.id}>{c.name}</option>)
+    // const categoriesOptions = categories.map(c => <option value={c.id} key={c.id}>{c.name}</option>)
+    const budgetsOptions = budgets.map(b => <option value={b.id} key={b.id}>{b.name}</option>)
 
     const [formData, setFormData] = useState({
         merchant:'',
         date:'',   
         amount:'',
-        category_id:'',
+        budget_id:'',
     });
     // console.log(formData)
 
@@ -90,7 +92,7 @@ const ExpenseAddForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(addNewExpenseToCategory(formData))
+        dispatch(addNewExpenseToBudget(formData))
 
         setFormData({
             ...formData,
@@ -143,11 +145,11 @@ const ExpenseAddForm = () => {
                     </div>
        
                     <div class='dropdown'> 
-                        <label>Category:</label>
+                        <label>Budget:</label>
                         {/* TO DO: Reset dropdown after submit */}
-                        <select name='category_id' onChange={handleChange}>
+                        <select name='budget_id' onChange={handleChange}>
                             <option value="none" id="none" selected disabled hidden> -- select an option -- </option>
-                            {categoriesOptions}
+                            {budgetsOptions}
                         </select>
                         {/* {dropdown()} */}
                     </div>

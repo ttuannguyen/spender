@@ -16,12 +16,12 @@ const ExpenseDetails = () => {
     // Issue: Expenses state is not updated after new expense gets added. Expenses state is a depended state.
     // Solution: Fetch expenses after a new expense has been added
 
-    const categories = useSelector(state => state.categories.entities);
-    const category = categories.find(e => e.id === parseInt(params.category_id));
+    const budgets = useSelector(state => state.budgets.entities);
+    const budget = budgets.find(b => b.id === parseInt(params.budget_id));
     // note: we can extract the category_id from the params
-    // console.log(category)
+    console.log(budget)
 
-    const expense = category.user_expenses.find(e => e.id === parseInt(params.id));
+    const expense = budget.user_expenses.find(e => e.id === parseInt(params.id));
 
 
     // const expenses = useSelector(state => state.expenses.entities);
@@ -70,7 +70,7 @@ const ExpenseDetails = () => {
                 <h3>Merchant: {expense.merchant}</h3>
                 <h4>Date: {expense.date}</h4>
                 <h5>Amount: ${expense.amount}</h5>
-                <Link to={`/categories/${params.category_id}/expenses/${params.id}/edit`}>
+                <Link to={`/budgets/${params.budget_id}/expenses/${params.id}/edit`}>
                     <button className="btn btn-primary">Edit</button>
                 </Link>
                 <ExpenseDeleteButton />

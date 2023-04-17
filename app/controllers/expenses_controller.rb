@@ -54,7 +54,7 @@ class ExpensesController < ApplicationController
     # end
 
     def expense_params
-        params.permit(:id, :merchant, :date, :amount, :category_id) # got rid of the user's id
+        params.permit(:id, :merchant, :date, :amount, :budget_id) # got rid of the user's id
     end
 
 end
