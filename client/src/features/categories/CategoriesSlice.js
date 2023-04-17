@@ -52,22 +52,22 @@ export const addNewExpenseToCategory = createAsyncThunk(
 })
 
 
-export const deleteExpense = createAsyncThunk(
-    'expenses/deleteExpense',
-    async (params) => {
-        const fetchDeletetExpense = () => {
-            return fetch(`/expenses/${params.id}`,{
-                method:'DELETE',
-                headers:{'Content-Type': 'application/json'},
-            })
-            .then(res => res.json())
-            .then(data => data)
-        }
-        // fetchDeletetExpense()
-        const response = await fetchDeletetExpense()
-        return response
-    }
-)
+// export const deleteExpense = createAsyncThunk(
+//     'expenses/deleteExpense',
+//     async (params) => {
+//         const fetchDeletetExpense = () => {
+//             return fetch(`/expenses/${params.id}`,{
+//                 method:'DELETE',
+//                 headers:{'Content-Type': 'application/json'},
+//             })
+//             .then(res => res.json())
+//             .then(data => data)
+//         }
+//         // fetchDeletetExpense()
+//         const response = await fetchDeletetExpense()
+//         return response
+//     }
+// )
 
 
 export const categoriesSlice = createSlice({
@@ -119,12 +119,12 @@ export const categoriesSlice = createSlice({
                 state.status = 'fulfilled'
             }
         })
-        .addCase(deleteExpense.fulfilled, (state, action) => {
-            const categoryFound = state.entities.find(c => c.id ===  parseInt(action.payload.category_id))
-            const newExpenses = categoryFound.user_expenses.filter(e => e.id !== action.payload.id)
-            categoryFound.user_expenses = newExpenses
-            state.status = 'fulfilled'
-        })
+        // .addCase(deleteExpense.fulfilled, (state, action) => {
+        //     const categoryFound = state.entities.find(c => c.id ===  parseInt(action.payload.category_id))
+        //     const newExpenses = categoryFound.user_expenses.filter(e => e.id !== action.payload.id)
+        //     categoryFound.user_expenses = newExpenses
+        //     state.status = 'fulfilled'
+        // })
     }
 })
 

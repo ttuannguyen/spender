@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 // import { deleteExpense } from '../user/UserSlice';
-import { deleteExpense } from '../categories/CategoriesSlice';
+import { deleteExpense } from '../budgets/BudgetsSlice';
 
 
 const ExpenseDeleteButton = ({expense}) => {
@@ -19,6 +19,7 @@ const ExpenseDeleteButton = ({expense}) => {
     const handleClick = () => {
         
         dispatch(deleteExpense(params))
+        // dispatch(deleteExpense(params))
         
         // Issue: Related category still rendered even when all of its expenses are deleted
         // Solution: fetch categories after the deletion
@@ -26,7 +27,7 @@ const ExpenseDeleteButton = ({expense}) => {
 
         // Issue: The page breaks after the delete action
         // Solution: Navigate away to My Spends
-        navigate(`/categories/${params.category_id}`)
+        navigate(`/budgets/${params.budget_id}`)
     }
     
     return (
