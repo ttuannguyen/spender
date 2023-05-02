@@ -90,7 +90,9 @@ export const budgetsSlice = createSlice({
     name: 'budgets',
     initialState,
     reducers: {
-        //
+        resetBudgetErrors(state) {
+            state.errors = null
+        }
     },
 
     extraReducers: (builder) => {
@@ -151,3 +153,4 @@ export const budgetsSlice = createSlice({
 })
 
 export default budgetsSlice.reducer
+export const { resetBudgetErrors } = budgetsSlice.actions

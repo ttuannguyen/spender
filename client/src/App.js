@@ -21,6 +21,7 @@ import BudgetAddForm from './features/budgets/BudgetAddForm';
 import NoteAddForm from './features/notes/NoteAddForm';
 import BudgetsOfUser from './features/budgets/BudgetsOfUser';
 import Budget from './features/budgets/Budget';
+import SearchBar from './components/SearchBar';
 
 const App = () => {
 
@@ -74,6 +75,7 @@ const App = () => {
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/signup' element={<Signup />} />
           <Route exact path='/home' element={<Home /> } />
+          <Route exact path='/search' element={<SearchBar /> } />
         </Routes>
       </Router>
     </div>

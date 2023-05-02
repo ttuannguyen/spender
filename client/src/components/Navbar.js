@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { reset, setLoggedOutState, resetErrors } from '../features/user/UserSlice';
 import { resetCategoryErrors } from '../features/categories/CategoriesSlice';
+import { resetBudgetErrors } from '../features/budgets/BudgetsSlice';
 import { logout } from '../features/user/UserSlice';
 
 
@@ -20,7 +21,6 @@ const Navbar = () => {
     dispatch(reset());
     dispatch(resetErrors());
     dispatch(setLoggedOutState());
-    
     navigate('/')
   }
 
@@ -57,7 +57,7 @@ const Navbar = () => {
           </NavLink> */}
           {/* <NavLink className='navlink' to='/expenses/new' onClick={() => dispatch(resetCategoryErrors())}></NavLink> */}
           <NavLink className='navlink' to='/expenses/new'>
-            <button className='nav-btn' >Add Expense</button>
+            <button className='nav-btn' onClick={() => dispatch(resetBudgetErrors())}>Add Expense</button>
           </NavLink>
           {/* <NavLink className='navlink' to='/my_spends'>
             <button className='nav-btn'>My Expenses By Category</button>
@@ -65,9 +65,11 @@ const Navbar = () => {
           <NavLink className='navlink' to='/notes'>
             <button className='nav-btn' onClick={() => dispatch(resetErrors())}>My Notes</button>
           </NavLink>
+          <NavLink className='navlink' to='/search'>
+            <button className='nav-btn'>Search</button>
+          </NavLink>
           <button className='nav-btn' onClick={logoutUser}>Logout</button>
         </div>
-
       </>
       
       

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 // import { addNewExpenseToCategory } from '../categories/CategoriesSlice';
 import { addNewExpenseToBudget } from '../budgets/BudgetsSlice';
 
@@ -13,13 +14,11 @@ const ExpenseAddForm = () => {
     const status = useSelector(state => state.budgets.status)
     const expenses = useSelector(state => state.budgets.expenses)
     const loggedIn = useSelector(state => state.user.loggedIn)
-    // const user = useSelector(state => state.user.entities)
+    const navigate = useNavigate();
     // const toggle = useSelector(state => state.expenses.toggle);
     // const [formFlag, setFormFlag] = useState(false)
     // const [count, setCount] = useState(null)
     
-    console.log(status)
-    console.log(expenses)
 
     // useEffect(() => {
     //     if (!errors) {
@@ -106,9 +105,8 @@ const ExpenseAddForm = () => {
         
         // setFormFlag(true)
         // if (!errors) {
-        //     navigate('/my_spends')
+        //     navigate('/my_budgets')
         // }
-
     }
 
     // # of expenses ; if the # changes, navigate 

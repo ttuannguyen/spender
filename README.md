@@ -1,17 +1,16 @@
-# Project Template: React/Rails API
-
 ## Description
 
-This project is scaffolded so that you can build a React frontend and Rails
-backend together, and easily deploy them to Render.
+Spender is an app where users can track expenses and manage their budgets.
 
-**Note**: if you are not planning to deploy your app to Render and prefer to use
-SQLite, you will need to make the following changes in the project files:
 
-1. In the `Gemfile`, replace `gem 'pg', '~> 1.1'` with `gem 'sqlite3', '~>
-   1.4'`.
-2. In the `database.yml` file, change the line `adapter: postgresql` to
-   `adapter: sqlite3`.
+The MVP of this application includes the following features:
+Sign up for a new account
+Log in and log out of the site
+Create an expense in a budget
+Modify or delete the created visits
+
+First, the user has the option to sign up for an account or login to the account they created. Once logged in, the user will see a list of budgets. They can click on a budget to view their expenses. They can modify or delete an expense. Once the user is finished with the app, they can log themselves out by clicking the Logout button.
+
 
 ## Requirements
 
