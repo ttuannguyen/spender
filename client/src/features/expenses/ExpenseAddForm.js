@@ -142,7 +142,7 @@ const ExpenseAddForm = () => {
                         <input type='text' className='form-control' id='amount' name='amount' value={formData.amount} onChange={handleChange} /><br/>
                     </div>
        
-                    <div class='dropdown'> 
+                    <div className='dropdown'> 
                         <label>Budget:</label>
                         {/* TO DO: Reset dropdown after submit */}
                         <select name='budget_id' onChange={handleChange}>

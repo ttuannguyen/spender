@@ -33,7 +33,6 @@ const App = () => {
 
   
   useEffect(() => {
-    // console.log("in app")
     dispatch(fetchUserAsync());
   }, [dispatch]);
 
@@ -45,11 +44,6 @@ const App = () => {
     }
   }, [loggedIn, dispatch]);  
   // Note: expenses is a depended state
-
-  // const categories = useSelector(state => state.categories.entities);
-  // const expenses = useSelector(state => state.expenses.entities);
-  // const user = useSelector(state => state.user.entities)
-  // console.log(expenses)
 
   return (
     <div className="App">

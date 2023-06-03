@@ -6,22 +6,21 @@ import BudgetCard from "./BudgetCard";
 const Budgets = () => {
 
     const loggedIn = useSelector(state => state.user.loggedIn)
-    const budgets = useSelector(state => state.budgets.entities)
-    // console.log(budgets)
-
+    // const budgets = useSelector(state => state.budgets.entities)
+    const budgets = ['Rent & Utilities', 'Groceries', 'Entertainment', 'Essentials', 'Transportation', 'Subscriptions', 'Other']
 
     if (loggedIn) {
 
-        // const budgetsList = budgets.map(budget => <p key={budget.id} budget={budget}>{budget.name}</p>)
-        const budgetButtons = budgets.map(budget => <BudgetCard key={budget.id} budget={budget}/>)
+        const budgetsList = budgets.map(budget => <h4>{budget}</h4>)
+        // const budgetButtons = budgets.map(budget => <BudgetCard key={budget.id} budget={budget}/>)
 
         return (
             <div>
-                Here are all the budgets
-                {/* {budgetsList} */}
-                {budgetButtons}
+                <h3>Here are the available budgets</h3>
+                {budgetsList}
+                {/* {budgetButtons} */}
                 <Link to={'/budgets/new'}>
-                    <button className="btn btn-primary">Add a New Budget</button>
+                    <button className="btn btn-primary">Add A Budget</button>
                 </Link>
             </div>
         )   

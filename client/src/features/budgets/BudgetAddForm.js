@@ -5,14 +5,18 @@ import { addBudget } from './BudgetsSlice';
 const BudgetAddForm = () => {
 
     const dispatch = useDispatch()
-    const budgets = useSelector(state => state.budgets.entities)
+    // const budgets = useSelector(state => state.budgets.entities)
+    const budgets = ['Rent & Utilities', 'Groceries', 'Entertainment', 'Essentials', 'Transportation', 'Subscriptions', 'Other']
     const errors = useSelector(state => state.budgets.errors)
     const loggedIn = useSelector(state => state.user.loggedIn)
 
     // console.log(errors)
 
+    const budgetsOptions = budgets.map(b => <option key={b}>{b}</option>)
+
     const [formData, setFormData] = useState({
-        name:''
+        name:'',
+        amount:''
     });
 
     const handleChange = (e) => {
@@ -24,7 +28,7 @@ const BudgetAddForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addBudget(formData))
-        
+
         setFormData({
             ...formData, 
             name:''
@@ -32,7 +36,7 @@ const BudgetAddForm = () => {
 
         // ISSUE: Async is going to skip to this step and navigate to /budgets
         // Solution: If the new category exists and there are no errors, navigate
-        // How to test if the new category has been created? length
+        // How to test if the new category has been created? explore .length
         // For now we can remove redirect
         // if (!errors) {
         //     navigate('/categories')
@@ -45,9 +49,22 @@ const BudgetAddForm = () => {
             <div id='category-add'>
                 <h4>Add a Budget</h4>
                 <form onSubmit={handleSubmit}>
-                    <div className="form-group">
+                    <div className='dropdown'> 
+                        <label>Budget:</label>
+                        {/* TO DO: Reset dropdown after submit */}
+                        <select name='budget_id' onChange={handleChange}>
+                            <option value="none" id="none" selected disabled hidden> -- select an option -- </option>
+                            {budgetsOptions}
+                        </select>
+                        {/* {dropdown()} */}
+                    </div>
+                    {/* <div className="form-group">
                         <label htmlFor="name">Name</label>
                         <input type="text" className="form-control" id="name" name="name" value={formData.name} onChange={handleChange} /><br/>
+                    </div> */}
+                    <div className="form-group">
+                        <label htmlFor="amount">Amount</label>
+                        <input type="text" className="form-control" id="amount" name="amount" value={formData.amount} onChange={handleChange} /><br/>
                     </div>
                     <button type="submit" className="btn btn-primary">Add!</button>
                     {/* {errors?.map(error => <p key={error}>{error}</p>)} */}
