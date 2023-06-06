@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get "/me", to: "users#show"
   post "/signup", to: "users#create" 
 
+  # budgets
+  delete "/budgets/:budget_id/expenses/:id", to: "expenses#destroy"
+  
   # sessions
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"

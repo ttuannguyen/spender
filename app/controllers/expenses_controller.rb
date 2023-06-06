@@ -2,6 +2,7 @@ class ExpensesController < ApplicationController
     
     # # GET "/expenses"
     def index
+        # byebug
         render json: Expense.all
         # render json: current_user.expenses
     end    
@@ -20,7 +21,7 @@ class ExpensesController < ApplicationController
     def create 
         # expense = current_user.expenses.create!(expense_params)
         # expense = Expense.create(expense_params)
-        budget = Budget.find_by(id: params[:budget_id])
+        budget = current_user.budgets.find_by(id: params[:budget_id])
         expense = budget.expenses.create!(expense_params)
         render json: expense, status: :created
     end
@@ -29,7 +30,7 @@ class ExpensesController < ApplicationController
     # PATCH 
     def update
         # byebug
-        budget = Budget.find_by(id: params[:budget_id])
+        budget = current_user.budgets.find_by(id: params[:budget_id])
         expense = budget.expenses.find_by(id: params[:id])
         expense.update!(expense_params)
         render json: expense, status: :accepted
@@ -43,7 +44,9 @@ class ExpensesController < ApplicationController
 
     # DELETE
     def destroy
-        expense = current_user.expenses.find_by(id: params[:id])
+        # byebug
+        budget = current_user.budgets.find_by(id: params[:budget_id])
+        expense = budget.expenses.find_by(id: params[:id])
         expense.destroy
         render json: expense
         # head :no_content

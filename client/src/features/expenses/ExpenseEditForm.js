@@ -87,7 +87,7 @@ const ExpenseEditForm = () => {
                         <label className="form-group">Amount</label>
                         <input type="text" className="form-control" name='amount' value={formData.amount} onChange={handleChange} /><br/>
                     </div>
-                    <button type="submit" className="btn btn-primary">Edit</button>
+                    <button type="submit" className="btn btn-primary">Update</button>
                 </form>
                 {errors?.map(error => <p key={error}>{error}</p>)}
             </div>

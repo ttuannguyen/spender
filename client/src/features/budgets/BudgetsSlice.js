@@ -73,7 +73,7 @@ export const deleteExpense = createAsyncThunk(
     'expenses/deleteExpense',
     async (params) => {
         const fetchDeletetExpense = () => {
-            return fetch(`/expenses/${params.id}`,{
+            return fetch(`/budgets/${params.budget_id}/expenses/${params.id}`,{
                 method:'DELETE',
                 headers:{'Content-Type': 'application/json'},
             })
