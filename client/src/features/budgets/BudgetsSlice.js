@@ -53,8 +53,8 @@ export const addNewExpenseToBudget = createAsyncThunk(
 export const editExpense = createAsyncThunk(
     'expenses/editExpense',
     async ({params, formData}) => {
-        console.log(params)
-        console.log(formData)
+        // console.log(params)
+        // console.log(formData)
         const fetchEditExpense = () => {
             return fetch(`/expenses/${params.id}`,{
                 method:'PATCH',
@@ -126,7 +126,7 @@ export const budgetsSlice = createSlice({
                 state.errors = action.payload.errors
             } else {
                 const budgetFound = state.entities.find(b => b.id ===  parseInt(action.payload.budget_id))
-                budgetFound.user_expenses.push(action.payload)
+                budgetFound.expenses.push(action.payload)
                 state.errors = null
                 state.status = 'fulfilled'
             }
@@ -136,16 +136,16 @@ export const budgetsSlice = createSlice({
                 state.errors = action.payload.errors
             } else {
                 const budgetFound = state.entities.find(b => b.id ===  parseInt(action.payload.budget_id))
-                const newExpenses = budgetFound.user_expenses.map(e => e.id ===  parseInt(action.payload.id) ? action.payload : e)
-                budgetFound.user_expenses = newExpenses
+                const newExpenses = budgetFound.expenses.map(e => e.id ===  parseInt(action.payload.id) ? action.payload : e)
+                budgetFound.expenses = newExpenses
                 state.errors = null
                 state.status = 'fulfilled'
             }
         })
         .addCase(deleteExpense.fulfilled, (state, action) => {
             const budgetFound = state.entities.find(b => b.id ===  parseInt(action.payload.budget_id))
-            const newExpenses = budgetFound.user_expenses.filter(e => e.id !== action.payload.id)
-            budgetFound.user_expenses = newExpenses
+            const newExpenses = budgetFound.expenses.filter(e => e.id !== action.payload.id)
+            budgetFound.expenses = newExpenses
             state.status = 'fulfilled'
         })
     }

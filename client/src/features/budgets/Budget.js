@@ -11,7 +11,7 @@ const Budget = () => {
     const budget = budgets.find(b => b.id === parseInt(params.id));
     console.log(budgets)
 
-    const expensesList = budget.user_expenses.map(expense => <ExpenseLink key={expense.id} expense={expense} budget_id={params.id} />)
+    const expensesList = budget.expenses.map(expense => <ExpenseLink key={expense.id} expense={expense} budget_id={params.id} />)
 
     return (
         <div>

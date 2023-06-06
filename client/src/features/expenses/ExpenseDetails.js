@@ -21,7 +21,7 @@ const ExpenseDetails = () => {
     // note: we can extract the category_id from the params
     console.log(budget)
 
-    const expense = budget.user_expenses.find(e => e.id === parseInt(params.id));
+    const expense = budget.expenses.find(e => e.id === parseInt(params.id));
 
 
     // const expenses = useSelector(state => state.expenses.entities);

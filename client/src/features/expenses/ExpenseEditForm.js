@@ -20,7 +20,7 @@ const ExpenseEditForm = () => {
     const params = useParams();
 
     const budget = budgets.find(b => b.id === parseInt(params.budget_id));
-    const expense = budget.user_expenses.find(e => e.id === parseInt(params.id));
+    const expense = budget.expenses.find(e => e.id === parseInt(params.id));
     // console.log(expense)
 
 
@@ -28,6 +28,7 @@ const ExpenseEditForm = () => {
         merchant: expense.merchant,
         date: expense.date,   
         amount: expense.amount,
+        budget_id: params.budget_id
         // merchant: merchant,
         // date: date,   
         // amount: amount

@@ -21,14 +21,16 @@ class ExpensesController < ApplicationController
         # expense = current_user.expenses.create!(expense_params)
         # expense = Expense.create(expense_params)
         budget = Budget.find_by(id: params[:budget_id])
-        expense = budget.expenses.create(expense_params)
+        expense = budget.expenses.create!(expense_params)
         render json: expense, status: :created
     end
 
     
     # PATCH 
     def update
-        expense = Budget.find_by(id: params[:budget_id])
+        # byebug
+        budget = Budget.find_by(id: params[:budget_id])
+        expense = budget.expenses.find_by(id: params[:id])
         expense.update!(expense_params)
         render json: expense, status: :accepted
         # if expense 
