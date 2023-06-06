@@ -2,8 +2,8 @@ class ExpensesController < ApplicationController
     
     # # GET "/expenses"
     def index
-        # render json: Expense.all
-        render json: current_user.expenses
+        render json: Expense.all
+        # render json: current_user.expenses
     end    
 
     # # GET "/expenses/:id"
@@ -18,17 +18,17 @@ class ExpensesController < ApplicationController
 
     # POST 
     def create 
-        expense = current_user.expenses.create!(expense_params)
+        # expense = current_user.expenses.create!(expense_params)
         # expense = Expense.create(expense_params)
-        # category = Category.find_by(id: params[:category_id])
-        # expense = category.expenses.create(expense_params)
+        budget = Budget.find_by(id: params[:budget_id])
+        expense = budget.expenses.create(expense_params)
         render json: expense, status: :created
     end
 
     
     # PATCH 
     def update
-        expense = current_user.expenses.find_by(id: params[:id])
+        expense = Budget.find_by(id: params[:budget_id])
         expense.update!(expense_params)
         render json: expense, status: :accepted
         # if expense 

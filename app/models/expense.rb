@@ -1,5 +1,5 @@
 class Expense < ApplicationRecord
-    belongs_to :user
+    # belongs_to :user
     belongs_to :budget
     # belongs_to :category
 

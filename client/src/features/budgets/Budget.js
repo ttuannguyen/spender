@@ -15,7 +15,8 @@ const Budget = () => {
 
     return (
         <div>
-            <h4>{budget.name}'s Expenses</h4>
+            <h4>{budget.name}</h4>
+            <h5>{budget.amount}</h5>
             {expensesList}
         </div>
     )

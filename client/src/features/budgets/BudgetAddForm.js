@@ -18,6 +18,7 @@ const BudgetAddForm = () => {
         name:'',
         amount:''
     });
+    console.log(formData)
 
     const handleChange = (e) => {
         setFormData(formData => {
@@ -31,7 +32,8 @@ const BudgetAddForm = () => {
 
         setFormData({
             ...formData, 
-            name:''
+            name:'',
+            amount:''
         })
 
         // ISSUE: Async is going to skip to this step and navigate to /budgets
@@ -52,7 +54,7 @@ const BudgetAddForm = () => {
                     <div className='dropdown'> 
                         <label>Budget:</label>
                         {/* TO DO: Reset dropdown after submit */}
-                        <select name='budget_id' onChange={handleChange}>
+                        <select name='name' onChange={handleChange}>
                             <option value="none" id="none" selected disabled hidden> -- select an option -- </option>
                             {budgetsOptions}
                         </select>

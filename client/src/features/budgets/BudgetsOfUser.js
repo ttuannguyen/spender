@@ -10,8 +10,9 @@ const BudgetsOfUser = () => {
 
     if(loggedIn) {
 
-      const filteredBudgets = budgets.filter(budget => budget.user_expenses.length !==0)
-      const budgetsList = filteredBudgets.map(budget => <BudgetLink key={budget.id} budget={budget}/>)
+      // const filteredBudgets = budgets.filter(budget => budget.user_expenses.length !==0)
+      // const budgetsList = filteredBudgets.map(budget => <BudgetLink key={budget.id} budget={budget}/>)
+      const budgetsList = budgets.map(budget => <BudgetLink key={budget.id} budget={budget}/>)
       // console.log(filteredBudgets)
 
       return (

@@ -1,14 +1,16 @@
 class BudgetsController < ApplicationController
     # GET "/budgets"
     def index
-        # budgets = current_user.budgets
-        # render json: budgets
-        render json: Budget.all
+        # byebug
+        budgets = current_user.budgets
+        render json: budgets
+        # render json: Budget.all
     end
 
     def create
-        budget = Budget.create!(budget_params)
         # byebug
+        budget = current_user.budgets.create!(budget_params)
+        # # budget = Budget.create!(budget_params)
         render json: budget, status: :created
     end
 

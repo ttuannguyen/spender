@@ -12,16 +12,16 @@
 # Expense.destroy_all
 # Note.destroy_all
 
-u1 = User.create(username: "john", password: "asdfghjk")
+u1 = User.create(username: "johndoe", password: "asdfghjk")
 # u2 = User.create(username: "pikachu", password: "asdfghjk")
 
-b1 = Budget.create(name: "Rent & Utilities", amount: 0)
-b2 = Budget.create(name: "Groceries", amount: 0)
-b3 = Budget.create(name: "Entertainment", amount: 0)
-b4 = Budget.create(name: "Essentials", amount: 0)
-b5 = Budget.create(name: "Transportation", amount: 0)
-b6 = Budget.create(name: "Subscriptions", amount: 0)
-b7 = Budget.create(name: "Other", amount: 0)
+# b1 = Budget.create(name: "Rent & Utilities", amount: 0)
+# b2 = Budget.create(name: "Groceries", amount: 0)
+# b3 = Budget.create(name: "Entertainment", amount: 0)
+# b4 = Budget.create(name: "Essentials", amount: 0)
+# b5 = Budget.create(name: "Transportation", amount: 0)
+# b6 = Budget.create(name: "Subscriptions", amount: 0)
+# b7 = Budget.create(name: "Other", amount: 0)
 
 # c1 = Category.create(name: "Rent & Utilities")
 # c2 = Category.create(name: "Groceries")
