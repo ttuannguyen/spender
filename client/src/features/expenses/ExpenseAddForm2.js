@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 // import { addNewExpenseToCategory } from '../categories/CategoriesSlice';
 import { addNewExpenseToBudget } from '../budgets/BudgetsSlice';
 
-const ExpenseAddForm = () => {
+const ExpenseAddForm2 = () => {
     
+    const params = useParams();
     const errors = useSelector(state => state.budgets.errors);    
     const dispatch = useDispatch();
     
@@ -79,7 +80,7 @@ const ExpenseAddForm = () => {
         merchant:'',
         date:'',   
         amount:'',
-        budget_id:'',
+        budget_id: params.budget_id
     });
     console.log(formData)
 
@@ -141,16 +142,6 @@ const ExpenseAddForm = () => {
                         <label htmlFor='amount'>Amount</label>
                         <input type='text' className='form-control' id='amount' name='amount' value={formData.amount} onChange={handleChange} /><br/>
                     </div>
-       
-                    <div className='dropdown'> 
-                        <label>Budget:</label>
-                        {/* TO DO: Reset dropdown after submit */}
-                        <select name='budget_id' onChange={handleChange}>
-                            <option value="none" id="none" selected disabled hidden> -- select an option -- </option>
-                            {budgetsOptions}
-                        </select>
-                        {/* {dropdown()} */}
-                    </div>
                     <button type="submit" class='btn btn-primary'>Add!</button>
                 </form>
                 {errors?.map(error => <p key={error}>{error}</p>)}
@@ -161,4 +152,4 @@ const ExpenseAddForm = () => {
     }
 }
 
-export default ExpenseAddForm
+export default ExpenseAddForm2

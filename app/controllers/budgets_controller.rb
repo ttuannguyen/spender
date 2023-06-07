@@ -3,14 +3,15 @@ class BudgetsController < ApplicationController
     def index
         # byebug
         budgets = current_user.budgets
-        render json: budgets
+        # render json: budgets
+        render json: budgets.order(name: :ASC)
         # render json: Budget.all
     end
 
     def create
         # byebug
         budget = current_user.budgets.create!(budget_params)
-        # # budget = Budget.create!(budget_params)
+        # budget = Budget.create!(budget_params)
         render json: budget, status: :created
     end
 

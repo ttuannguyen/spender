@@ -22,6 +22,7 @@ import NoteAddForm from './features/notes/NoteAddForm';
 import BudgetsOfUser from './features/budgets/BudgetsOfUser';
 import Budget from './features/budgets/Budget';
 import SearchBar from './components/SearchBar';
+import ExpenseAddForm2 from './features/expenses/ExpenseAddForm2';
 
 const App = () => {
 
@@ -59,6 +60,7 @@ const App = () => {
           <Route exact path='/budgets' element={ <Budgets /> } />
           <Route exact path='/my_budgets' element={<BudgetsOfUser />} />
           <Route exact path='/expenses/new' element={ <ExpenseAddForm /> } />
+          <Route path='/budgets/:budget_id/expenses/new' element={<ExpenseAddForm2 />} />
           <Route path='/budgets/:budget_id/expenses/:id/edit' element={<ExpenseEditForm />} />
           <Route path='/budgets/:budget_id/expenses/:id' element={<ExpenseDetails />} />
           {/* The route above is designed so we have the category_id and id (of expense) in order to work with data in state and extract the expense we want. We don't actually need a corresponding route in the backend. */}

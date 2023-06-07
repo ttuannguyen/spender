@@ -14,7 +14,7 @@ const Notes = () => {
         return (
             <div>
                 <div className='notebook'>
-                    <h3>Keep track of your spending habits with notes!</h3>
+                    <h3>Keep track of your spending habits...</h3>
                 {notesList}
                 </div>
                 <div className='add-note'>

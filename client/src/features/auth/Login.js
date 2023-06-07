@@ -37,9 +37,6 @@ const Login = () => {
     dispatch(login(userObj))
   }
 
-  
-
-
   // fetch('/login',{
   //   method:'POST',
   //   headers:{'Content-Type': 'application/json'},

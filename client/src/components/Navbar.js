@@ -65,13 +65,12 @@ const Navbar = () => {
           <NavLink className='navlink' to='/notes'>
             <button className='nav-btn' onClick={() => dispatch(resetErrors())}>My Notes</button>
           </NavLink>
-          <NavLink className='navlink' to='/search'>
+          {/* <NavLink className='navlink' to='/search'>
             <button className='nav-btn'>Search</button>
-          </NavLink>
+          </NavLink> */}
           <button className='nav-btn' onClick={logoutUser}>Logout</button>
         </div>
       </>
-      
       
     )
   } else {
