@@ -20,7 +20,6 @@ class ExpensesController < ApplicationController
     # POST 
     def create 
         # expense = current_user.expenses.create!(expense_params)
-        # expense = Expense.create(expense_params)
         budget = current_user.budgets.find_by(id: params[:budget_id])
         expense = budget.expenses.create!(expense_params)
         render json: expense, status: :created
