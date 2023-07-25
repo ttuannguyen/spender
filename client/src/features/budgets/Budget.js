@@ -18,9 +18,9 @@ const Budget = () => {
 
     return (
         <div>
-            <h4>{budget.name}</h4>
-            <h5>Budget Total: {budget.amount}</h5>
-            <h6>Balance: {balance}</h6>
+            <h3>{budget.name}</h3>
+            <h4>Budget Total: {budget.amount}</h4>
+            <h5>Remaining Balance: {balance}</h5>
             {expensesList}
             <Link to={`/budgets/${budget.id}/expenses/new`}>
                     <button className="btn btn-primary">Add An Expense</button>

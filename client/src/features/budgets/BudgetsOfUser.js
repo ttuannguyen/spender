@@ -17,7 +17,7 @@ const BudgetsOfUser = () => {
 
       return (
         <div>
-          My budgets
+          <h3>My Budgets</h3>
           {budgetsList}
         </div>
       )

@@ -10,8 +10,9 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create" 
 
 
-  # budgets
-  post "/budgets/:budget_id/expenses/:id", to: "expenses#create2"
+  # expenses
+  post "/budgets/:budget_id/expenses/:id", to: "expenses#create"
+  delete "/budgets/:budget_id/expenses/:id", to: "expenses#destroy"
   
   # sessions
   post "/login", to: "sessions#create"
