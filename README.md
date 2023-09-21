@@ -151,5 +151,3 @@ service:
 ```sh
 brew services start postgresql
 ```
-
-
