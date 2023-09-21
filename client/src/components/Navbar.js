@@ -44,31 +44,31 @@ const Navbar = () => {
                  */}
         <nav class="navbar navbar-light bg-light">
           <NavLink className='navlink' to='/home'>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Home</button>
+            <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit">Home</button>
           </NavLink>
           <NavLink className='navlink' to='/budgets' >
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Budgets</button>
+            <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit">Budgets</button>
           </NavLink>
           <NavLink className='navlink' to='/my_budgets'>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">My Budgets</button>
+            <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit">My Budgets</button>
           </NavLink>
           {/* <NavLink className='navlink' to='/categories' onClick={() => dispatch(resetCategoryErrors())}>
             <button className='nav-btn'>All Categories</button>
           </NavLink> */}
           {/* <NavLink className='navlink' to='/expenses/new' onClick={() => dispatch(resetCategoryErrors())}></NavLink> */}
           <NavLink className='navlink' to='/expenses/new'>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={() => dispatch(resetBudgetErrors())}>Add Expense</button>
+            <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit" onClick={() => dispatch(resetBudgetErrors())}>Add Expense</button>
           </NavLink>
           {/* <NavLink className='navlink' to='/my_spends'>
             <button className='nav-btn'>My Expenses By Category</button>
           </NavLink> */}
           <NavLink className='navlink' to='/notes'>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={() => dispatch(resetErrors())}>My Notes</button>
+            <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit" onClick={() => dispatch(resetErrors())}>My Notes</button>
           </NavLink>
           {/* <NavLink className='navlink' to='/search'>
             <button className='nav-btn'>Search</button>
           </NavLink> */}
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={logoutUser}>Logout</button>
+          <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit" onClick={logoutUser}>Logout</button>
         </nav>
       </>
       
@@ -80,7 +80,7 @@ const Navbar = () => {
           <button class="btn btn-outline-success my-2 my-sm-0 m-2" type="submit" onClick={() => dispatch(resetErrors())}>Login</button>
         </NavLink>
         <NavLink className='navlink' to='/signup' onClick={() => dispatch(resetErrors())}>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Signup</button>
+          <button class="btn btn-outline-success my-2 my-sm-0 m-2" type="submit">Signup</button>
         </NavLink>
       </nav>
     )

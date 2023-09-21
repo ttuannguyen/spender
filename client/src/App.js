@@ -51,7 +51,6 @@ const App = () => {
       <Router >
         <h1>Spender 💸</h1>
         <Navbar />
-        {/* <Counter /> */}
         <Routes>
           {/* <Route path='/categories/:id' element={<CategoryDetails />} /> */}
           {/* <Route exact path='/categories/new' element={ <CategoryAddForm /> } /> */}
@@ -72,6 +71,7 @@ const App = () => {
           <Route exact path='/signup' element={<Signup />} />
           <Route exact path='/home' element={<Home /> } />
           <Route exact path='/search' element={<SearchBar /> } />
+          {/* <Route exact path='/counter' element={<Counter /> } /> */}
         </Routes>
       </Router>
     </div>
