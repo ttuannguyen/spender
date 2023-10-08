@@ -4,7 +4,8 @@ import { fetchBudgets } from "./BudgetApi";
 const initialState = {
     entities: [],
     errors: null,
-    status: 'idle'
+    status: 'idle',
+    expenseActionStatus: 'idle'
 }
 
 export const fetchBudgetsAsync = createAsyncThunk(
@@ -53,8 +54,6 @@ export const addNewExpenseToBudget = createAsyncThunk(
 export const editExpense = createAsyncThunk(
     'expenses/editExpense',
     async ({params, formData}) => {
-        // console.log(params)
-        // console.log(formData)
         const fetchEditExpense = () => {
             return fetch(`/expenses/${params.id}`,{
                 method:'PATCH',
@@ -96,6 +95,9 @@ export const budgetsSlice = createSlice({
     reducers: {
         resetBudgetErrors(state) {
             state.errors = null
+        },
+        resetExpenseActionStatus(state) {
+            state.expenseActionStatus = 'idle'
         }
     },
 
@@ -104,6 +106,7 @@ export const budgetsSlice = createSlice({
         .addCase(fetchBudgetsAsync.pending, (state) => {
             state.errors = null // to clear out errors at page refresh
             state.status = 'loading'
+            state.expenseActionStatus = 'idle'
         })
         .addCase(fetchBudgetsAsync.fulfilled, (state, action) => {
             state.entities = action.payload
@@ -133,6 +136,7 @@ export const budgetsSlice = createSlice({
                 budgetFound.expenses.push(action.payload)
                 state.errors = null
                 state.status = 'fulfilled'
+                state.expenseActionStatus = 'fulfilled'
             }
         })
         .addCase(editExpense.fulfilled, (state, action) => {
@@ -144,6 +148,7 @@ export const budgetsSlice = createSlice({
                 budgetFound.expenses = newExpenses
                 state.errors = null
                 state.status = 'fulfilled'
+                state.expenseActionStatus = 'fulfilled'
             }
         })
         .addCase(deleteExpense.fulfilled, (state, action) => {
@@ -157,4 +162,4 @@ export const budgetsSlice = createSlice({
 })
 
 export default budgetsSlice.reducer
-export const { resetBudgetErrors } = budgetsSlice.actions
+export const { resetBudgetErrors, resetExpenseActionStatus } = budgetsSlice.actions

@@ -16,7 +16,7 @@ const Budgets = () => {
 
         return (
             <div>
-                <h3>Here are the available budgets</h3>
+                <h3>Available Budgets</h3>
                 {budgetsList}
                 {/* {budgetButtons} */}
                 <Link to={'/budgets/new'}>

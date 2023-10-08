@@ -68,7 +68,7 @@ const BudgetAddForm = () => {
                         <label htmlFor="amount">Amount</label>
                         <input type="text" className="form-control" id="amount" name="amount" value={formData.amount} onChange={handleChange} /><br/>
                     </div>
-                    <button type="submit" className="btn btn-primary">Add!</button>
+                    <button type="submit" className="btn btn-primary">Add</button>
                     {/* {errors?.map(error => <p key={error}>{error}</p>)} */}
                 </form>
                 {/* {errors?.map(error => <p key={error}>{error}</p>)} */}

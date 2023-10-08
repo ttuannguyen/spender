@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 // import { addNewExpenseToCategory } from '../categories/CategoriesSlice';
-import { addNewExpenseToBudget } from '../budgets/BudgetsSlice';
+import { addNewExpenseToBudget, resetExpenseActionStatus } from '../budgets/BudgetsSlice';
 
 const ExpenseAddForm2 = () => {
     
@@ -12,14 +12,21 @@ const ExpenseAddForm2 = () => {
     
     // const [errorsList, setErrorsList] = useState([]);
     const budgets = useSelector(state => state.budgets.entities)
-    const status = useSelector(state => state.budgets.status)
+    const expenseActionStatus = useSelector(state => state.budgets.expenseActionStatus)
     const expenses = useSelector(state => state.budgets.expenses)
     const loggedIn = useSelector(state => state.user.loggedIn)
     const navigate = useNavigate();
     // const toggle = useSelector(state => state.expenses.toggle);
     // const [formFlag, setFormFlag] = useState(false)
     // const [count, setCount] = useState(null)
-    
+
+    useEffect(() => {
+        if(expenseActionStatus === 'fulfilled') {
+            navigate(`/budgets/${params.budget_id}`)
+            dispatch(resetExpenseActionStatus())
+        }
+    }, [expenseActionStatus, navigate])
+
 
     // useEffect(() => {
     //     if (!errors) {
@@ -82,7 +89,6 @@ const ExpenseAddForm2 = () => {
         amount:'',
         budget_id: params.budget_id
     });
-    console.log(formData)
 
     const handleChange = (e) => {
         setFormData(formData => {

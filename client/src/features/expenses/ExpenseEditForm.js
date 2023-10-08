@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import { editExpense } from '../budgets/BudgetsSlice';
+import { editExpense, resetExpenseActionStatus } from '../budgets/BudgetsSlice';
 
 const ExpenseEditForm = () => {
 
@@ -13,6 +13,17 @@ const ExpenseEditForm = () => {
     const errors = useSelector(state => state.budgets.errors);    
     // const categories = useSelector(state => state.categories.entities);
     const budgets = useSelector(state => state.budgets.entities);
+    const budgets2 = useSelector(state => state.budgets);
+    console.log(budgets2)
+    const expenseActionStatus = useSelector(state => state.budgets.expenseActionStatus)
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(expenseActionStatus === 'fulfilled') {
+            navigate(`/budgets/${params.budget_id}`)
+            dispatch(resetExpenseActionStatus())
+        }
+    }, [expenseActionStatus, navigate])
 
 
     const dispatch = useDispatch();
@@ -40,8 +51,6 @@ const ExpenseEditForm = () => {
             return {...formData, [e.target.name]:e.target.value}
         })
     };
-
-    console.log(formData)
 
     const handleSubmit = (e) => {
         e.preventDefault();

@@ -1,11 +1,13 @@
 import React from 'react';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from 'react-router-dom'; 
 import ExpenseLink from '../expenses/ExpenseLink';
+import { resetExpenseActionStatus } from './BudgetsSlice';
 
 const Budget = () => {
 
     const params = useParams();
+    const dispatch = useDispatch();
     const budgets = useSelector(state => state.budgets.entities);
     const loggedIn = useSelector(state => state.user.loggedIn);
     const budget = budgets.find(b => b.id === parseInt(params.id));
@@ -23,10 +25,12 @@ const Budget = () => {
             <h5>Remaining Balance: {balance}</h5>
             {expensesList}
             <Link to={`/budgets/${budget.id}/expenses/new`}>
-                    <button className="btn btn-primary">Add An Expense</button>
+                    <button className="btn btn-primary" >Add An Expense</button>
             </Link>
         </div>
     )
 }
+
+//onClick={() => dispatch(resetExpenseActionStatus())}
 
 export default Budget
