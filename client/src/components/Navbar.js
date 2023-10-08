@@ -47,18 +47,18 @@ const Navbar = () => {
             <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit">Home</button>
           </NavLink>
           <NavLink className='navlink' to='/budgets' >
-            <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit">Budgets</button>
+            <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit"  onClick={() => dispatch(resetBudgetErrors())}>Budgets</button>
           </NavLink>
           <NavLink className='navlink' to='/my_budgets'>
-            <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit">My Budgets</button>
+            <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit" onClick={() => dispatch(resetBudgetErrors())}>My Budgets</button>
           </NavLink>
           {/* <NavLink className='navlink' to='/categories' onClick={() => dispatch(resetCategoryErrors())}>
             <button className='nav-btn'>All Categories</button>
           </NavLink> */}
           {/* <NavLink className='navlink' to='/expenses/new' onClick={() => dispatch(resetCategoryErrors())}></NavLink> */}
-          <NavLink className='navlink' to='/expenses/new'>
+          {/* <NavLink className='navlink' to='/expenses/new'>
             <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit" onClick={() => dispatch(resetBudgetErrors())}>Add Expense</button>
-          </NavLink>
+          </NavLink> */}
           {/* <NavLink className='navlink' to='/my_spends'>
             <button className='nav-btn'>My Expenses By Category</button>
           </NavLink> */}

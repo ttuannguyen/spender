@@ -5,6 +5,7 @@ const initialState = {
     entities: [],
     errors: null,
     status: 'idle',
+    budgetActionStatus: 'idle',
     expenseActionStatus: 'idle'
 }
 
@@ -96,6 +97,9 @@ export const budgetsSlice = createSlice({
         resetBudgetErrors(state) {
             state.errors = null
         },
+        resetBudgetActionStatus(state) {
+            state.budgetActionStatus = 'idle'
+        },
         resetExpenseActionStatus(state) {
             state.expenseActionStatus = 'idle'
         }
@@ -106,6 +110,7 @@ export const budgetsSlice = createSlice({
         .addCase(fetchBudgetsAsync.pending, (state) => {
             state.errors = null // to clear out errors at page refresh
             state.status = 'loading'
+            state.budgetActionStatus = 'idle'
             state.expenseActionStatus = 'idle'
         })
         .addCase(fetchBudgetsAsync.fulfilled, (state, action) => {
@@ -123,6 +128,7 @@ export const budgetsSlice = createSlice({
                 state.entities.push(action.payload)
                 state.errors = null
                 state.status = 'fulfilled'
+                state.budgetActionStatus = 'fulfilled'
             }
         })
         .addCase(addNewExpenseToBudget.pending, (state) => {
@@ -162,4 +168,4 @@ export const budgetsSlice = createSlice({
 })
 
 export default budgetsSlice.reducer
-export const { resetBudgetErrors, resetExpenseActionStatus } = budgetsSlice.actions
+export const { resetBudgetErrors, resetExpenseActionStatus, resetBudgetActionStatus } = budgetsSlice.actions

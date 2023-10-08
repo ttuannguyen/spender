@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addBudget } from './BudgetsSlice';
+import { addBudget, resetBudgetActionStatus } from './BudgetsSlice';
+import { useNavigate } from 'react-router-dom';
 
 const BudgetAddForm = () => {
 
@@ -9,16 +10,24 @@ const BudgetAddForm = () => {
     const budgets = ['Rent & Utilities', 'Groceries', 'Entertainment', 'Essentials', 'Transportation', 'Subscriptions', 'Other']
     const errors = useSelector(state => state.budgets.errors)
     const loggedIn = useSelector(state => state.user.loggedIn)
+    const budgetActionStatus = useSelector(state => state.budgets.budgetActionStatus)
+    const navigate = useNavigate()
 
     // console.log(errors)
 
+    useEffect(() => {
+        if(budgetActionStatus === 'fulfilled') {
+            navigate('/my_budgets')
+            dispatch(resetBudgetActionStatus())
+        }
+    }, [budgetActionStatus, navigate])
+    
     const budgetsOptions = budgets.map(b => <option key={b}>{b}</option>)
 
     const [formData, setFormData] = useState({
         name:'',
         amount:''
     });
-    console.log(formData)
 
     const handleChange = (e) => {
         setFormData(formData => {
@@ -35,14 +44,6 @@ const BudgetAddForm = () => {
             name:'',
             amount:''
         })
-
-        // ISSUE: Async is going to skip to this step and navigate to /budgets
-        // Solution: If the new category exists and there are no errors, navigate
-        // How to test if the new category has been created? explore .length
-        // For now we can remove redirect
-        // if (!errors) {
-        //     navigate('/categories')
-        // }
 
     }
 
@@ -69,10 +70,8 @@ const BudgetAddForm = () => {
                         <input type="text" className="form-control" id="amount" name="amount" value={formData.amount} onChange={handleChange} /><br/>
                     </div>
                     <button type="submit" className="btn btn-primary">Add</button>
-                    {/* {errors?.map(error => <p key={error}>{error}</p>)} */}
                 </form>
-                {/* {errors?.map(error => <p key={error}>{error}</p>)} */}
-                {/* {errorList?.map(error => <p key={error}>{error}</p>)} */}
+                {errors?.map(error => <p key={error}>{error}</p>)}
             </div>
         )
     } else {

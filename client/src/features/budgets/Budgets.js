@@ -20,7 +20,7 @@ const Budgets = () => {
                 {budgetsList}
                 {/* {budgetButtons} */}
                 <Link to={'/budgets/new'}>
-                    <button className="btn btn-primary">Choose A Budget</button>
+                    <button className="btn btn-primary">Set A Budget</button>
                 </Link>
             </div>
         )   

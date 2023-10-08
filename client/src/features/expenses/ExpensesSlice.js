@@ -5,7 +5,7 @@ const initialState = {
     entities: [],
     errors: null,
     status: 'idle',
-    toggle: false
+    toggle: false,
 }
 
 export const fetchExpensesAsync = createAsyncThunk(
