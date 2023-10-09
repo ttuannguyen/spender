@@ -23,6 +23,7 @@ import BudgetsOfUser from './features/budgets/BudgetsOfUser';
 import Budget from './features/budgets/Budget';
 import SearchBar from './components/SearchBar';
 import ExpenseAddForm2 from './features/expenses/ExpenseAddForm2';
+import BudgetEditForm from './features/budgets/BudgetEditForm';
 
 const App = () => {
 
@@ -56,6 +57,7 @@ const App = () => {
           {/* <Route exact path='/categories/new' element={ <CategoryAddForm /> } /> */}
           <Route path='/budgets/:id' element={<Budget />} />
           <Route exact path='/budgets/new' element={ <BudgetAddForm /> } />
+          <Route path='/budgets/:id/edit' element={<BudgetEditForm />} />
           <Route exact path='/budgets' element={ <Budgets /> } />
           <Route exact path='/my_budgets' element={<BudgetsOfUser />} />
           <Route exact path='/expenses/new' element={ <ExpenseAddForm /> } />

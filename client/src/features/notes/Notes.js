@@ -10,7 +10,7 @@ const Notes = () => {
     const loggedIn = useSelector(state => state.user.loggedIn)
 
     if (loggedIn) {
-        const notesList = user.notes.map(note => <li key={note}>{note.content}</li>)
+        const notesList = user.notes.map(note => <li key={note.id}>{note.content}</li>)
         return (
             <div>
                 <div className='notebook'>

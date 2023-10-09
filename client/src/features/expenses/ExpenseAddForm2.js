@@ -16,9 +16,7 @@ const ExpenseAddForm2 = () => {
     const expenses = useSelector(state => state.budgets.expenses)
     const loggedIn = useSelector(state => state.user.loggedIn)
     const navigate = useNavigate();
-    // const toggle = useSelector(state => state.expenses.toggle);
-    // const [formFlag, setFormFlag] = useState(false)
-    // const [count, setCount] = useState(null)
+    
 
     useEffect(() => {
         if(expenseActionStatus === 'fulfilled') {
@@ -27,58 +25,6 @@ const ExpenseAddForm2 = () => {
         }
     }, [expenseActionStatus, navigate])
 
-
-    // useEffect(() => {
-    //     if (!errors) {
-    //         setFormData({
-    //             ...formData,
-    //             merchant:'',
-    //             date:'',   
-    //             amount:'',
-    //             category_id:'',
-    //         })   
-    //         // setFormData(true)
-    //         navigate('/my_spends')
-    //     } else {
-    //         setFormFlag(true)
-    //     }
-    //   }, []);
-
-    // useEffect(() => {
-    //     if (!formFlag && !!errors) {
-    //         setFormData({
-    //             ...formData,
-    //             merchant:'',
-    //             date:'',   
-    //             amount:'',
-    //             category_id:'',
-    //         })   
-    //         // setFormData(true)
-    //         navigate('/my_spends')
-    //     } else {
-    //         setFormFlag(true)
-    //     }
-    //   }, [formFlag, expenses, navigate]);
-      
-      //&& errors.length === 0
-    
-    // useEffect(() => {
-    //     setCount(expenses.length)
-    // }, [])
-
-    // useEffect(() => {
-    //     if (expenses.length !== count) {
-    //         setFormData({
-    //             ...formData,
-    //             merchant:'',
-    //             date:'',   
-    //             amount:'',
-    //             category_id:'',
-    //         })   
-    //         // setFormData(true)
-    //         navigate('/my_spends')
-    //     }
-    //   }, [expenses]);
 
     // const categoriesOptions = categories.map(c => <option value={c.id} key={c.id}>{c.name}</option>)
     const budgetsOptions = budgets.map(b => <option value={b.id} key={b.id}>{b.name}</option>)
@@ -116,20 +62,6 @@ const ExpenseAddForm2 = () => {
         // }
     }
 
-    // # of expenses ; if the # changes, navigate 
-
-    // function reset() {
-    //     const text = document.getElementById("none").defaultValue;
-    // }
-
-    // const dropdown = () => {
-    //     return (
-    //         <select name='category_id' onChange={handleChange}>
-    //             <option value="none" id="none" selected="selected"> -- select an option -- </option>
-    //             {categoriesOptions}`
-    //         </select>
-    //     )
-    // }
 
     if (loggedIn) {
         return (

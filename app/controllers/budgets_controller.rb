@@ -8,6 +8,7 @@ class BudgetsController < ApplicationController
         # render json: Budget.all
     end
 
+    # POST
     def create
         # byebug
         budget = current_user.budgets.create!(budget_params)
@@ -15,10 +16,23 @@ class BudgetsController < ApplicationController
         render json: budget, status: :created
     end
 
+    # UPDATE
+    def update
+        budget = current_user.budgets.find_by(id: params[:id])
+        budget.update!(budget_params)
+        render json: budget, status: :accepted
+        # if expense 
+        #     expense.update!(expense_params)
+        #     render json: expense, status: :accepted
+        # else
+        #     render json: {error: "Unable to update"}, status: :not_found
+        # end
+    end
+
 
     private
     def budget_params
-        params.permit(:name, :amount)
+        params.permit(:id, :name, :amount)
     end
 
 end

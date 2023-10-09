@@ -33,6 +33,24 @@ export const addBudget = createAsyncThunk(
         return response
 })
 
+export const editBudget = createAsyncThunk(
+    'budget/editBudget',
+    async ({params, amount}) => {
+        const fetchEditBudget = () => {
+            return fetch(`/budgets/${params.id}`,{
+                method:'PATCH',
+                headers:{'Content-Type': 'application/json'},
+                body:JSON.stringify({"amount": amount})
+            })
+            .then(res => res.json())
+            .then(data => data)
+        }
+        const response = await fetchEditBudget()
+        return response
+    }
+)
+
+
 export const addNewExpenseToBudget = createAsyncThunk(
     'budgets/addNewExpenseToBudget', 
     async (formData) => {
@@ -121,6 +139,9 @@ export const budgetsSlice = createSlice({
         .addCase(fetchBudgetsAsync.rejected, (state) => {
             state.status = 'rejected'
         })
+        .addCase(addBudget.pending, (state) => {
+            state.status = 'loading'
+        })
         .addCase(addBudget.fulfilled, (state, action) => {
             if (action.payload.errors) {
                 state.errors = action.payload.errors
@@ -129,6 +150,16 @@ export const budgetsSlice = createSlice({
                 state.errors = null
                 state.status = 'fulfilled'
                 state.budgetActionStatus = 'fulfilled'
+            }
+        })
+        .addCase(editBudget.fulfilled, (state, action) => {
+            if (action.payload.errors) {
+                state.errors = action.payload.errors
+            } else {
+                const budgetFound = state.entities.find(b => b.id ===  parseInt(action.payload.id))
+                budgetFound.amount = action.payload.amount
+                state.errors = null
+                state.status = 'fulfilled'
             }
         })
         .addCase(addNewExpenseToBudget.pending, (state) => {

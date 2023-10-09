@@ -21,7 +21,7 @@ const Budget = () => {
     return (
         <div>
             <h3>{budget.name}</h3>
-            <h4>Budget Total: {budget.amount}</h4>
+            <h4>Budget Total: <Link to={`/budgets/${budget.id}/edit`}>{budget.amount}</Link></h4>
             <h5>Remaining Balance: {balance}</h5>
             {expensesList}
             <Link to={`/budgets/${budget.id}/expenses/new`}>

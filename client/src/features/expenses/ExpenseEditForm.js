@@ -5,16 +5,11 @@ import { editExpense, resetExpenseActionStatus } from '../budgets/BudgetsSlice';
 
 const ExpenseEditForm = () => {
 
-    // const [merchant, setMerchant] = useState('');
-    // const [date, setDate] = useState('');
-    // const [amount, setAmount] = useState('');
-
     const loggedIn = useSelector(state => state.user.loggedIn);
     const errors = useSelector(state => state.budgets.errors);    
-    // const categories = useSelector(state => state.categories.entities);
     const budgets = useSelector(state => state.budgets.entities);
-    const budgets2 = useSelector(state => state.budgets);
-    console.log(budgets2)
+    // const budgets2 = useSelector(state => state.budgets);
+    // console.log(budgets2)
     const expenseActionStatus = useSelector(state => state.budgets.expenseActionStatus)
     const navigate = useNavigate();
 
@@ -32,7 +27,6 @@ const ExpenseEditForm = () => {
 
     const budget = budgets.find(b => b.id === parseInt(params.budget_id));
     const expense = budget.expenses.find(e => e.id === parseInt(params.id));
-    // console.log(expense)
 
 
     const [formData, setFormData] = useState({
@@ -40,9 +34,6 @@ const ExpenseEditForm = () => {
         date: expense.date,   
         amount: expense.amount,
         budget_id: params.budget_id
-        // merchant: merchant,
-        // date: date,   
-        // amount: amount
     });
     // console.log(formData)
 
@@ -55,28 +46,6 @@ const ExpenseEditForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(editExpense({params, formData}))
-        // dispatch(editExpense({params, formData}))
-
-        // setFormData({
-        //     merchant:'',
-        //     date:'',   
-        //     amount:'',
-        // })
-        
-        // navigate(`/categories/${params.category_id}/expenses/${params.id}`)
-
-        // fetch(`/users/${user.id}/expenses/${params.id}`, {
-        //     method: 'PATCH',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(formData)
-        // })
-        // .then(res => res.json())
-        // .then(data => {
-        //     dispatch(editExpense(data))
-        //     navigate(`/expenses/${params.id}`)
-        // })
     }
 
     if (loggedIn) {
