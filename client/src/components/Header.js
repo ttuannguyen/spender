@@ -6,9 +6,11 @@ import { reset, setLoggedOutState, resetErrors } from '../features/user/UserSlic
 import { resetCategoryErrors } from '../features/categories/CategoriesSlice';
 import { resetBudgetErrors } from '../features/budgets/BudgetsSlice';
 import { logout } from '../features/user/UserSlice';
+import { Container, Navbar, Nav } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 
-const Navbar = () => {
+const Header = () => {
 
   const loggedIn = useSelector(state => state.user.loggedIn)
   // console.log(loggedIn)
@@ -27,23 +29,43 @@ const Navbar = () => {
   if (loggedIn) {
     return (
       <>
-        {/* <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-              <a class="nav-item nav-link" href="#">Features</a>
-              <a class="nav-item nav-link" href="#">Pricing</a>
-              <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </div>
-          </div>
-        </nav>
-                 */}
+        <header>
+          <Navbar bg='dark' variant='dark' expand="lg" collapseOnSelect>
+            <Container>
+              <LinkContainer to='/'>
+                <Navbar.Brand href="/">Spender</Navbar.Brand>
+              </LinkContainer>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto">
+                  <LinkContainer to='/home'>
+                    <Nav.Link><i className="fa fa-house"></i> Home</Nav.Link>
+                  </LinkContainer>
+    
+                  <LinkContainer to='/budgets'>
+                    <Nav.Link type="submit"  onClick={() => dispatch(resetBudgetErrors())}><i className="fa-solid fa-map-location"></i>Budget Select</Nav.Link>
+                  </LinkContainer>
+
+                  <LinkContainer to='/my_budgets'>
+                    <Nav.Link type="submit" onClick={() => dispatch(resetBudgetErrors())}><i className="fa-solid fa-map-location"></i>My Budgets</Nav.Link>
+                  </LinkContainer>
+
+                  <LinkContainer to='/notes'>
+                    <Nav.Link type="submit" onClick={() => dispatch(resetErrors())}><i className="fa-solid fa-map-location"></i>My Budgets</Nav.Link>
+                  </LinkContainer>
+    
+                  <LinkContainer to='/logout'>
+                    <Nav.Link type="submit" onClick={logoutUser}><i className="fas fa-user"></i> Logout</Nav.Link>
+                  </LinkContainer>
+    
+              </Nav>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
+        </header>
+
         <nav class="navbar navbar-light bg-light">
-          <NavLink className='navlink' to='/home'>
+          {/* <NavLink className='navlink' to='/home'>
             <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit">Home</button>
           </NavLink>
           <NavLink className='navlink' to='/budgets' >
@@ -52,7 +74,7 @@ const Navbar = () => {
           <NavLink className='navlink' to='/my_budgets'>
             <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit" onClick={() => dispatch(resetBudgetErrors())}>My Budgets</button>
           </NavLink>
-          {/* <NavLink className='navlink' to='/categories' onClick={() => dispatch(resetCategoryErrors())}>
+          <NavLink className='navlink' to='/categories' onClick={() => dispatch(resetCategoryErrors())}>
             <button className='nav-btn'>All Categories</button>
           </NavLink> */}
           {/* <NavLink className='navlink' to='/expenses/new' onClick={() => dispatch(resetCategoryErrors())}></NavLink> */}
@@ -61,14 +83,14 @@ const Navbar = () => {
           </NavLink> */}
           {/* <NavLink className='navlink' to='/my_spends'>
             <button className='nav-btn'>My Expenses By Category</button>
-          </NavLink> */}
+          </NavLink>
           <NavLink className='navlink' to='/notes'>
             <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit" onClick={() => dispatch(resetErrors())}>My Notes</button>
           </NavLink>
           {/* <NavLink className='navlink' to='/search'>
             <button className='nav-btn'>Search</button>
           </NavLink> */}
-          <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit" onClick={logoutUser}>Logout</button>
+          {/* <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit" onClick={logoutUser}>Logout</button> */}
         </nav>
       </>
       
@@ -125,4 +147,4 @@ const Navbar = () => {
   // }
 }
 
-export default Navbar
+export default Header
