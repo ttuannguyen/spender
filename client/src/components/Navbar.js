@@ -47,7 +47,7 @@ const Navbar = () => {
             <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit">Home</button>
           </NavLink>
           <NavLink className='navlink' to='/budgets' >
-            <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit"  onClick={() => dispatch(resetBudgetErrors())}>Budgets</button>
+            <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit"  onClick={() => dispatch(resetBudgetErrors())}>Budget Select</button>
           </NavLink>
           <NavLink className='navlink' to='/my_budgets'>
             <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit" onClick={() => dispatch(resetBudgetErrors())}>My Budgets</button>
