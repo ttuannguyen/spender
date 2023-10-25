@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addBudget, resetBudgetActionStatus } from './BudgetsSlice';
 import { useNavigate } from 'react-router-dom';
+import { Button, Form } from 'react-bootstrap';
 
 const BudgetAddForm = () => {
 
@@ -28,6 +29,8 @@ const BudgetAddForm = () => {
         name:'',
         amount:''
     });
+    
+    console.log(formData)
 
     const handleChange = (e) => {
         setFormData(formData => {
@@ -44,33 +47,51 @@ const BudgetAddForm = () => {
             name:'',
             amount:''
         })
-
     }
 
     if (loggedIn) {
         return (
             <div id='category-add'>
                 <h4>Add a Budget</h4>
-                <form onSubmit={handleSubmit}>
+
+                <Form onSubmit={handleSubmit}>
+                    <Form.Label>Budget</Form.Label>
+                    <Form.Select aria-label="Default select example" name='name' onChange={handleChange}>
+                        <option value="none" selected disabled hidden>-- select a budget --</option>
+                        {budgetsOptions}
+                    </Form.Select>
+
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Amount</Form.Label>
+                        <Form.Control name="amount" value={formData.amount} onChange={handleChange} />
+                    </Form.Group>
+
+                    <Button variant="primary" type="submit">
+                        Submit
+                    </Button>
+                </Form>
+
+                {/* <form onSubmit={handleSubmit}>
                     <div className='dropdown'> 
                         <label>Budget:</label>
-                        {/* TO DO: Reset dropdown after submit */}
+                        TO DO: Reset dropdown after submit
                         <select name='name' onChange={handleChange}>
                             <option value="none" id="none" selected disabled hidden> -- select an option -- </option>
                             {budgetsOptions}
                         </select>
-                        {/* {dropdown()} */}
+                        {dropdown()}
                     </div>
-                    {/* <div className="form-group">
+                    <div className="form-group">
                         <label htmlFor="name">Name</label>
                         <input type="text" className="form-control" id="name" name="name" value={formData.name} onChange={handleChange} /><br/>
-                    </div> */}
+                    </div>
                     <div className="form-group">
                         <label htmlFor="amount">Amount</label>
                         <input type="text" className="form-control" id="amount" name="amount" value={formData.amount} onChange={handleChange} /><br/>
                     </div>
                     <button type="submit" className="btn btn-primary">Add</button>
-                </form>
+                </form> */}
+
                 {errors?.map(error => <p key={error}>{error}</p>)}
             </div>
         )

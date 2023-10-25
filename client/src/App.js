@@ -52,7 +52,6 @@ const App = () => {
   return (
     <div className="App">
       <Router >
-        <h1>Spender 💸</h1>
         <Header />
         <Container>
           <Routes>

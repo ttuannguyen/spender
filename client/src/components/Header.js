@@ -97,14 +97,37 @@ const Header = () => {
     )
   } else {
     return (
-      <nav class="navbar navbar-light bg-light">
-        <NavLink className='navlink' to='/login'>
-          <button class="btn btn-outline-success my-2 my-sm-0 m-2" type="submit" onClick={() => dispatch(resetErrors())}>Login</button>
-        </NavLink>
-        <NavLink className='navlink' to='/signup' onClick={() => dispatch(resetErrors())}>
-          <button class="btn btn-outline-success my-2 my-sm-0 m-2" type="submit">Signup</button>
-        </NavLink>
-      </nav>
+      <div>
+        <Navbar bg='dark' variant='dark' expand="lg" collapseOnSelect>
+            <Container>
+              <LinkContainer to='/'>
+                <Navbar.Brand href="/">Spender</Navbar.Brand>
+              </LinkContainer>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto">
+                  <LinkContainer to='/login'>
+                    <Nav.Link type="submit" onClick={() => dispatch(resetErrors())}><i className="fa fa-house"></i> Login</Nav.Link>
+                  </LinkContainer>
+    
+                  <LinkContainer to='/signup'>
+                    <Nav.Link type="submit" onClick={() => dispatch(resetErrors())}><i className="fas fa-user"></i> Signup</Nav.Link>
+                  </LinkContainer>
+              </Nav>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
+          
+        {/* <nav class="navbar navbar-light bg-light">
+          <NavLink className='navlink' to='/login'>
+            <button class="btn btn-outline-success my-2 my-sm-0 m-2" type="submit" onClick={() => dispatch(resetErrors())}>Login</button>
+          </NavLink>
+          <NavLink className='navlink' to='/signup' onClick={() => dispatch(resetErrors())}>
+            <button class="btn btn-outline-success my-2 my-sm-0 m-2" type="submit">Signup</button>
+          </NavLink>
+        </nav> */}
+
+      </div>
     )
   }
 

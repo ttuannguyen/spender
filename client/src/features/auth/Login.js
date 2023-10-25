@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { login } from '../user/UserSlice';
+import { Button, Form } from 'react-bootstrap';
 
 const Login = () => {
   
@@ -56,7 +57,8 @@ const Login = () => {
 
 
   return (
-    <div id='login'> 
+    
+    <div id='login' className='my-3'> 
       {/* <form onSubmit={handleSubmit}>
         <label>Username</label>
         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} /><br/>
@@ -65,8 +67,24 @@ const Login = () => {
         <button type="submit">Login</button>
       </form> */}
 
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Username</Form.Label>
+            <Form.Control type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Enter username" />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" />
+          </Form.Group>
+
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
 
 
+      {/* 
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="username">Username</label>
@@ -77,7 +95,7 @@ const Login = () => {
           <input type="password" className="form-control" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         <button type="submit" className="btn btn-primary">Login</button>
-      </form>
+      </form> */}
 
       {/* {errorMessages?.map(error => <p key={error}>{error}</p>)} */}
       {errors?.map(error => <p key={error}>{error}</p>)}
