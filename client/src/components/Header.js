@@ -28,7 +28,6 @@ const Header = () => {
 
   if (loggedIn) {
     return (
-      <>
         <header>
           <Navbar bg='dark' variant='dark' expand="lg" collapseOnSelect>
             <Container>
@@ -43,7 +42,7 @@ const Header = () => {
                   </LinkContainer>
     
                   <LinkContainer to='/budgets'>
-                    <Nav.Link type="submit"  onClick={() => dispatch(resetBudgetErrors())}><i className="fa-solid fa-map-location"></i>Budget Select</Nav.Link>
+                    <Nav.Link type="submit"  onClick={() => dispatch(resetBudgetErrors())}><i className="fa-solid fa-map-location"></i>Budgets</Nav.Link>
                   </LinkContainer>
 
                   <LinkContainer to='/my_budgets'>
@@ -51,49 +50,17 @@ const Header = () => {
                   </LinkContainer>
 
                   <LinkContainer to='/notes'>
-                    <Nav.Link type="submit" onClick={() => dispatch(resetErrors())}><i className="fa-solid fa-map-location"></i>My Budgets</Nav.Link>
+                    <Nav.Link type="submit" onClick={() => dispatch(resetErrors())}><i className="fa-solid fa-map-location"></i>My Notes</Nav.Link>
                   </LinkContainer>
     
                   <LinkContainer to='/logout'>
                     <Nav.Link type="submit" onClick={logoutUser}><i className="fas fa-user"></i> Logout</Nav.Link>
                   </LinkContainer>
-    
               </Nav>
               </Navbar.Collapse>
             </Container>
           </Navbar>
         </header>
-
-        <nav class="navbar navbar-light bg-light">
-          {/* <NavLink className='navlink' to='/home'>
-            <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit">Home</button>
-          </NavLink>
-          <NavLink className='navlink' to='/budgets' >
-            <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit"  onClick={() => dispatch(resetBudgetErrors())}>Budget Select</button>
-          </NavLink>
-          <NavLink className='navlink' to='/my_budgets'>
-            <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit" onClick={() => dispatch(resetBudgetErrors())}>My Budgets</button>
-          </NavLink>
-          <NavLink className='navlink' to='/categories' onClick={() => dispatch(resetCategoryErrors())}>
-            <button className='nav-btn'>All Categories</button>
-          </NavLink> */}
-          {/* <NavLink className='navlink' to='/expenses/new' onClick={() => dispatch(resetCategoryErrors())}></NavLink> */}
-          {/* <NavLink className='navlink' to='/expenses/new'>
-            <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit" onClick={() => dispatch(resetBudgetErrors())}>Add Expense</button>
-          </NavLink> */}
-          {/* <NavLink className='navlink' to='/my_spends'>
-            <button className='nav-btn'>My Expenses By Category</button>
-          </NavLink>
-          <NavLink className='navlink' to='/notes'>
-            <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit" onClick={() => dispatch(resetErrors())}>My Notes</button>
-          </NavLink>
-          {/* <NavLink className='navlink' to='/search'>
-            <button className='nav-btn'>Search</button>
-          </NavLink> */}
-          {/* <button class="btn btn-outline-success my-2 my-sm-0 m-5" type="submit" onClick={logoutUser}>Logout</button> */}
-        </nav>
-      </>
-      
     )
   } else {
     return (
