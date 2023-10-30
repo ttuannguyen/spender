@@ -8,7 +8,6 @@ const Budgets = () => {
 
     const loggedIn = useSelector(state => state.user.loggedIn)
     // const budgets = useSelector(state => state.budgets.entities)
-    // const budgets = ['Rent & Utilities', 'Groceries', 'Entertainment', 'Essentials', 'Transportation', 'Subscriptions', 'Other']
 
     const budgets = [
         {name: 'Rent & Utilities', description: "This budget includes all expenses related to rent payments, mortgage payments, electricity, water, gas, internet bills, etc."},
@@ -23,7 +22,9 @@ const Budgets = () => {
     if (loggedIn) {
 
         const budgetCards = budgets.map(budget => {
-            return (
+            
+            
+            return ( 
                 <Col sm={12} md={6} lg={4} xl={3}>
                     <Card style={{ width: '18rem' }} className="mb-2">
                     <Card.Body>
