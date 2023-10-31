@@ -22,10 +22,8 @@ const Budgets = () => {
     if (loggedIn) {
 
         const budgetCards = budgets.map(budget => {
-            
-            
             return ( 
-                <Col sm={12} md={6} lg={4} xl={3}>
+                <Col sm={12} md={6} lg={4} xl={3} key={budget.name}>
                     <Card style={{ width: '18rem' }} className="mb-2">
                     <Card.Body>
                         <Card.Title><strong>{budget.name}</strong></Card.Title>
@@ -39,7 +37,7 @@ const Budgets = () => {
 
         return (
             <div className="py-3">
-                <Row>
+                <Row className="py-3">
                     {budgetCards}
                 </Row>
                 {/* {budgetButtons} */}
