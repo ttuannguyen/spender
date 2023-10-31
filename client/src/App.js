@@ -26,6 +26,7 @@ import BudgetEditForm from './features/budgets/BudgetEditForm';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { Container } from 'react-bootstrap';
+import LandingPage from './components/LandingPage';
 
 const App = () => {
 
@@ -76,6 +77,7 @@ const App = () => {
               <Route exact path='/signup' element={<Signup />} />
               <Route exact path='/home' element={<Home /> } />
               <Route exact path='/search' element={<SearchBar /> } />
+              <Route exact path='/' element={<LandingPage /> } />
               {/* <Route exact path='/counter' element={<Counter /> } /> */}
             </Routes>
           </Container>
