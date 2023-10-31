@@ -37,20 +37,20 @@ const Header = () => {
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
-                  <LinkContainer to='/home'>
+                  {/* <LinkContainer to='/home'>
                     <Nav.Link><i className="fa fa-house"></i> Home</Nav.Link>
-                  </LinkContainer>
+                  </LinkContainer> */}
     
                   <LinkContainer to='/budgets'>
-                    <Nav.Link type="submit"  onClick={() => dispatch(resetBudgetErrors())}><i className="fa-solid fa-map-location"></i>Budgets</Nav.Link>
+                    <Nav.Link type="submit"  onClick={() => dispatch(resetBudgetErrors())}><i class="fa-solid fa-money-check-dollar"></i> Budgets</Nav.Link>
                   </LinkContainer>
 
                   <LinkContainer to='/my_budgets'>
-                    <Nav.Link type="submit" onClick={() => dispatch(resetBudgetErrors())}><i className="fa-solid fa-map-location"></i>My Budgets</Nav.Link>
+                    <Nav.Link type="submit" onClick={() => dispatch(resetBudgetErrors())}><i class="fa-solid fa-dollar-sign"></i> My Budgets</Nav.Link>
                   </LinkContainer>
 
                   <LinkContainer to='/notes'>
-                    <Nav.Link type="submit" onClick={() => dispatch(resetErrors())}><i className="fa-solid fa-map-location"></i>My Notes</Nav.Link>
+                    <Nav.Link type="submit" onClick={() => dispatch(resetErrors())}><i class="fa-solid fa-book"></i> My Notes</Nav.Link>
                   </LinkContainer>
     
                   <LinkContainer to='/logout'>

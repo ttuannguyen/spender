@@ -16,7 +16,7 @@ const Budgets = () => {
         {name: 'Essentials', description: 'This budget is designed to cover the basic necessities for daily usage.'},
         {name: 'Transportation', description: 'This budget is designed to track and manage expenses related to transportation, such as Uber, Lyft, taxi and public transportation costs.'},
         {name: 'Subscription', description: 'This budget includes expenses related to various subscriptions, such as streaming services, online memberships, and software subscriptions.'},
-        {name: 'Other', description: 'This budget includes all other expenses'}
+        {name: 'Other', description: 'This budget includes all other expenses.'}
     ]
 
     if (loggedIn) {

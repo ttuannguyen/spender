@@ -22,10 +22,10 @@ const Budget = () => {
         return (
         <div>
             <Link to={`/budgets/${params.id}/expenses/${expense.id}`} style={{ textDecoration: 'none'}}>
-            <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
-                💸 Merchant: {expense.merchant} | Date: {expense.date} | Amount:${expense.amount}
-                {/* <ExpenseLink key={expense.id} expense={expense} budget_id={params.id} /> */}
-            </ListGroup.Item>
+                <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
+                    💸 Merchant: {expense.merchant} | Date: {expense.date} | Amount: ${expense.amount}
+                    {/* <ExpenseLink key={expense.id} expense={expense} budget_id={params.id} /> */}
+                </ListGroup.Item>
             </Link>    
             
         </div>)

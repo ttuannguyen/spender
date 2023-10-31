@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import { ListGroup } from 'react-bootstrap';
 
 
 const Notes = () => {
@@ -10,12 +11,29 @@ const Notes = () => {
     const loggedIn = useSelector(state => state.user.loggedIn)
 
     if (loggedIn) {
-        const notesList = user.notes.map(note => <li key={note.id}>{note.content}</li>)
+        const notesList = user.notes.map(note => {
+        return (
+
+            <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start" key={note.id}>
+                {note.content}
+            </ListGroup.Item>
+            
+            // Link to note show page
+            // <Link to={`/notes/${note.id}`} style={{ textDecoration: 'none'}}>
+            //     <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start" key={note.id}>
+            //     {note.content}
+            // </ListGroup.Item>
+            // </Link>
+        )
+        })
+        
         return (
             <div>
                 <div className='notebook'>
                     <h3>Keep track of your spending habits...</h3>
-                {notesList}
+                <ListGroup className='my-3'>
+                    {notesList}
+                </ListGroup>
                 </div>
                 <div className='add-note'>
                     <Link to={'/notes/new'}>  

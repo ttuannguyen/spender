@@ -27,6 +27,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import { Container } from 'react-bootstrap';
 import LandingPage from './components/LandingPage';
+import Note from './features/notes/Note';
 
 const App = () => {
 
@@ -71,6 +72,7 @@ const App = () => {
               {/* The route above is designed so we have the category_id and id (of expense) in order to work with data in state and extract the expense we want. We don't actually need a corresponding route in the backend. */}
               <Route exact path="/expenses" element={ <Expenses /> } />
               {/* <Route exact path='/notes/new' element={ <NoteAddForm /> } /> */}
+              <Route path='/notes/:id' element={<Note />} />
               <Route exact path='/notes/new' element={<NoteAddForm />} />
               <Route exact path="/notes" element={<Notes />} />
               <Route exact path='/login' element={<Login />} />
