@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
@@ -15,6 +15,11 @@ const Header = () => {
   const loggedIn = useSelector(state => state.user.loggedIn)
   // console.log(loggedIn)
 
+  
+  useEffect(() => {
+    navigate('/')
+  }, [loggedIn])
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -23,7 +28,6 @@ const Header = () => {
     dispatch(reset());
     dispatch(resetErrors());
     dispatch(setLoggedOutState());
-    navigate('/')
   }
 
   if (loggedIn) {
