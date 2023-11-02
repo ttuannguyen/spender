@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { ListGroup } from 'react-bootstrap';
@@ -8,9 +8,14 @@ import NoteDeleteButton from './NoteDeleteButton';
 const Notes = () => {
 
     const user = useSelector(state => state.user.entities)
-    // console.log(user.notes)
+    console.log(user.notes)
     const loggedIn = useSelector(state => state.user.loggedIn)
 
+    const noteActionStatus = useSelector(state => state.user.noteActionStatus);
+    console.log(noteActionStatus)
+
+
+    
     if (loggedIn) {
         const notesList = user.notes.map(note => {
         return (

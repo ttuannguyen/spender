@@ -15,7 +15,7 @@ const NoteAddForm = () => {
     const noteActionStatus = useSelector(state => state.user.noteActionStatus);
     const navigate = useNavigate()
 
-    console.log(user.notes.length)
+    // console.log(user.notes.length)
 
     useEffect(() => {
         if(noteActionStatus === 'fulfilled') {

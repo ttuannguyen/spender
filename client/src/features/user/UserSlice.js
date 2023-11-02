@@ -122,9 +122,9 @@ export const addNote = createAsyncThunk(
 
 export const deleteNote = createAsyncThunk(
     'user/deleteNote', 
-    async () => {
+    async (note) => {
         const fetchDeleteNote = () => {
-            return fetch('/notes',{
+            return fetch(`/notes/${note.id}`,{
                 method:'DELETE',
                 headers:{'Content-Type': 'application/json'},
             })
@@ -217,6 +217,7 @@ export const userSlice = createSlice({
             state.entities.expenses = newExpenses
             state.status = 'fulfilled'
         })   
+
         .addCase(addNote.fulfilled, (state, action) => {
             // const newExpenses = state.entities.expenses.map(e => e.id ===  parseInt(action.payload.id) ? action.payload : e)
             // state.entities.expenses = newExpenses
@@ -229,11 +230,11 @@ export const userSlice = createSlice({
                 state.noteActionStatus = 'fulfilled'
             }
         })   
-        // .addCase(deleteNote.fulfilled, (state, action) => {
-        //     state.entities.notes.push(action.payload)
-        //     state.errors = null
-        //     state.noteActionStatus = 'fulfilled'
-        // })   
+        .addCase(deleteNote.fulfilled, (state, action) => {
+            const newNotes = state.entities.notes.filter(n => n.id !== action.payload.id)
+            state.entities.notes = newNotes
+            state.noteActionStatus = 'fulfilled'
+        })   
 
     }
 })

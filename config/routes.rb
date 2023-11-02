@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   # resources :categories, only: [:index, :create] 
   resources :expenses, only: [:index, :create, :update, :destroy] 
-  resources :notes, only: [:create]
+  resources :notes, only: [:create, :destroy]
   resources :budgets 
 
   # users
