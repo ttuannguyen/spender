@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // import { addNewNoteToExpense } from '../expenses/ExpensesSlice';
-import { addNote } from '../user/UserSlice';
+import { addNote, resetNoteActionStatus } from '../user/UserSlice';
+import { useNavigate } from 'react-router-dom';
 
 
 const NoteAddForm = () => {
@@ -11,8 +12,17 @@ const NoteAddForm = () => {
     // const errors = useSelector(state => state.user.noteErrors);
     const errors = useSelector(state => state.user.errors);
     const user = useSelector(state => state.user.entities);
+    const noteActionStatus = useSelector(state => state.user.noteActionStatus);
+    const navigate = useNavigate()
 
     console.log(user.notes.length)
+
+    useEffect(() => {
+        if(noteActionStatus === 'fulfilled') {
+            navigate('/notes')
+            dispatch(resetNoteActionStatus())
+        }
+    }, [noteActionStatus, navigate])
     
     // const user = useSelector(state => state.user.data)
     const [formData, setFormData] = useState({

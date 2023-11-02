@@ -5,7 +5,8 @@ const initialState = {
     entities: {},
     errors: null,
     status: 'idle',
-    loggedIn: false
+    loggedIn: false,
+    noteActionStatus: 'idle'
 }
 
 export const fetchUserAsync = createAsyncThunk(
@@ -119,6 +120,21 @@ export const addNote = createAsyncThunk(
         return response
 })
 
+export const deleteNote = createAsyncThunk(
+    'user/deleteNote', 
+    async () => {
+        const fetchDeleteNote = () => {
+            return fetch('/notes',{
+                method:'DELETE',
+                headers:{'Content-Type': 'application/json'},
+            })
+            .then(res => res.json())
+            .then(data => data)
+        }
+        const response = await fetchDeleteNote()
+        return response
+})
+
 export const userSlice = createSlice({
     name: 'user',
     initialState,
@@ -137,7 +153,11 @@ export const userSlice = createSlice({
         },
         resetErrors(state) {
             state.errors = null
-        }
+        },
+        resetNoteActionStatus(state) {
+            state.noteActionStatus = 'idle'
+        },
+
     },
 
     extraReducers: (builder) => {
@@ -206,12 +226,18 @@ export const userSlice = createSlice({
             } else {
                 state.entities.notes.push(action.payload)
                 state.errors = null
-                state.status = 'fulfilled'
+                state.noteActionStatus = 'fulfilled'
             }
         })   
+        // .addCase(deleteNote.fulfilled, (state, action) => {
+        //     state.entities.notes.push(action.payload)
+        //     state.errors = null
+        //     state.noteActionStatus = 'fulfilled'
+        // })   
+
     }
 })
 
 
 export default userSlice.reducer
-export const { addExpense, setLoggedOutState, reset, resetErrors, resetUser } = userSlice.actions
+export const { addExpense, setLoggedOutState, reset, resetErrors, resetUser, resetNoteActionStatus } = userSlice.actions

@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const NoteDeleteButton = ({note, expense}) => {
+const NoteDeleteButton = ({note}) => {
     // const { user, toggle, setToggle } = useContext(UserContext);
 
     // const user = useSelector(state => state.user.data)
@@ -11,14 +11,9 @@ const NoteDeleteButton = ({note, expense}) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        fetch(`/expenses/${expense.id}/notes/${note.id}`, {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            }
-        })
-        // navigate(`/categories/${params.id}`)
-        // dispatch(setToggle())
+        console.log(note)
+        // dispatch(deleteNote(params))
+        // navigate('/notes')
     }
     
     return (

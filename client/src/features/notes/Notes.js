@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { ListGroup } from 'react-bootstrap';
+import NoteDeleteButton from './NoteDeleteButton';
 
 
 const Notes = () => {
@@ -16,6 +17,7 @@ const Notes = () => {
 
             <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start" key={note.id}>
                 {note.content}
+                <NoteDeleteButton note={note}/>
             </ListGroup.Item>
             
             // Link to note show page
