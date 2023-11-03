@@ -20,7 +20,7 @@ const NoteAddForm = () => {
     useEffect(() => {
         if(noteActionStatus === 'fulfilled') {
             navigate('/notes')
-            dispatch(resetNoteActionStatus())
+            // dispatch(resetNoteActionStatus())
         }
     }, [noteActionStatus, navigate])
     

@@ -33,8 +33,8 @@ const Budget = () => {
 
     return (
         <div>
-            <h3>{budget.name}</h3>
-            <h4>Budget Total: <Link to={`/budgets/${budget.id}/edit`}>${budget.amount}</Link></h4>
+            <h3><strong>{budget.name}</strong></h3>
+            <h5>Budget Total: <Link to={`/budgets/${budget.id}/edit`} style={{ textDecoration: 'none'}}>${budget.amount}</Link></h5>
             <h5>Remaining Balance: ${balance}</h5>
             <ListGroup className='my-3'>
                 {expensesList}

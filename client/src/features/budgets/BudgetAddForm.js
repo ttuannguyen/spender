@@ -42,11 +42,11 @@ const BudgetAddForm = () => {
         e.preventDefault()
         dispatch(addBudget(formData))
 
-        setFormData({
-            ...formData, 
-            name:'',
-            amount:''
-        })
+        // setFormData({
+        //     ...formData, 
+        //     name:'',
+        //     amount:''
+        // })
     }
 
     if (loggedIn) {
@@ -92,7 +92,7 @@ const BudgetAddForm = () => {
                     <button type="submit" className="btn btn-primary">Add</button>
                 </form> */}
 
-                {errors?.map(error => <p key={error}>{error}</p>)}
+                <div className='my-3'>{errors?.map(error => <p key={error}>{error}</p>)}</div>
             </div>
         )
     } else {
