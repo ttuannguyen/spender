@@ -5,7 +5,8 @@ const initialState = {
     entities: {},
     errors: null,
     status: 'idle',
-    loggedIn: false
+    loggedIn: false,
+    noteActionStatus: 'idle'
 }
 
 export const fetchUserAsync = createAsyncThunk(
@@ -119,6 +120,21 @@ export const addNote = createAsyncThunk(
         return response
 })
 
+export const deleteNote = createAsyncThunk(
+    'user/deleteNote', 
+    async (note) => {
+        const fetchDeleteNote = () => {
+            return fetch(`/notes/${note.id}`,{
+                method:'DELETE',
+                headers:{'Content-Type': 'application/json'},
+            })
+            .then(res => res.json())
+            .then(data => data)
+        }
+        const response = await fetchDeleteNote()
+        return response
+})
+
 export const userSlice = createSlice({
     name: 'user',
     initialState,
@@ -137,7 +153,11 @@ export const userSlice = createSlice({
         },
         resetErrors(state) {
             state.errors = null
-        }
+        },
+        resetNoteActionStatus(state) {
+            state.noteActionStatus = 'idle'
+        },
+
     },
 
     extraReducers: (builder) => {
@@ -197,6 +217,7 @@ export const userSlice = createSlice({
             state.entities.expenses = newExpenses
             state.status = 'fulfilled'
         })   
+
         .addCase(addNote.fulfilled, (state, action) => {
             // const newExpenses = state.entities.expenses.map(e => e.id ===  parseInt(action.payload.id) ? action.payload : e)
             // state.entities.expenses = newExpenses
@@ -206,12 +227,18 @@ export const userSlice = createSlice({
             } else {
                 state.entities.notes.push(action.payload)
                 state.errors = null
-                state.status = 'fulfilled'
+                state.noteActionStatus = 'fulfilled'
             }
         })   
+        .addCase(deleteNote.fulfilled, (state, action) => {
+            const newNotes = state.entities.notes.filter(n => n.id !== action.payload.id)
+            state.entities.notes = newNotes
+            state.noteActionStatus = 'fulfilled'
+        })   
+
     }
 })
 
 
 export default userSlice.reducer
-export const { addExpense, setLoggedOutState, reset, resetErrors, resetUser } = userSlice.actions
+export const { addExpense, setLoggedOutState, reset, resetErrors, resetUser, resetNoteActionStatus } = userSlice.actions

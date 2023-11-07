@@ -102,7 +102,6 @@ export const deleteExpense = createAsyncThunk(
             .then(res => res.json())
             .then(data => data)
         }
-        // fetchDeletetExpense()
         const response = await fetchDeletetExpense()
         return response
     }

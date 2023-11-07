@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from 'react-router-dom'; 
 import ExpenseLink from '../expenses/ExpenseLink';
 import { resetExpenseActionStatus } from './BudgetsSlice';
+import { Badge, Col, ListGroup, Row } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 const Budget = () => {
 
@@ -16,14 +18,27 @@ const Budget = () => {
     const expensesTotal = expenseAmounts.reduce((a, b) => a + b, 0);
     const balance = budget.amount - expensesTotal;
 
-    const expensesList = budget.expenses.map(expense => <ExpenseLink key={expense.id} expense={expense} budget_id={params.id} />)
+    const expensesList = budget.expenses.map(expense => {
+        return (
+        <div>
+            <Link to={`/budgets/${params.id}/expenses/${expense.id}`} style={{ textDecoration: 'none'}}>
+                <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
+                    💸 Merchant: {expense.merchant} | Date: {expense.date} | Amount: ${expense.amount}
+                    {/* <ExpenseLink key={expense.id} expense={expense} budget_id={params.id} /> */}
+                </ListGroup.Item>
+            </Link>    
+            
+        </div>)
+    })
 
     return (
         <div>
-            <h3>{budget.name}</h3>
-            <h4>Budget Total: <Link to={`/budgets/${budget.id}/edit`}>${budget.amount}</Link></h4>
+            <h3><strong>{budget.name}</strong></h3>
+            <h5>Budget Total: <Link to={`/budgets/${budget.id}/edit`} style={{ textDecoration: 'none'}}>${budget.amount}</Link></h5>
             <h5>Remaining Balance: ${balance}</h5>
-            {expensesList}
+            <ListGroup className='my-3'>
+                {expensesList}
+            </ListGroup>
             <Link to={`/budgets/${budget.id}/expenses/new`}>
                     <button className="btn btn-primary" >Add An Expense</button>
             </Link>

@@ -5,6 +5,7 @@ import BudgetLink from './BudgetLink';
 const BudgetsOfUser = () => {
 
     const budgets = useSelector(state => state.budgets.entities)
+    console.log(budgets)
     const loggedIn = useSelector(state => state.user.loggedIn)
 
 

@@ -21,17 +21,18 @@ class NotesController < ApplicationController
     end
 
     # # DELETE
-    # def destroy
-    #     expense = current_user.expenses.find_by(id: params[:expense_id])
-    #     # expense = Expense.find_by(id: params[:expense_id])
-    #     note = expense.notes.find_by(id: params[:id])
-    #     note.destroy
-    #     head :no_content
-    # end
+    def destroy
+        # expense = current_user.expenses.find_by(id: params[:expense_id])
+        # expense = Expense.find_by(id: params[:expense_id])
+        note = current_user.notes.find_by(id: params[:id])
+        note.destroy
+        render json: note
+        # head :no_content
+    end
 
     private
     def note_params
-        params.permit(:content)
+        params.permit(:id, :content)
     end
 
 end

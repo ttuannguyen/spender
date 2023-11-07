@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 // import { addNewExpenseToCategory } from '../categories/CategoriesSlice';
 import { addNewExpenseToBudget, resetExpenseActionStatus } from '../budgets/BudgetsSlice';
+import { Button, Form } from 'react-bootstrap';
 
 const ExpenseAddForm2 = () => {
     
@@ -67,7 +68,29 @@ const ExpenseAddForm2 = () => {
         return (
             <div id='expense-add-form'>
                 <h4>Add an Expense</h4>
-                <form onSubmit={handleSubmit}>
+
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Merchant</Form.Label>
+                        <Form.Control type="text" id='merchant' name='merchant' value={formData.merchant} onChange={handleChange} />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Date</Form.Label>
+                        <Form.Control type="text" id='date' name='date' value={formData.date} onChange={handleChange} />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Amount</Form.Label>
+                        <Form.Control type="text" id='amount' name='amount' value={formData.amount} onChange={handleChange} />
+                    </Form.Group>
+
+                    <Button variant="primary" type="submit">
+                        Submit
+                    </Button>
+                </Form>
+
+                {/* <form onSubmit={handleSubmit}>
                     <div className='form-group'>
                         <label htmlFor='merchant'>Merchant</label>
                         <input type='text' className='form-control' id='merchant' name='merchant' value={formData.merchant} onChange={handleChange} /><br/>
@@ -81,8 +104,10 @@ const ExpenseAddForm2 = () => {
                         <input type='text' className='form-control' id='amount' name='amount' value={formData.amount} onChange={handleChange} /><br/>
                     </div>
                     <button type="submit" class='btn btn-primary'>Add!</button>
-                </form>
+                </form> */}
+
                 {errors?.map(error => <p key={error}>{error}</p>)}
+
             </div>
       )
     } else {

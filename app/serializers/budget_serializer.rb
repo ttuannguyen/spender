@@ -1,5 +1,5 @@
 class BudgetSerializer < ActiveModel::Serializer
-  attributes :id, :name, :amount#, :user_expenses
+  attributes :id, :name, :amount, :description#, :user_expenses
 
   # belongs_to :user
   has_many :expenses
