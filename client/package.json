@@ -2,9 +2,11 @@
   "name": "react-rails-api-project-template-client",
   "version": "0.1.0",
   "private": true,
+  "main": "app.js",
   "proxy": "http://localhost:3000",
   "engines": {
-    "node": "16.x"
+    "node": "16.x",
+    "npm": "8.1.0"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
@@ -12,6 +14,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "bootstrap": "^5.2.3",
+    "express": "^4.18.2",
     "react": "^17.0.2",
     "react-bootstrap": "^2.9.1",
     "react-dom": "^17.0.2",
@@ -26,7 +29,8 @@
     "start": "PORT=4000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postinstall": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [
