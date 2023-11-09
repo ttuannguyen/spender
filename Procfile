@@ -1,3 +1,2 @@
-web: bundle exec rails server -p $PORT
+web: bundle exec rails s
 release: bin/rake db:migrate
-web: node app.js
