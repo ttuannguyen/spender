@@ -7,7 +7,7 @@ const LandingPage = () => {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://magazine.vitality.co.uk/wp-content/uploads/2021/06/vitality_june21_Heres_why_you_suddenly_feel_so_guilty_about_spending_money_and_youre_not_alone-HERO-01.jpeg"
+          src="https://resources.tallysolutions.com/us/wp-content/uploads/2021/11/cogs-vs-expenses-whats-the-difference.jpg"
           alt="First slide"
         />
         <Carousel.Caption>
